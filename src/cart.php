@@ -1,5 +1,9 @@
 <?php
 
+namespace Losbanditos;
+use CartItem;
+use Product;
+
 class Cart
 {
     private array $itmes = [];
@@ -39,9 +43,8 @@ class Cart
     public function getTotalQuantity()
     {
         $sum = 0;
-        foreach ($this->itmes as $item)
-        {
-            $sum +$item->getQauntity();
+        foreach ($this->itmes as $item) {
+            $sum + $item->getQauntity();
         }
         return $sum;
     }
