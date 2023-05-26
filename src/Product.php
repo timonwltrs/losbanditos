@@ -25,7 +25,7 @@ class Product
     }
 
 
-    public function addImage()
+    public function getImage()
     {
         return "<a href='$this->prodUrl'><img src='../img/$this->imageName.jpeg' width=210 height=190></a>";
     }
@@ -37,16 +37,15 @@ class Product
 
     public function printProduct(): string
     {
-        return
-            "<div class='product'>".
-             $this->addImage() . "<br>" .
+        return "<div class='product'>".
+             $this->getImage() . "<br>" .
                 "<ul>".
                     "<li>". $this->getBrand() ."</li>".
                     "<li>". $this->description."</li>".
                     "<li>". "$".$this->price ."</li>"
                 ."</ul>".
                 "<div class='btn'>".
-                "<button class='addcart-btn' type='submit'>Add</button>".
+                "<button class='addcart-btn' type='submit'>Add to Cart</button>".
                 "<input class='quantity-btn' type='number' min='1' max='5'>".
             "</div>"
             ."</div>";
@@ -70,7 +69,7 @@ $product5 = new Product("Carhartt Wip", "Detroit Jacket 1983", "124.99", 'detroi
 echo $product5->printProduct();
 
 ?>
-
+<!--styling-->
 <style>
     .product{
         display: inline-block;
