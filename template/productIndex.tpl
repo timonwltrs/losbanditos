@@ -7,10 +7,12 @@
         {foreach $products as $product}
         <div class="col">
             <div class="card">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="/img/{$product->imageName}.jpeg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{$product->brand}</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">{$product->description}</p>
+                    <p class="card-text">${$product->price}</p>
+
                 </div>
             </div>
         </div>

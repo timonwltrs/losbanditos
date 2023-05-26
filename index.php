@@ -56,3 +56,6 @@ switch($action){
 }
 
 $_SESSION['products'] = Product::$products;
+
+//Browser link
+//https://losbanditos/index.php?action=productIndex

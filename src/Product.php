@@ -7,8 +7,8 @@ class Product
     public string $brand;
     public string $description;
     public float $price;
-    protected string $imageName;
-    protected string $prodUrl;
+    public string $imageName;
+    public string $prodUrl;
     public static array $products = [];
 
     public function __construct(string $brand, string $description , float $price, string $imageName, string $prodUrl)
