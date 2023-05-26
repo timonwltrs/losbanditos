@@ -2,7 +2,7 @@
 
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
-session_start();
+
 use Losbanditos\Product;
 use Losbanditos\User;
 
@@ -47,14 +47,17 @@ switch($action){
         }
         break;
     case "productIndex":
+
         $template->assign('products', Product::$products);
         $template->display('template/productIndex.tpl');
         break;
+
     default:
         $template->display('template/layout.tpl');
+        
+
 
 }
-
 $_SESSION['products'] = Product::$products;
 
 //Browser link

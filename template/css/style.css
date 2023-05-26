@@ -69,3 +69,12 @@
 .bd-mode-toggle {
     z-index: 1500;
 }
+
+.card-img-top{
+    width: 100%;
+    height: 80%;
+}
+
+.col{
+    display: grid;
+}
