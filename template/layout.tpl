@@ -94,7 +94,7 @@
           </li>
         </ul>
         <form>
-          <button class="btn btn-login">Login</button>
+          <button class="btn btn-login"><a href="/index.php?action=loginForm"">Login</a></button>
 
         </form>
         <form class="d-flex" role="search">

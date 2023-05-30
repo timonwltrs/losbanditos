@@ -2,16 +2,9 @@
 
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
-<<<<<<< HEAD
-=======
-session_start();
->>>>>>> develop
 
 use Losbanditos\Product;
 
-require_once "includes/smarty-4.3.0/libs/Smarty.class.php";
-
-use Losbanditos\User;
 session_start();
 
 $template = new Smarty();
@@ -65,10 +58,14 @@ switch ($action) {
         $template->display('template/home.tpl');
         break;
 
+    case "loginForm":
+        $template->display('template/registratieform-signIn.tpl');
+        break;
+
     default:
         $template->display('template/layout.tpl');
 
-
+        break;
 
 }
 $_SESSION['products'] = Product::$products;
