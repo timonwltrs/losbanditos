@@ -2,34 +2,38 @@
 
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
+<<<<<<< HEAD
+=======
+session_start();
+>>>>>>> develop
 
 use Losbanditos\Product;
+
+require_once "includes/smarty-4.3.0/libs/Smarty.class.php";
+
 use Losbanditos\User;
 session_start();
 
 $template = new Smarty();
 
-if(isset($_GET['action']))
-{
+if (isset($_GET['action'])) {
     $action = $_GET['action'];
-}else{
+} else {
     $action = null;
 }
 
-if(isset($_SESSION['products']))
-{
+if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
 
-switch($action){
+switch ($action) {
     case "registerform":
         // formulier laten zien
         $template->display('template/registratieform.tpl');
         break;
     case "register":
         // $_POST['username'], $_POST['password1'], $_POST['password2']
-        if(!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2']))
-        {
+        if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2'])) {
             $user = new User();
             $user->register($_POST['username'], $_POST['password1'], $_POST['password2']);
         }
@@ -42,8 +46,7 @@ switch($action){
         $template->display('template/productAddform.tpl');
         break;
     case "productAdd":
-        if(!empty($_POST['brand']))
-        {
+        if (!empty($_POST['brand'])) {
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
         }
         break;
