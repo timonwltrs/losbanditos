@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-30 08:40:42
-  from 'C:\Wamp.NET\sites\oopproject\template\layout-signIn.tpl' */
+/* Smarty version 4.3.0, created on 2023-05-30 10:50:05
+  from 'C:\Wamp.NET\sites\oopproject\template\layout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_64759a6aacf3f6_49238023',
+  'unifunc' => 'content_6475b8bd08f913_33636530',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '285633d2d70db666113418ac0b2244c473a9404f' => 
     array (
-      0 => 'C:\\Wamp.NET\\sites\\oopproject\\template\\layout-signIn.tpl',
-      1 => 1685373767,
+      0 => 'C:\\Wamp.NET\\sites\\oopproject\\template\\layout.tpl',
+      1 => 1685436544,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64759a6aacf3f6_49238023 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6475b8bd08f913_33636530 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
+
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 <head><?php echo '<script'; ?>
@@ -35,14 +38,14 @@ function content_64759a6aacf3f6_49238023 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="generator" content="Hugo 0.111.3">
   <title>Sticky Footer Navbar Template · Bootstrap v5.3</title>
 
-  <link href="template/css/bootstrap.min-signIn.css" rel="stylesheet" >
+  <link href="template/css/bootstrap.min.css" rel="stylesheet" >
   <link href="template/css/style.css" rel="stylesheet" >
   <meta name="theme-color" content="#712cf9">
 
   <!-- Custom styles for this template -->
+  <link href="template/css/sticky-footer-navbar.css" rel="stylesheet">
 </head>
-</head>
-<body class="text-center">
+<body class="d-flex flex-column h-100">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="check2" viewBox="0 0 16 16">
     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -95,31 +98,72 @@ function content_64759a6aacf3f6_49238023 (Smarty_Internal_Template $_smarty_tpl)
 </div>
 
 
-<main class="form-signin w-100 m-auto">
-  <form>
-    <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Fixed navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
 
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+  <div class="container">
+    <?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15693975906475b8bd08cca6_74590944', "content");
+?>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
-  </form>
+
+  </div>
 </main>
+
+<footer class="footer mt-auto py-3 bg-body-tertiary">
+  <div class="container">
+    <span class="text-body-secondary">Place sticky footer content here.</span>
+  </div>
+</footer>
+
+
+<?php echo '<script'; ?>
+ src="template/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+>
+
 
 </body>
 </html>
 <?php }
+/* {block "content"} */
+class Block_15693975906475b8bd08cca6_74590944 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_15693975906475b8bd08cca6_74590944',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+}
+}
+/* {/block "content"} */
 }
