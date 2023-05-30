@@ -76,8 +76,12 @@
 }
 
 .col{
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+
 }
+
+
 
 /*home*/
 
@@ -116,6 +120,7 @@ background-position: center;
 }
 .main-btn{
     display: inline-block;
+    background-color: white;
     color: #111;
     font-size: 16px;
     font-weight: 500;
@@ -130,8 +135,13 @@ background-position: center;
 }
 
 .home-body{
-
-
-background-image: url("../img/theweeknd.jpg");
+    background-image: url("../img/theweeknd.jpg");
     background-size: cover;
+}
+
+.btn-add-product{
+    width: 120px;
+    background-color: white;
+    color: black;
+    margin-left: 90%;
 }

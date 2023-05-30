@@ -9,7 +9,7 @@
         <h1>New Summer <br> Collection 2023</h1>
         <p> Theres nothing like trend</p>
 
-        <a href="#" class="main-btn">Shop now</a>
+        <a href="/index.php?action=productIndex" class="main-btn">Shop now</a>
     </div>
 </section
     </div>

@@ -48,7 +48,7 @@
                     <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
                     <p class="card-text">$69.99</p>
                 </div>
-                <button type="button" class="btn btn-dark">Add to Cart</button>
+                <button type="button" class="btn btn-dark"><a href="#">Add to Cart</button>
             </div>
         </div>
 
@@ -65,9 +65,7 @@
             </div>
         </div>
         {/foreach}
-
     </div>
 
-
-
+    <button type="button" class="btn btn-add-product"><a href="/index.php?action=productAddform">Add Products</a></button>
 {/block}

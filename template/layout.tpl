@@ -123,7 +123,7 @@
 </footer>
 
 
-<script src="template/js/bootstrap.bundle.min.js"></script>
+<script src="/template/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
