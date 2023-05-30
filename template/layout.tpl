@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 <head><script src="template/js/color-modes.js"></script>
