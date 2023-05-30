@@ -1,7 +1,7 @@
 {extends file="template/layout.tpl"}
 
 {block name="content"}
-    <h1 class="mt-5">Blablabla</h1>
+    <h1 class="mt-5">Product Details</h1>
 
     <div class="container mt-5 mb-5">
         <div class="row d-flex justify-content-center">
@@ -10,8 +10,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="images p-3">
-                                <div class="text-center p-4"> <img id="main-image" src="img/{$product->imageName}" width="250" /> </div>
-                                <div class="thumbnail text-center"> <img onclick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg" width="70"> <img onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg" width="70"> </div>
+                                <div class="text-center p-4"> <img id="main-image" src="/template/img/{}.jpeg" width="250" /> </div>
                             </div>
                         </div>
                         <div class="col-md-6">

@@ -78,11 +78,8 @@
 .col{
     display: flex;
     flex-wrap: wrap;
-
+    justify-content: space-between;
 }
-
-
-
 /*home*/
 
 section{
@@ -144,4 +141,10 @@ background-position: center;
     background-color: white;
     color: black;
     margin-left: 90%;
+}
+
+.info-btn{
+    float: right;
+    border-radius: 5%;
+    background-color: rgba(128, 128, 128, 0.53);
 }

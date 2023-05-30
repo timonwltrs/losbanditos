@@ -37,16 +37,19 @@ switch($action){
 
         $template->display('template/register.tpl');
         break;
+
     case "productAddform":
 
         $template->display('template/productAddform.tpl');
         break;
+
     case "productAdd":
         if(!empty($_POST['brand']))
         {
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
         }
         break;
+
     case "productIndex":
 
         $template->assign('products', Product::$products);
@@ -55,11 +58,16 @@ switch($action){
 
     case "productDetail":
         $template->assign('products', Product::$products);
+
         $template->display('template/productDetail.tpl');
         break;
 
     case "home":
         $template->display('template/home.tpl');
+        break;
+
+    case "loginForm":
+        $template->display('template/registratieform.tpl');
         break;
 
     default:

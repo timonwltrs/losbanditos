@@ -1,7 +1,7 @@
 {extends file="template/layout.tpl"}
 
 {block name="content"}
-<h1 class="mt-5">Los Banditos</h1>
+<h1 class="mt-5">Log in</h1>
     <form action="index.php?action=register" method="POST">
         <div class="mb-3">
             <label for="username" class="form-label">Email address</label>

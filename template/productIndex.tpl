@@ -6,13 +6,16 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col">
             <div class="card">
-                <img src="/template/img/levis-denim.jpeg" class="card-img-top" alt="...">
+                <img src="/template/img/levis-denim.jpeg"  class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Levi's</h5>
                     <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
                     <p class="card-text">$149.99</p>
                 </div>
+                <div class="btn">
                 <button type="button" class="btn btn-dark">Add to Cart</button>
+                <button type="button" class="btn btn-dark info-btn">Details</button>
+                </div>
             </div>
         </div>
 
@@ -24,7 +27,10 @@
                     <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
                     <p class="card-text">$179.99</p>
                 </div>
-                <button type="button" class="btn btn-dark">Add to Cart</button>
+                <div class="btn">
+                    <button type="button" class="btn btn-dark">Add to Cart</button>
+                    <button type="button" class="btn btn-dark info-btn">Details</button>
+                </div>
             </div>
         </div>
 
@@ -36,7 +42,10 @@
                     <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
                     <p class="card-text">$74.99</p>
                 </div>
-                <button type="button" class="btn btn-dark">Add to Cart</button>
+                <div class="btn">
+                    <button type="button" class="btn btn-dark">Add to Cart</button>
+                    <button type="button" class="btn btn-dark info-btn">Details</button>
+                </div>
             </div>
         </div>
 
@@ -48,7 +57,10 @@
                     <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
                     <p class="card-text">$69.99</p>
                 </div>
-                <button type="button" class="btn btn-dark"><a href="#">Add to Cart</button>
+                <div class="btn">
+                    <button type="button" class="btn btn-dark">Add to Cart</button>
+                    <button type="button" class="btn btn-dark info-btn">Details</button>
+                </div>
             </div>
         </div>
 
@@ -61,11 +73,13 @@
                     <p class="card-text">{$product->description}</p>
                     <p class="card-text">${$product->price}</p>
                 </div>
-                <button type="button" class="btn btn-dark">Add to Cart</button>
+                <div class="btn">
+                    <button type="button" class="btn btn-dark">Add to Cart</button>
+                    <button type="button" class="btn btn-dark info-btn">Details</button>
+                </div>
             </div>
         </div>
         {/foreach}
     </div>
-
-    <button type="button" class="btn btn-add-product"><a href="/index.php?action=productAddform">Add Products</a></button>
+    <button type="button" value="submit" class="btn btn-add-product"><a href="/index.php?action=productAddform">Add Products</a></button>
 {/block}
