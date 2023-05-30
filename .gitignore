@@ -3,4 +3,8 @@ vendor/
 
 .idea/
 
+<<<<<<< HEAD
 composer.lock
+=======
+templates_c/
+>>>>>>> develop
