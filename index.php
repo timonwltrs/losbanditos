@@ -5,6 +5,7 @@ require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
 use Losbanditos\Product;
 use Losbanditos\User;
+session_start();
 
 $template = new Smarty();
 
@@ -52,9 +53,18 @@ switch($action){
         $template->display('template/productIndex.tpl');
         break;
 
+    case "productDetail":
+        $template->assign('products', Product::$products);
+        $template->display('template/productDetail.tpl');
+        break;
+
+    case "home":
+        $template->display('template/home.tpl');
+        break;
+
     default:
         $template->display('template/layout.tpl');
-        
+
 
 
 }
