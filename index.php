@@ -5,11 +5,11 @@ require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
 use Losbanditos\Product;
 use Losbanditos\User;
-session_start();
 
+session_start();
 $template = new Smarty();
 $template->clearAllCache();
-
+$template->clearCompiledTemplate();
 if(isset($_GET['action']))
 {
     $action = $_GET['action'];
@@ -47,7 +47,12 @@ switch($action){
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
 
         }
-//        header('Location: https://losbanditos/index.php?action=productIndex');
+        if (in_array($_GET['brand'], Product::$products ))
+        {
+            header('Location: index.php?action=');
+
+        }
+        header('Location: index.php?action=productIndex');
         break;
 
     case "productIndex":
@@ -68,6 +73,10 @@ switch($action){
 
     case "loginForm":
         $template->display('template/registratieform.tpl');
+        break;
+
+    case "error":
+        $template->display('template/error.tpl');
         break;
 
     default:

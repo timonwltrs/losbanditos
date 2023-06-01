@@ -8,10 +8,10 @@
                 <img src="/template/img/levis-denim.jpeg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Levi's</h5>
-                    <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam accumsan, vehicula augue ac, lobortis ante.</p>
                     <p class="card-text">$149.99</p>
                 </div>
-                <div class="btn">
+                <div class="btn prod-card-btn">
                     <button type="button" class="btn btn-dark">Add to Cart</button>
                     <button type="button" class="btn btn-dark info-btn">Details</button>
                 </div>
@@ -23,10 +23,10 @@
                 <img src="/template/img/detroitjacket.jpeg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Carhartt Wip</h5>
-                    <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam accumsan, vehicula augue ac, lobortis ante.</p>
                     <p class="card-text">$179.99</p>
                 </div>
-                <div class="btn">
+                <div class="btn prod-card-btn">
                     <button type="button" class="btn btn-dark">Add to Cart</button>
                     <button type="button" class="btn btn-dark info-btn">Details</button>
                 </div>
@@ -38,10 +38,10 @@
                 <img src="/template/img/dickiespants.jpeg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Dickies</h5>
-                    <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam accumsan, vehicula augue ac, lobortis ante.</p>
                     <p class="card-text">$74.99</p>
                 </div>
-                <div class="btn">
+                <div class="btn prod-card-btn">
                     <button type="button" class="btn btn-dark">Add to Cart</button>
                     <button type="button" class="btn btn-dark info-btn">Details</button>
                 </div>
@@ -53,10 +53,10 @@
                 <img src="/template/img/leatherjacket.jpeg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Pull & Bear</h5>
-                    <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam accumsan, vehicula augue ac, lobortis ante.</p>
                     <p class="card-text">$69.99</p>
                 </div>
-                <div class="btn">
+                <div class="btn prod-card-btn">
                     <button type="button" class="btn btn-dark">Add to Cart</button>
                     <button type="button" class="btn btn-dark info-btn">Details</button>
                 </div>
@@ -72,10 +72,10 @@
                         <p class="card-text">{$product->description}</p>
                         <p class="card-text">${$product->price}</p>
                     </div>
-                    <div class="btn">
+                    <div class="btn prod-card-btn">
                         <button type="button" class="btn btn-dark">Add to Cart</button>
                         <form action="/index.php?action=productDetail&name={$product->brand}" method="POST">
-                            <input type="submit" name="detail" class="btn btn-dark info-btn""/>
+                            <input type="submit" name="detail" value="Details" class="btn btn-dark info-btn""/>
                         </form>
                     </div>
                 </div>

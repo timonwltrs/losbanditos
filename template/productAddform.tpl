@@ -13,13 +13,13 @@
         <div class="row mb-3">
             <label for="description" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3" maxlength="120"></textarea>
             </div>
         </div>
         <div class="row mb-3">
             <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
-                <input type="number" name="price" class="form-control" id="inputPrice">
+                <input type="number" name="price" class="form-control" id="inputPrice" step=".01" >
             </div>
         </div>
         <div class="row mb-3">
