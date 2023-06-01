@@ -33,13 +33,10 @@ switch($action){
             $user = new User();
             $user->register($_POST['username'], $_POST['password1'], $_POST['password2']);
         }
-
-
         $template->display('template/register.tpl');
         break;
 
     case "productAddform":
-
         $template->display('template/productAddform.tpl');
         break;
 
@@ -47,7 +44,9 @@ switch($action){
         if(!empty($_POST['brand']))
         {
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
+
         }
+        header('Location: https://losbanditos/index.php?action=productIndex');
         break;
 
     case "productIndex":
@@ -58,7 +57,6 @@ switch($action){
 
     case "productDetail":
         $template->assign('products', Product::$products);
-
         $template->display('template/productDetail.tpl');
         break;
 
@@ -80,3 +78,5 @@ $_SESSION['products'] = Product::$products;
 
 //Browser link
 //https://losbanditos/index.php?action=productIndex
+
+//in_array
