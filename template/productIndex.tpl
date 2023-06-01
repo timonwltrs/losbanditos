@@ -74,7 +74,7 @@
                     </div>
                     <div class="btn">
                         <button type="button" class="btn btn-dark">Add to Cart</button>
-                        <form action="/index.php?action=productDetail" method="POST">
+                        <form action="/index.php?action=productDetail&name={$product->brand}" method="POST">
                             <input type="submit" name="detail" class="btn btn-dark info-btn""/>
                         </form>
                     </div>

@@ -3,7 +3,6 @@
 {block name="content"}
     <h1 class="mt-5">Product Details</h1>
 
-    {foreach $products as $product}
     <div class="container mt-5 mb-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-10">
@@ -33,6 +32,5 @@
             </div>
         </div>
     </div>
-    {/foreach}
 
 {/block}

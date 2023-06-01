@@ -8,6 +8,7 @@ use Losbanditos\User;
 session_start();
 
 $template = new Smarty();
+$template->clearAllCache();
 
 if(isset($_GET['action']))
 {
@@ -46,7 +47,7 @@ switch($action){
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
 
         }
-        header('Location: https://losbanditos/index.php?action=productIndex');
+//        header('Location: https://losbanditos/index.php?action=productIndex');
         break;
 
     case "productIndex":
@@ -56,7 +57,8 @@ switch($action){
         break;
 
     case "productDetail":
-        $template->assign('products', Product::$products);
+
+        $template->assign('product', Product::productDetail($_GET['name']));
         $template->display('template/productDetail.tpl');
         break;
 

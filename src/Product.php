@@ -24,6 +24,24 @@ class Product
 
     }
 
+    public static function productDetail(string $name)
+    {
+        foreach(self::$products as $product)
+        {
+            if($name == $product->brand)
+            {
+                return $product;
+            }
+        }
+
+
+//            foreach ($data as $item) {
+//                if (!array_key_exists($item->id, $unique_objects)) {
+//                    $unique_objects[$item->id] = $obj;
+//                }
+//            }
+    }
+
 
 //    public function getImage()
 //    {
