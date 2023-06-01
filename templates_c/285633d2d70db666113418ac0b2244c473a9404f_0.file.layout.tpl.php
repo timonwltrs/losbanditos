@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-05-30 10:50:05
+/* Smarty version 4.3.0, created on 2023-06-01 14:49:22
   from 'C:\Wamp.NET\sites\oopproject\template\layout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_6475b8bd08f913_33636530',
+  'unifunc' => 'content_647893d263b256_45713230',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '285633d2d70db666113418ac0b2244c473a9404f' => 
     array (
       0 => 'C:\\Wamp.NET\\sites\\oopproject\\template\\layout.tpl',
-      1 => 1685436544,
+      1 => 1685622827,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,18 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6475b8bd08f913_33636530 (Smarty_Internal_Template $_smarty_tpl) {
+function content_647893d263b256_45713230 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-?>
+echo '<?php'; ?>
+
+session_start();
+<?php echo '?>'; ?>
 
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 <head><?php echo '<script'; ?>
- src="template/js/color-modes.js"><?php echo '</script'; ?>
+ src="/template/js/color-modes.js"><?php echo '</script'; ?>
 >
 
   <meta charset="utf-8">
@@ -36,14 +39,14 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.111.3">
-  <title>Sticky Footer Navbar Template · Bootstrap v5.3</title>
+  <title>Los Banditos</title>
 
-  <link href="template/css/bootstrap.min.css" rel="stylesheet" >
-  <link href="template/css/style.css" rel="stylesheet" >
+  <link href="/template/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="/template/css/style.css" rel="stylesheet" >
   <meta name="theme-color" content="#712cf9">
 
   <!-- Custom styles for this template -->
-  <link href="template/css/sticky-footer-navbar.css" rel="stylesheet">
+  <link href="/template/css/sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -102,22 +105,35 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Fixed navbar</a>
+      <a class="navbar-brand" href="/index.php?action=home">Los Banditos</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/index.php?action=home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="/index.php?action=productIndex">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <a class="nav-link" href="#">Favourites</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
           </li>
         </ul>
+        <form>
+          <?php echo '<?php'; ?>
+
+            $_SESSION['userData'];
+             <?php echo '?>'; ?>
+
+        </form>
+        <form>
+          <button class="btn btn-login"><a href="/index.php?action=loginForm"">Login</a></button>
+        </form>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
@@ -131,12 +147,14 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 <main class="flex-shrink-0">
   <div class="container">
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15693975906475b8bd08cca6_74590944', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1014144295647893d26368e6_38657330', "content");
 ?>
 
 
   </div>
 </main>
+
+
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">
   <div class="container">
@@ -146,7 +164,7 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15693975906475b8bd
 
 
 <?php echo '<script'; ?>
- src="template/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+ src="/template/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
 >
 
 
@@ -154,12 +172,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15693975906475b8bd
 </html>
 <?php }
 /* {block "content"} */
-class Block_15693975906475b8bd08cca6_74590944 extends Smarty_Internal_Block
+class Block_1014144295647893d26368e6_38657330 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_15693975906475b8bd08cca6_74590944',
+    0 => 'Block_1014144295647893d26368e6_38657330',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

@@ -4,15 +4,14 @@ require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
 use Losbanditos\Product;
-
-
-require_once "include/smarty-4.3.0/libs/Smarty.class.php";
-
 use Losbanditos\User;
 
 session_start();
 
 $template = new Smarty();
+
+$template->clearAllCache();
+$template->clearCompiledTemplate();
 
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -70,7 +69,6 @@ switch ($action) {
     default:
         $template->display('template/layout.tpl');
 
-        break;
 
 }
 $_SESSION['products'] = Product::$products;
