@@ -44,7 +44,7 @@ switch($action){
 
     case "productAdd":
         $template->assign('products', Product::$products);
-        if(!empty($_POST['brand']))
+        if(!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand'))))
         {
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
         }
