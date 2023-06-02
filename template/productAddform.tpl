@@ -3,7 +3,7 @@
 {block name="content"}
     <h1 class="mt-5">Add product</h1>
 
-    <form action="./index.php?action=productAdd" method="POST">
+    <form action="/index.php?action=productAdd" method="POST">
         <div class="row mb-3">
             <label for="inputBrand" class="col-sm-2 col-form-label">Brand</label>
             <div class="col-sm-10">
@@ -19,7 +19,7 @@
         <div class="row mb-3">
             <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
-                <input type="number" name="price" class="form-control" id="inputPrice" step=".01" >
+                <input type="number" name="price" class="form-control" id="inputPrice" >
             </div>
         </div>
         <div class="row mb-3">

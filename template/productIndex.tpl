@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Levi's</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam accumsan, vehicula augue ac, lobortis ante.</p>
-                    <p class="card-text">$149.99</p>
+                    <p class="card-text">$150</p>
                 </div>
                 <div class="btn prod-card-btn">
                     <button type="button" class="btn btn-dark">Add to Cart</button>
@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Carhartt Wip</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam accumsan, vehicula augue ac, lobortis ante.</p>
-                    <p class="card-text">$179.99</p>
+                    <p class="card-text">$180</p>
                 </div>
                 <div class="btn prod-card-btn">
                     <button type="button" class="btn btn-dark">Add to Cart</button>
@@ -39,7 +39,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Dickies</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam accumsan, vehicula augue ac, lobortis ante.</p>
-                    <p class="card-text">$74.99</p>
+                    <p class="card-text">$75</p>
                 </div>
                 <div class="btn prod-card-btn">
                     <button type="button" class="btn btn-dark">Add to Cart</button>
@@ -54,7 +54,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Pull & Bear</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac diam accumsan, vehicula augue ac, lobortis ante.</p>
-                    <p class="card-text">$69.99</p>
+                    <p class="card-text">$70</p>
                 </div>
                 <div class="btn prod-card-btn">
                     <button type="button" class="btn btn-dark">Add to Cart</button>

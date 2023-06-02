@@ -10,6 +10,7 @@ session_start();
 $template = new Smarty();
 $template->clearAllCache();
 $template->clearCompiledTemplate();
+
 if(isset($_GET['action']))
 {
     $action = $_GET['action'];
@@ -42,15 +43,10 @@ switch($action){
         break;
 
     case "productAdd":
+        $template->assign('products', Product::$products);
         if(!empty($_POST['brand']))
         {
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
-
-        }
-        if (in_array($_GET['brand'], Product::$products ))
-        {
-            header('Location: index.php?action=');
-
         }
         header('Location: index.php?action=productIndex');
         break;
@@ -62,7 +58,6 @@ switch($action){
         break;
 
     case "productDetail":
-
         $template->assign('product', Product::productDetail($_GET['name']));
         $template->display('template/productDetail.tpl');
         break;

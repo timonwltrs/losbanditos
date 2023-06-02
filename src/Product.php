@@ -31,9 +31,18 @@ class Product
                 return $product;
             }
         }
-
-
     }
+//
+//    public static function sameProductName()
+//    {
+//        foreach (self::$products as $product) {
+//            if(in_array($_GET['brand'], self::$products))
+//            {
+//
+//            }
+//            return$product;
+//        }
+//    }
 
 
 //    public function getImage()
