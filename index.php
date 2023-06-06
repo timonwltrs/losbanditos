@@ -4,6 +4,10 @@ require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
 use Losbanditos\Product;
+
+
+require_once "include/smarty-4.3.0/libs/Smarty.class.php";
+
 use Losbanditos\User;
 
 session_start();
