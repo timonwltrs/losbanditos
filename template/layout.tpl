@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 <head><script src="/template/js/color-modes.js"></script>
@@ -87,19 +86,19 @@
             <a class="nav-link" href="/index.php?action=productIndex">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Favourites</a>
+            <a class="nav-link" href="/index.php?action=error">Favourites</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cart</a>
+            <a class="nav-link" href="/index.php?action=error">Cart</a>
           </li>
         </ul>
         <form>
-          <button class="btn btn-login"><a href="/index.php?action=loginForm"">Login</a></button>
+          <button class="btn btn-login"><a href="/index.php?action=loginForm">Login</a></button>
 
         </form>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success" type="submit"><a href="/index.php?action=error">Search</a></button>
         </form>
       </div>
     </div>
@@ -113,14 +112,6 @@
 
   </div>
 </main>
-
-
-
-<footer class="footer mt-auto py-3 bg-body-tertiary">
-  <div class="container">
-    <span class="text-body-secondary">Place sticky footer content here.</span>
-  </div>
-</footer>
 
 
 <script src="/template/js/bootstrap.bundle.min.js"></script>
