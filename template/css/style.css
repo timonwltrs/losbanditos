@@ -72,17 +72,14 @@
 
 .card-img-top{
     width: 100%;
-    height: 80%;
+    height: 470px;
 }
 
 .col{
     display: flex;
     flex-wrap: wrap;
-
+    justify-content: space-between;
 }
-
-
-
 /*home*/
 
 section{
@@ -153,3 +150,40 @@ a{
 }
 
 
+
+
+.info-btn{
+    float: right;
+    border-radius: 5%;
+    background-color: rgba(128, 128, 128, 0.53);
+    font-size: 12px;
+
+}
+
+.prod-card-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 30px;
+}
+
+.prod-card-btn-example{
+    width: 100%;
+}
+
+.error{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn a{
+    color: #9d9d9d;
+    text-decoration: none;
+
+}
+
+.fav-btn{
+    background-color: rgba(255, 222, 173, 0);
+    font-size: 25px;
+}

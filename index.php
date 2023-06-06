@@ -11,8 +11,9 @@ require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 use Losbanditos\User;
 
 session_start();
-
 $template = new Smarty();
+$template->clearAllCache();
+$template->clearCompiledTemplate();
 
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -35,19 +36,22 @@ switch ($action) {
             $user = new User();
             $user->register($_POST['username'], $_POST['password1'], $_POST['password2']);
         }
-
-
         $template->display('template/register.tpl');
         break;
-    case "productAddform":
 
+    case "productAddform":
         $template->display('template/productAddform.tpl');
         break;
+
     case "productAdd":
-        if (!empty($_POST['brand'])) {
+        $template->assign('products', Product::$products);
+        if(!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand'))))
+        {
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
         }
+        header('Location: index.php?action=productIndex');
         break;
+
     case "productIndex":
 
         $template->assign('products', Product::$products);
@@ -55,7 +59,7 @@ switch ($action) {
         break;
 
     case "productDetail":
-        $template->assign('products', Product::$products);
+        $template->assign('product', Product::productDetail($_GET['name']));
         $template->display('template/productDetail.tpl');
         break;
 
@@ -65,6 +69,10 @@ switch ($action) {
 
     case "loginForm":
         $template->display('template/registratieform-signIn.tpl');
+        break;
+
+    case "error":
+        $template->display('template/error.tpl');
         break;
 
     default:
@@ -77,3 +85,5 @@ $_SESSION['products'] = Product::$products;
 
 //Browser link
 //https://losbanditos/index.php?action=productIndex
+
+//in_array
