@@ -158,6 +158,10 @@ background-position: center;
     row-gap: 30px;
 }
 
+.prod-card-btn-example{
+    width: 100%;
+}
+
 .error{
     margin-top: 100px;
     margin-left: auto;

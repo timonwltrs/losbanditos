@@ -12,9 +12,8 @@
                         accumsan, vehicula augue ac, lobortis ante.</p>
                     <p class="card-text">$150</p>
                 </div>
-                <div class="btn prod-card-btn">
-                    <button type="button" class="btn btn-dark">Add to Cart</button>
-                    <button type="button" class="btn btn-dark info-btn">Details</button>
+                <div class="btn prod-card-btn-example">
+                    <button type="button" class="btn btn-dark">This is an example</button>
                 </div>
             </div>
         </div>
@@ -28,9 +27,8 @@
                         accumsan, vehicula augue ac, lobortis ante.</p>
                     <p class="card-text">$180</p>
                 </div>
-                <div class="btn prod-card-btn">
-                    <button type="button" class="btn btn-dark">Add to Cart</button>
-                    <button type="button" class="btn btn-dark info-btn">Details</button>
+                <div class="btn prod-card-btn-example">
+                    <button type="button" class="btn btn-dark">This is an example</button>
                 </div>
             </div>
         </div>
@@ -44,9 +42,8 @@
                         accumsan, vehicula augue ac, lobortis ante.</p>
                     <p class="card-text">$75</p>
                 </div>
-                <div class="btn prod-card-btn">
-                    <button type="button" class="btn btn-dark">Add to Cart</button>
-                    <button type="button" class="btn btn-dark info-btn">Details</button>
+                <div class="btn prod-card-btn-example">
+                    <button type="button" class="btn btn-dark">This is an example</button>
                 </div>
             </div>
         </div>
@@ -60,9 +57,8 @@
                         accumsan, vehicula augue ac, lobortis ante.</p>
                     <p class="card-text">$70</p>
                 </div>
-                <div class="btn prod-card-btn">
-                    <button type="button" class="btn btn-dark">Add to Cart</button>
-                    <button type="button" class="btn btn-dark info-btn">Details</button>
+                <div class="btn prod-card-btn-example">
+                    <button type="button" class="btn btn-dark">This is an example</button>
                 </div>
             </div>
         </div>
