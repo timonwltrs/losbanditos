@@ -24,30 +24,12 @@ class Product
 
     }
 
-
-//    public function getImage()
-//    {
-//        return "<a href='$this->prodUrl'><img src='/template/img/$this->imageName.jpeg' width=210 height=190></a>";
-//    }
-//
-//    public function getBrand(): string
-//    {
-//        return $this->brand;
-//    }
-//
-//    public function printProduct(): string
-//    {
-//        return "<div class='product'>".
-//             $this->getImage() . "<br>" .
-//                "<ul>".
-//                    "<li>". $this->getBrand() ."</li>".
-//                    "<li>". $this->description."</li>".
-//                    "<li>". "$".$this->price ."</li>"
-//                ."</ul>".
-//                "<div class='btn'>".
-//                "<button class='addcart-btn' type='submit'>Add to Cart</button>".
-//                "<input class='quantity-btn' type='number' min='1' max='5'>".
-//            "</div>"
-//            ."</div>";
-//    }
+    public static function productDetail(string $name)
+    {
+        foreach (self::$products as $product) {
+            if ($name == $product->brand) {
+                return $product;
+            }
+        }
+    }
 }

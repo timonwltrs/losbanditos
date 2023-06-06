@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
-<head><script src="template/js/color-modes.js"></script>
+<head><script src="/template/js/color-modes.js"></script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,12 +9,12 @@
   <meta name="generator" content="Hugo 0.111.3">
   <title>Los Banditos</title>
 
-  <link href="template/css/bootstrap.min.css" rel="stylesheet" >
-  <link href="template/css/style.css" rel="stylesheet" >
+  <link href="/template/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="/template/css/style.css" rel="stylesheet" >
   <meta name="theme-color" content="#712cf9">
 
   <!-- Custom styles for this template -->
-  <link href="template/css/sticky-footer-navbar.css" rel="stylesheet">
+  <link href="/template/css/sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -86,19 +86,19 @@
             <a class="nav-link" href="/index.php?action=productIndex">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Favourites</a>
+            <a class="nav-link" href="/index.php?action=error">Favourites</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cart</a>
+            <a class="nav-link" href="/index.php?action=error">Cart</a>
           </li>
         </ul>
         <form>
-          <button class="btn btn-login"><a href="/index.php?action=loginForm"">Login</a></button>
+          <button class="btn btn-login"><a href="/index.php?action=loginForm">Login</a></button>
 
         </form>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success" type="submit"><a href="/index.php?action=error">Search</a></button>
         </form>
       </div>
     </div>
@@ -112,14 +112,6 @@
 
   </div>
 </main>
-
-
-
-<footer class="footer mt-auto py-3 bg-body-tertiary">
-  <div class="container">
-    <span class="text-body-secondary">Place sticky footer content here.</span>
-  </div>
-</footer>
 
 
 <script src="/template/js/bootstrap.bundle.min.js"></script>
