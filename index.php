@@ -75,8 +75,24 @@ switch ($action) {
         $template->display('template/error.tpl');
         break;
 
+    case "favouritesAdd":
+        if (!empty($_POST['fav']))
+        {
+            if(Product::METHOD($_POST['fav']))
+            {
+
+            }
+        }
+        else {
+            $template->assign('fav', "Geen fav");
+            $template->display('template/error.tpl');
+        }
+        header('Location: index.php?action=favourites');
+
+        break;
+
     case "favourites":
-        $template->assign('products', Product::$products);
+
         $template->display('template/favourites.tpl');
         break;
 
