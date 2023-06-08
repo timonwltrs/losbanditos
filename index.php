@@ -75,6 +75,12 @@ switch ($action) {
         $template->display('template/error.tpl');
         break;
 
+    case "favourites":
+        $template->assign('products', Product::$products);
+        $template->display('template/favourites.tpl');
+        break;
+
+
     default:
         $template->display('template/layout.tpl');
 

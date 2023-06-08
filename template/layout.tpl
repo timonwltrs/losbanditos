@@ -86,7 +86,7 @@
             <a class="nav-link" href="/index.php?action=productIndex">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/index.php?action=error">Favourites</a>
+            <a class="nav-link" href="/index.php?action=favourites">Favourites</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/index.php?action=error">Cart</a>
