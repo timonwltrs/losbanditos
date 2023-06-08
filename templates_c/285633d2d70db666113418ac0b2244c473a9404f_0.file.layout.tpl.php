@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-06-01 14:49:22
+/* Smarty version 4.3.0, created on 2023-06-08 15:12:05
   from 'C:\Wamp.NET\sites\oopproject\template\layout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_647893d263b256_45713230',
+  'unifunc' => 'content_6481d3a5b8d428_58353476',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '285633d2d70db666113418ac0b2244c473a9404f' => 
     array (
       0 => 'C:\\Wamp.NET\\sites\\oopproject\\template\\layout.tpl',
-      1 => 1685622827,
+      1 => 1686207116,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_647893d263b256_45713230 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6481d3a5b8d428_58353476 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 echo '<?php'; ?>
@@ -125,16 +125,12 @@ session_start();
           </li>
         </ul>
         <form>
-          <?php echo '<?php'; ?>
-
-            $_SESSION['userData'];
-             <?php echo '?>'; ?>
-
+          <button class="btn btn-login"><a href="/index.php?action=regieForm"">Registreren</a></button>
         </form>
-        <form>
-          <button class="btn btn-login"><a href="/index.php?action=loginForm"">Login</a></button>
-        </form>
-        <form class="d-flex" role="search">
+          <form>
+              <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
+          </form>
+                <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -147,37 +143,24 @@ session_start();
 <main class="flex-shrink-0">
   <div class="container">
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1014144295647893d26368e6_38657330', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15851798526481d3a5b89407_09181968', "content");
 ?>
-
 
   </div>
 </main>
-
-
-
-<footer class="footer mt-auto py-3 bg-body-tertiary">
-  <div class="container">
-    <span class="text-body-secondary">Place sticky footer content here.</span>
-  </div>
-</footer>
-
-
 <?php echo '<script'; ?>
  src="/template/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
 >
-
-
 </body>
 </html>
 <?php }
 /* {block "content"} */
-class Block_1014144295647893d26368e6_38657330 extends Smarty_Internal_Block
+class Block_15851798526481d3a5b89407_09181968 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1014144295647893d26368e6_38657330',
+    0 => 'Block_15851798526481d3a5b89407_09181968',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

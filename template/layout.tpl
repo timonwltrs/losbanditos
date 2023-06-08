@@ -96,13 +96,14 @@ session_start();
           </li>
         </ul>
         <form>
-          <?php
-            $_SESSION['userData'];
-             ?>
+          <button class="btn btn-login"><a href="/index.php?action=regieForm"">Registreren</a></button>
         </form>
-        <form>
-          <button class="btn btn-login"><a href="/index.php?action=loginForm"">Login</a></button>
-        </form>
+          <form>
+              <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
+          </form>
+        {*<form>
+          <button class="btn btn-login"><a href="/index.php?action=regieForm"">Henk</a></button>
+        </form>*}
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
@@ -116,21 +117,8 @@ session_start();
 <main class="flex-shrink-0">
   <div class="container">
     {block name="content"}{/block}
-
   </div>
 </main>
-
-
-
-<footer class="footer mt-auto py-3 bg-body-tertiary">
-  <div class="container">
-    <span class="text-body-secondary">Place sticky footer content here.</span>
-  </div>
-</footer>
-
-
 <script src="/template/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 </html>
