@@ -10,6 +10,7 @@ class Product
     public string $imageName;
     public string $prodUrl;
     public static array $products = [];
+    public static array $productFavList = [];
 
     public function __construct(string $brand, string $description, float $price, string $imageName, string $prodUrl)
     {
@@ -26,7 +27,8 @@ class Product
 
     public static function productDetail(string $name)
     {
-        foreach (self::$products as $product) {
+        foreach (self::$products as $product)
+        {
             if ($name == $product->brand) {
                 return $product;
             }

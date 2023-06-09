@@ -3,12 +3,11 @@
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
-use Losbanditos\Product;
-
-
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
 use Losbanditos\User;
+use Losbanditos\Product;
+use Losbanditos\ProductFavList;
 
 session_start();
 $template = new Smarty();
@@ -24,6 +23,8 @@ if (isset($_GET['action'])) {
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
+
+
 
 switch ($action) {
     case "registerform":
@@ -53,7 +54,6 @@ switch ($action) {
         break;
 
     case "productIndex":
-
         $template->assign('products', Product::$products);
         $template->display('template/productIndex.tpl');
         break;
@@ -76,23 +76,20 @@ switch ($action) {
         break;
 
     case "favouritesAdd":
-        if (!empty($_POST['fav']))
+        $template->assign('favourites', ProductFavList::$favourites);
+        $template->assign('favourites', Product::$products);
+        if (!empty($_POST))
         {
-            if(Product::METHOD($_POST['fav']))
-            {
 
-            }
         }
         else {
-            $template->assign('fav', "Geen fav");
             $template->display('template/error.tpl');
         }
         header('Location: index.php?action=favourites');
-
         break;
 
     case "favourites":
-
+        $template->assign('favourites', ProductFavList::$favourites);
         $template->display('template/favourites.tpl');
         break;
 
