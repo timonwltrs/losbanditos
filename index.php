@@ -23,6 +23,9 @@ if (isset($_GET['action'])) {
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
 
 
 
@@ -76,20 +79,15 @@ switch ($action) {
         break;
 
     case "favouritesAdd":
-        $template->assign('favourites', ProductFavList::$favourites);
+//        controle voor geinlogde user
         $template->assign('favourites', Product::$products);
-        if (!empty($_POST))
-        {
-
-        }
-        else {
-            $template->display('template/error.tpl');
-        }
+        $user->userFav($_POST['brand']);
+        $template->assign('favourites', Product::$products);
         header('Location: index.php?action=favourites');
         break;
 
     case "favourites":
-        $template->assign('favourites', ProductFavList::$favourites);
+        $template->assign('favourites', Product::$products);
         $template->display('template/favourites.tpl');
         break;
 

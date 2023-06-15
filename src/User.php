@@ -6,6 +6,7 @@ class User
 {
     private string $username;
     private string $password;
+    private ProductFavList $productFavList;
 
     public function register(string $username, string $password1, string $password2)
     {
@@ -29,4 +30,9 @@ class User
         return false;
     }
 
+    public function userFav(Product $product): void
+    {
+        $list = new ProductFavList();
+        $list->addFavourites($product);
+    }
 }
