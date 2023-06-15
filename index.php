@@ -22,18 +22,17 @@ if (isset($_GET['action'])) {
     $action = null;
 }
 
+if(isset($_SESSION['users']))
+{
+    User::$users = $_SESSION['users'];
+}
+
+
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
 
-if (isset($_SESSION['clients'])) {
-    Client::$clients = $_SESSION['clients'];
-}
 
-$login = new login();
-
-
-$login->logout();
 
 switch ($action) {
     case "registerform":
@@ -80,25 +79,37 @@ switch ($action) {
 
     case "loginForm":
         $template->display('template/loginform.tpl');
-        if (!empty($_POST['username'])) {
-            $client = new Client($_POST['username'], $_POST['password']);
-            $client->Client($_POST['username'], $_POST['password'], $_POST['password']);
-        }
-        if ($login->login("Henk", "123")) {
-            echo "Login successful! Welcome, " . $login->getLoggedInUser()->getUsername();
-        }
-
         break;
-
-
+    case "login":
+        if (!empty($_POST['username']) && !empty($_POST['password'])) {
+            if(User::login($_POST['username'], $_POST['password']))
+            {
+                // ingelogd
+                $_SESSION['username'] = $_POST['username'];
+                echo "ingelogd";
+                $template->display('template/layout.tpl');
+            }else{
+                // geef fout aan
+                echo "fout";
+                $template->display('template/layout.tpl');
+            }
+        }
+        break;
+    case "logout":
+        $_SESSION['username'] = "";
+        unset($_SESSION['username']);
+        break;
     default:
         $template->display('template/layout.tpl');
-        $template->display('template/userpage.tpl');
+        //$template->display('template/userpage.tpl');
 
 
 
 }
 $_SESSION['products'] = Product::$products;
+$_SESSION['users'] = User::$users;
 
+
+var_dump($_SESSION);
 //Browser link
 //https://losbanditos/index.php?action=productIndex

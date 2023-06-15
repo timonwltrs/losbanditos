@@ -5,7 +5,7 @@ namespace Losbanditos;
 
 require_once 'User.php';
 
-class login {
+class Login {
 
     private $loggedInUser;
 
