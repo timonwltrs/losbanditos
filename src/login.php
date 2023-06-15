@@ -5,7 +5,8 @@ namespace Losbanditos;
 
 require_once 'User.php';
 
-class Login {
+class login {
+
     private $loggedInUser;
 
     public function login($username, $password) {
@@ -28,7 +29,8 @@ class Login {
         session_destroy();
     }
 
-    public function isLoggedIn() {
+    public function isLoggedIn(): bool
+    {
         return isset($_SESSION['user']);
     }
 

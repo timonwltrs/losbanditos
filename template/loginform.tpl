@@ -12,7 +12,7 @@
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" name="password" class="form-control" id="password">
+            <button class="btn btn-login"><a href="userpage.tpl"">Submit</a></button>
         </div>
-        <button type="submit" class="btn btn-primary">submit</button>
     </form>
 {/block}

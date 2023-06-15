@@ -6,7 +6,7 @@ require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 use Losbanditos\Product;
 use Losbanditos\User;
 use Losbanditos\Client;
-use Losbanditos\Login;
+use Losbanditos\login;
 
 
 session_start();
@@ -30,7 +30,7 @@ if (isset($_SESSION['clients'])) {
     Client::$clients = $_SESSION['clients'];
 }
 
-$login = new Login();
+$login = new login();
 
 
 $login->logout();
@@ -86,14 +86,15 @@ switch ($action) {
         }
         if ($login->login("Henk", "123")) {
             echo "Login successful! Welcome, " . $login->getLoggedInUser()->getUsername();
-        } else {
-            echo "Login failed!";
         }
+
         break;
 
 
     default:
         $template->display('template/layout.tpl');
+        $template->display('template/userpage.tpl');
+
 
 
 }

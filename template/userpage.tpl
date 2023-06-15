@@ -1,7 +1,9 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
-<head>
-    <script src="/template/js/color-modes.js"></script>
+<head><script src="/template/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +12,8 @@
     <meta name="generator" content="Hugo 0.111.3">
     <title>Los Banditos</title>
 
-    <link href="/template/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/template/css/style.css" rel="stylesheet">
+    <link href="/template/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="/template/css/style.css" rel="stylesheet" >
     <meta name="theme-color" content="#712cf9">
 
     <!-- Custom styles for this template -->
@@ -41,46 +43,29 @@
             aria-expanded="false"
             data-bs-toggle="dropdown"
             aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
-            <use href="#circle-half"></use>
-        </svg>
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
         <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
     </button>
     <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
         <li>
-            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
-                    aria-pressed="false">
-                <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-                    <use href="#sun-fill"></use>
-                </svg>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
                 Light
-                <svg class="bi ms-auto d-none" width="1em" height="1em">
-                    <use href="#check2"></use>
-                </svg>
+                <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
             </button>
         </li>
         <li>
-            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
-                    aria-pressed="false">
-                <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-                    <use href="#moon-stars-fill"></use>
-                </svg>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
                 Dark
-                <svg class="bi ms-auto d-none" width="1em" height="1em">
-                    <use href="#check2"></use>
-                </svg>
+                <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
             </button>
         </li>
         <li>
-            <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-                    aria-pressed="true">
-                <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-                    <use href="#circle-half"></use>
-                </svg>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+                <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
                 Auto
-                <svg class="bi ms-auto d-none" width="1em" height="1em">
-                    <use href="#check2"></use>
-                </svg>
+                <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
             </button>
         </li>
     </ul>
@@ -91,35 +76,36 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.php?action=home">Los Banditos</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="/index.php?action=homeClient">Los Banditos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/index.php?action=home">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/index.php?action=homeClient">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?action=productIndex">Products</a>
+                        <a class="nav-link" href="/index.php?action=productIndexClient">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?action=error">Favourites</a>
+                        <a class="nav-link" href="#">Favourites</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.php?action=error">Cart</a>
+                        <a class="nav-link" href="#">Cart</a>
                     </li>
                 </ul>
                 <form>
-                    <form action="/index.php?action=productDetail&name={""}" method="POST">
-                    <button class="btn btn-login"><a href="/index.php?action=loginForm">Logout</a></button>
-
+                    <button class="btn btn-login"><a href="/index.php?action=loginForm">Henk</a></button>
+                </form>
+                <form>
+                    <button class="btn btn-logout"><a href="/index.php?action=home">Logout</a></button>
+                </form>
+                <form>
                 </form>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit"><a href="/index.php?action=error">Search</a>
-                    </button>
+                    <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -130,13 +116,8 @@
 <main class="flex-shrink-0">
     <div class="container">
         {block name="content"}{/block}
-
     </div>
 </main>
-
-
 <script src="/template/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 </html>

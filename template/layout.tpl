@@ -101,9 +101,6 @@ session_start();
           <form>
               <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
           </form>
-        {*<form>
-          <button class="btn btn-login"><a href="/index.php?action=regieForm"">Henk</a></button>
-        </form>*}
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>

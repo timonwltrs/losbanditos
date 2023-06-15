@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-06-08 15:12:05
+/* Smarty version 4.3.0, created on 2023-06-15 12:42:44
   from 'C:\Wamp.NET\sites\oopproject\template\layout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.0',
-  'unifunc' => 'content_6481d3a5b8d428_58353476',
+  'unifunc' => 'content_648aeb248e5bd2_09585443',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '285633d2d70db666113418ac0b2244c473a9404f' => 
     array (
       0 => 'C:\\Wamp.NET\\sites\\oopproject\\template\\layout.tpl',
-      1 => 1686207116,
+      1 => 1686811957,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6481d3a5b8d428_58353476 (Smarty_Internal_Template $_smarty_tpl) {
+function content_648aeb248e5bd2_09585443 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 echo '<?php'; ?>
@@ -130,7 +130,7 @@ session_start();
           <form>
               <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
           </form>
-                <form class="d-flex" role="search">
+        <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -143,7 +143,7 @@ session_start();
 <main class="flex-shrink-0">
   <div class="container">
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15851798526481d3a5b89407_09181968', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1641454386648aeb248e17e2_38065546', "content");
 ?>
 
   </div>
@@ -155,12 +155,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15851798526481d3a5
 </html>
 <?php }
 /* {block "content"} */
-class Block_15851798526481d3a5b89407_09181968 extends Smarty_Internal_Block
+class Block_1641454386648aeb248e17e2_38065546 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_15851798526481d3a5b89407_09181968',
+    0 => 'Block_1641454386648aeb248e17e2_38065546',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

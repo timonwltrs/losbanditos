@@ -24,9 +24,9 @@ class Client
         return $this->password;
     }
 
-    public function authenticate($username, $password)
+    public function authenticate($username1, $password1, $password2)
     {
-        return ($this->username === $username && $this->password === $password);
+        return ($this->username === $username1 && $this->password === $password1 && $this->password === $password2);
     }
 
     public function Client(mixed $username, mixed $password1, mixed $password2)
