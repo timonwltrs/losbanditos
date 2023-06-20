@@ -33,3 +33,9 @@ class Review
 
 $reviewPage = new ReviewPage();
 
+// Adding reviews
+$reviewPage->addReview("John depp", 5, "Great product!");
+$reviewPage->addReview("Peter pan", 4, "Good quality.");
+
+// Displaying reviews
+ $reviewPage->displayReviews();
