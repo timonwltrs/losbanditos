@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 <head><script src="/template/js/color-modes.js"></script>
@@ -96,14 +94,22 @@ session_start();
           </li>
         </ul>
         <form>
+          <div class="col">
+            <div class="card">
+              <h5 class="card-title">{if isset($smarty.session.username)}
+                  {$smarty.session.username}
+                {/if}</h5>
+            </div>
+          </div>
+        </form>
+        <form>
           <button class="btn btn-login"><a href="/index.php?action=regieForm"">Registreren</a></button>
         </form>
           <form>
               <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
           </form>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form>
+          <button class="btn btn-login"><a href="/index.php?action=logout"">Logout</a></button>
         </form>
       </div>
     </div>

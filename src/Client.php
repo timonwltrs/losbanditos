@@ -24,12 +24,12 @@ class Client
         return $this->password;
     }
 
-    public function authenticate($username1, $password1, $password2)
+    public function authenticate($user, $password1, $password2)
     {
-        return ($this->username === $username1 && $this->password === $password1 && $this->password === $password2);
+        return ($this->username === $user && $this->password === $password1 && $this->password === $password2);
     }
 
-    public function Client(mixed $username, mixed $password1, mixed $password2)
+    public function Client(mixed $user, mixed $password1, mixed $password2)
     {
     }
 }
