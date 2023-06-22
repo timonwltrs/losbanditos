@@ -5,15 +5,9 @@ namespace Losbanditos;
 class ReviewPage
 {
     private $reviews;
-    public function construct()
+    public function __construct()
     {
         $this->reviews=[];
-    }
-
-    public function addReview($name, $rating,$comment)
-    {
-        $review= new Review($name, $rating, $comment);
-        $this->reviews[] = $review;
     }
 
     public function displayReviews()

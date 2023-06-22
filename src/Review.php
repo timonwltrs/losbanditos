@@ -4,11 +4,11 @@
 
 class Review
 {
-    private $name;
-    private $rating;
-    private $comment;
+    private string $name;
+    private int $rating;
+    private string $comment;
 
-    public function __construct($name, $rating, $comment)
+    public function __construct(string $name, int $rating, string $comment)
     {
         $this->name = $name;
         $this->rating = $rating;
@@ -30,12 +30,3 @@ class Review
         return $this->rating;
     }
 }
-
-$reviewPage = new ReviewPage();
-
-// Adding reviews
-$reviewPage->addReview("John depp", 5, "Great product!");
-$reviewPage->addReview("Peter pan", 4, "Good quality.");
-
-// Displaying reviews
- $reviewPage->displayReviews();

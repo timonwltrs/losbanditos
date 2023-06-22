@@ -87,3 +87,5 @@ $_SESSION['products'] = Product::$products;
 //https://losbanditos/index.php?action=productIndex
 
 //in_array
+
+var_dump($_SESSION);
