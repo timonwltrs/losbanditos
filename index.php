@@ -119,7 +119,6 @@ $_SESSION['products'] = Product::$products;
 $_SESSION['users'] = User::$users;
 
 
-var_dump($_SESSION);
 //Browser link
 //https://losbanditos/index.php?action=productIndex
 
