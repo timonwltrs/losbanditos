@@ -1,10 +1,14 @@
 {extends file="template/layout.tpl"}
 
 {block name="content"}
+<<<<<<< HEAD:template/registratieform-signIn.tpl
 <h1 class="mt-5">Log in</h1>
+=======
+    <h1 class="mt-5">Registreren</h1>
+>>>>>>> feature-inlog:template/registratieform.tpl
     <form action="/index.php?action=register" method="POST">
         <div class="mb-3">
-            <label for="username" class="form-label">Email address</label>
+            <label for="username" class="form-label">Enter username</label>
             <input type="text" name="username" class="form-control" id="username">
         </div>
         <div class="mb-3">
