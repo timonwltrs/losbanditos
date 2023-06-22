@@ -79,16 +79,13 @@ switch ($action) {
         break;
 
     case "favouritesAdd":
-//        controle voor geinlogde user
-        $template->assign('favourites', Product::$products);
-        $user->userFav($_POST['brand']);
-        $template->assign('favourites', Product::$products);
-        header('Location: index.php?action=favourites');
+        header('Location: index.php?action=error');
+
         break;
 
     case "favourites":
         $template->assign('favourites', Product::$products);
-        $template->display('template/favourites.tpl');
+        $template->display('template/error.tpl');
         break;
 
 
