@@ -3,6 +3,7 @@
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
+use Losbanditos\ProductFavList;
 use Losbanditos\Product;
 use Losbanditos\User;
 use Losbanditos\Client;
@@ -111,20 +112,25 @@ switch ($action) {
 
         break;
     case "favouritesAdd":
-        header('Location: index.php?action=error');
+        if($_POST['fav'])
+        {
+            $product = Product::productDetail($_POST['name']);
+            $user->userFav($_GET['name']);
+        }
+        header("Location: index.php?action=favourites");
         break;
 
     case "favourites":
-        $template->assign('favourites', Product::$products);
-        $template->display('template/error.tpl');
+        $template->assign('fav', Product::$productFavList);
+        $template->display('template/favourites.tpl');
         break;
+
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
     //$template->display('template/userpage.tpl');
 
-        break;
-
 }
 $_SESSION['products'] = Product::$products;
+$_SESSION['fav'] = Product::$productFavList;
 $_SESSION['users'] = User::$users;

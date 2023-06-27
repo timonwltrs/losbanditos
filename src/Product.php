@@ -26,11 +26,14 @@ class Product
 
     public static function productDetail(string $name)
     {
-        foreach (self::$products as $product)
-        {
+        foreach (self::$products as $product) {
             if ($name == $product->brand) {
                 return $product;
             }
         }
     }
+//    public static function ProductFav(ProductFavList $product)
+//    {
+//        $product->addFavourites($product);
+//    }
 }

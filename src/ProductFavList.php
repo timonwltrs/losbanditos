@@ -6,8 +6,8 @@ class ProductFavList
 {
     protected array $favourites = [];
 
-    public function addFavourites(Product $product): void
+    public function addFavourites(Product $product)
     {
-        $this->favourites[] = $product;
+        return $this->favourites[] = $product;
     }
 }

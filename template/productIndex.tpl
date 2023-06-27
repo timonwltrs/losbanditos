@@ -73,7 +73,8 @@
                         <p class="card-text">${$product->price}</p>
                     </div>
                     <div class="btn prod-card-btn">
-                        <form action="/index.php?action=favouritesAdd" method="POST">
+                        <form action="/index.php?action=favouritesAdd&name{$product->brand}" method="POST">
+                            <input type="hidden" name="name" value="{$product->brand}">
                             <input type="submit" name="fav" value="♥" class="btn btn-dark fav-btn""/>
                         </form>
                         <button type="button" class="btn btn-dark">Add to Cart</button>
