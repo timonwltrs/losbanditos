@@ -93,11 +93,22 @@
           </li>
         </ul>
         <form>
-          <button class="btn btn-login"><a href="/index.php?action=loginForm">Login</a></button>
+          <div class="col">
+            <div class="card">
+              <h5 class="card-title">{if isset($smarty.session.username)}
+                  {$smarty.session.username}
+                {/if}</h5>
+            </div>
+          </div>
         </form>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit"><a href="/index.php?action=error">Search</a></button>
+        <form>
+          <button class="btn btn-login"><a href="/index.php?action=regieForm"">Registreren</a></button>
+        </form>
+          <form>
+              <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
+          </form>
+        <form>
+          <button class="btn btn-login"><a href="/index.php?action=logout"">Logout</a></button>
         </form>
       </div>
     </div>
@@ -110,10 +121,6 @@
     {block name="content"}{/block}
   </div>
 </main>
-
-
 <script src="/template/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 </html>
