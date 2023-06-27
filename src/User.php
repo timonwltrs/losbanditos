@@ -56,5 +56,15 @@ class User
         return false;
     }
 
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public static function getFav()
+    {
+        return Product::$products;
+    }
+
 }
 

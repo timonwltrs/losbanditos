@@ -14,9 +14,6 @@ $template = new Smarty();
 $template->clearAllCache();
 $template->clearCompiledTemplate();
 
-$template->clearAllCache();
-$template->clearCompiledTemplate();
-
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
 } else {
@@ -31,8 +28,16 @@ if (isset($_SESSION['users'])) {
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
-if (isset($_SESSION['user'])) {
-    $user = $_SESSION['user'];
+if (isset($_SESSION['username'])) {
+    // zoek user is $users en maak $user aan
+    foreach(User::$users as $checkuser)
+    {
+        if($checkuser->getUsername() == $_SESSION['username'])
+        {
+            $user = $checkuser;
+            break;
+        }
+    }
 }
 
 switch ($action) {
@@ -115,13 +120,15 @@ switch ($action) {
         if($_POST['fav'])
         {
             $product = Product::productDetail($_POST['name']);
-            $user->userFav($_GET['name']);
+            $user->userFav($product);
+
         }
         header("Location: index.php?action=favourites");
         break;
 
     case "favourites":
-        $template->assign('fav', Product::$productFavList);
+//        $template->assign('fav', Product::productDetail($_GET['name']));
+        $template->assign('fav', User::getFav($_POST['b']));
         $template->display('template/favourites.tpl');
         break;
 
@@ -134,3 +141,9 @@ switch ($action) {
 $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['users'] = User::$users;
+
+//unset($_SESSION['products']);
+
+var_dump($user);
+//unset($_SESSION['fav']);
+//unset($_SESSION['users']);
