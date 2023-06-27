@@ -94,7 +94,6 @@
         </ul>
         <form>
           <button class="btn btn-login"><a href="/index.php?action=loginForm">Login</a></button>
-
         </form>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -109,7 +108,6 @@
 <main class="flex-shrink-0">
   <div class="container">
     {block name="content"}{/block}
-
   </div>
 </main>
 

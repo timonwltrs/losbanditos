@@ -20,7 +20,6 @@ class Product
         $this->imageName = $imageName;
         //imageName = file name (image (jpeg))
         $this->prodUrl = $prodUrl;
-        //prodUrl = file name (php file)
         self::$products[] = $this;
 
     }

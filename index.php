@@ -7,7 +7,6 @@ require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
 use Losbanditos\User;
 use Losbanditos\Product;
-use Losbanditos\ProductFavList;
 
 session_start();
 $template = new Smarty();
@@ -26,8 +25,6 @@ if (isset($_SESSION['products'])) {
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
-
-
 
 switch ($action) {
     case "registerform":
@@ -79,28 +76,17 @@ switch ($action) {
         break;
 
     case "favouritesAdd":
-//        controle voor geinlogde user
-        $template->assign('favourites', Product::$products);
-        $user->userFav($_POST['brand']);
-        $template->assign('favourites', Product::$products);
-        header('Location: index.php?action=favourites');
+        header('Location: index.php?action=error');
         break;
 
     case "favourites":
         $template->assign('favourites', Product::$products);
-        $template->display('template/favourites.tpl');
+        $template->display('template/error.tpl');
         break;
-
 
     default:
         $template->display('template/layout.tpl');
 
         break;
-
 }
 $_SESSION['products'] = Product::$products;
-
-//Browser link
-//https://losbanditos/index.php?action=productIndex
-
-//in_array
