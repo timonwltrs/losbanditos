@@ -12,77 +12,73 @@
         </section
     </div>
     </div>
+
     <section>
-        <div class="row text-center">
-            <div class="col-md-12">
-                <!-- Carousel wrapper -->
-                <div id="carouselBasicExample" class="carousel slide carousel-dark" data-mdb-ride="carousel">
-                    <!-- Inner -->
-                    <div class="carousel-inner">
-                        <!-- Single item -->
-                        <div class="carousel-item active">
-                            <p class="lead font-italic mx-4 mx-md-5">
-                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
-                                numquam iure provident voluptate esse quasi, voluptas nostrum quisquam!"
-                            </p>
-                            <div class="mt-5 mb-4">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-                                     class="rounded-circle img-fluid shadow-1-strong" alt="smaple image" width="100"
-                                     height="100" />
-                            </div>
-                            <p class="text-muted mb-0">- Anna Morian</p>
-                        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10 col-xl-8 text-center">
+                <h3 class="mb-4">Reviews</h3>
+                <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
+                    numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
+                    quisquam eum porro a pariatur veniam.
+                </p>
+            </div>
+        </div>
 
-                        <!-- Single item -->
-                        <div class="carousel-item">
-                            <p class="lead font-italic mx-4 mx-md-5">
-                                "Neque cupiditate assumenda in maiores repudiandae mollitia adipisci maiores
-                                repudiandae mollitia consectetur adipisicing architecto elit sed adipiscing
-                                elit."
-                            </p>
-                            <div class="mt-5 mb-4">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(31).webp"
-                                     class="rounded-circle img-fluid shadow-1-strong" alt="smaple image" width="100"
-                                     height="100" />
-                            </div>
-                            <p class="text-muted mb-0">- Teresa May</p>
-                        </div>
-
-                        <!-- Single item -->
-                        <div class="carousel-item">
-                            <p class="lead font-italic mx-4 mx-md-5">
-                                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur est laborum neque cupiditate assumenda in
-                                maiores."
-                            </p>
-                            <div class="mt-5 mb-4">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(10).webp"
-                                     class="rounded-circle img-fluid shadow-1-strong" alt="smaple image" width="100"
-                                     height="100" />
-                            </div>
-                            <p class="text-muted mb-0">- Kate Allise</p>
-                        </div>
+        <div class="row text-center d-flex align-items-stretch">
+            <div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch">
+                <div class="card testimonial-card">
+                    <div class="card-up" style="background-color: #9d789b;"></div>
+                    <div class="avatar mx-auto bg-white">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
+                             class="rounded-circle img-fluid" />
                     </div>
-                    <!-- Inner -->
-
-                    <!-- Controls -->
-                    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample"
-                            data-mdb-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample"
-                            data-mdb-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="card-body">
+                        <h4 class="mb-4">Maria Smantha</h4>
+                        <hr />
+                        <p class="dark-grey-text mt-4">
+                            <i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet eos adipisci,
+                            consectetur adipisicing elit.
+                        </p>
+                    </div>
                 </div>
-                <!-- Carousel wrapper -->
+            </div>
+            <div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch">
+                <div class="card testimonial-card">
+                    <div class="card-up" style="background-color: #7a81a8;"></div>
+                    <div class="avatar mx-auto bg-white">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+                             class="rounded-circle img-fluid" />
+                    </div>
+                    <div class="card-body">
+                        <h4 class="mb-4">Lisa Cudrow</h4>
+                        <hr />
+                        <p class="dark-grey-text mt-4">
+                            <i class="fas fa-quote-left pe-2"></i>Neque cupiditate assumenda in maiores
+                            repudi mollitia architecto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-0 d-flex align-items-stretch">
+                <div class="card testimonial-card">
+                    <div class="card-up" style="background-color: #6d5b98;"></div>
+                    <div class="avatar mx-auto bg-white">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
+                             class="rounded-circle img-fluid" />
+                    </div>
+                    <div class="card-body">
+                        <h4 class="mb-4">John Smith</h4>
+                        <hr />
+                        <p class="dark-grey-text mt-4">
+                            <i class="fas fa-quote-left pe-2"></i>Delectus impedit saepe officiis ab
+                            aliquam repellat rem unde ducimus.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-</section>
 
 
 {/block}

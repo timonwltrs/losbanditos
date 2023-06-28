@@ -10,6 +10,7 @@ class Product
     public string $imageName;
     public string $prodUrl;
     public static array $products = [];
+    private array $reviews = [];
 
     public function __construct(string $brand, string $description, float $price, string $imageName, string $prodUrl)
     {
@@ -31,5 +32,16 @@ class Product
                 return $product;
             }
         }
+    }
+
+    public function addReview(string $name, int $rating, string $comment): void
+    {
+        $review = new Review($name, $rating, $comment);
+        $this->reviews[] = $review;
+    }
+
+    public function getReviews(): array
+    {
+        return $this->reviews;
     }
 }

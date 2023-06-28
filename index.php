@@ -3,6 +3,10 @@
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
+ini_set('xdebug.var_display_max_depth', -1);
+ini_set('xdebug.var_display_max_childeren', -1);
+ini_set('xdebug.var_display_max_data', -1);
+
 use Losbanditos\Product;
 use Losbanditos\User;
 use Losbanditos\Client;
@@ -60,13 +64,21 @@ switch ($action) {
         break;
 
     case "productIndex":
-
         $template->assign('products', Product::$products);
         $template->display('template/productIndex.tpl');
         break;
 
     case "productDetail":
-        $template->assign('product', Product::productDetail($_GET['name']));
+        // als POST, dan review opslaan
+        $product = Product::productDetail($_GET['name']);
+        if(!empty($_POST['name']) && !empty($_POST['review']))
+        {
+            $product->addReview($_POST['name'], $_POST['rating'], $_POST['review']);
+        }
+
+        $template->assign('name', $_GET['name']);
+        $template->assign('product', $product);
+
         $template->display('template/productDetail.tpl');
         break;
 
@@ -123,3 +135,5 @@ $_SESSION['users'] = User::$users;
 //https://losbanditos/index.php?action=productIndex
 
 //in_array
+
+var_dump($_SESSION);
