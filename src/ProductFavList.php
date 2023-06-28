@@ -10,4 +10,12 @@ class ProductFavList
     {
         return $this->favourites[] = $product;
     }
+
+    /**
+     * @return array
+     */
+    public function getFavourites(): array
+    {
+        return $this->favourites;
+    }
 }

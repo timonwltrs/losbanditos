@@ -10,7 +10,8 @@
                         <div class="col-md-6">
                             <div class="images p-3">
                                 <div class="text-center p-4">
-                                    <img id="main-image" src="/template/img/{$product->imageName}.jpeg" width="250"/></div>
+                                    <img id="main-image" src="/template/img/{$product->imageName}.jpeg" width="250"/>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">

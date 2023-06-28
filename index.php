@@ -3,6 +3,10 @@
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
+ini_set('xdebug.var_display_max_depth', -1);
+ini_set('xdebug.var_display_max_children', -1);
+ini_set('xdebug.var_display_max_data', -1);
+
 use Losbanditos\ProductFavList;
 use Losbanditos\Product;
 use Losbanditos\User;
@@ -121,14 +125,13 @@ switch ($action) {
         {
             $product = Product::productDetail($_POST['name']);
             $user->userFav($product);
-
         }
         header("Location: index.php?action=favourites");
         break;
 
     case "favourites":
 //        $template->assign('fav', Product::productDetail($_GET['name']));
-        $template->assign('fav', User::getFav($_POST['b']));
+        $template->assign('products', $user->getFav()->getFavourites());
         $template->display('template/favourites.tpl');
         break;
 
@@ -138,12 +141,8 @@ switch ($action) {
     //$template->display('template/userpage.tpl');
 
 }
+
 $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['users'] = User::$users;
 
-//unset($_SESSION['products']);
-
-var_dump($user);
-//unset($_SESSION['fav']);
-//unset($_SESSION['users']);

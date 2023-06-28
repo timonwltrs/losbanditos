@@ -30,9 +30,9 @@ class User
         return false;
     }
 
-    public function userFav(Product $product): void
+    public function userFav(Product $product)
     {
-        $this->productFavList->addFavourites($product);
+        return $this->productFavList->addFavourites($product);
     }
 
     public static function login(string $username, string $password)
@@ -56,14 +56,14 @@ class User
         return false;
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    public static function getFav()
+    public function getFav()
     {
-        return Product::$products;
+        return $this->productFavList;
     }
 
 }

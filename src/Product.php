@@ -32,8 +32,4 @@ class Product
             }
         }
     }
-//    public static function ProductFav(ProductFavList $product)
-//    {
-//        $product->addFavourites($product);
-//    }
 }

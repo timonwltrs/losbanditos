@@ -1,17 +1,18 @@
 {extends file="template/layout.tpl"}
 
 {block name="content"}
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-
-        <div class="col">
-            <div class="card">
-                <img src="/template/img/{$fav->imageName}.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{$fav->brand}</h5>
-                    <p class="card-text">{$fav->description}</p>
-                    <p class="card-text">${$fav->price}</p>
+    <div class="card-group">
+        {foreach $products as $product}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/template/img/{$product->imageName}.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{$product->brand}</h5>
+                        <p class="card-text">{$product->description}</p>
+                        <p class="btn btn-primary">{$product->price}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        {/foreach}
     </div>
 {/block}
