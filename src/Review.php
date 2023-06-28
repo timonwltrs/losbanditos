@@ -27,6 +27,6 @@ class Review
 
     public function getComment()
     {
-        return $this->rating;
+        return $this->comment;
     }
 }

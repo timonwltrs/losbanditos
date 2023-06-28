@@ -36,11 +36,11 @@ class Product
 
     public function addReview(string $name, int $rating, string $comment): void
     {
-        $review= new Review($name, $rating, $comment);
+        $review = new Review($name, $rating, $comment);
         $this->reviews[] = $review;
     }
 
-    public function  getReviews(): array
+    public function getReviews(): array
     {
         return $this->reviews;
     }

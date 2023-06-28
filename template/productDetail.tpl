@@ -41,10 +41,11 @@
             </div>
         </div>
     </div>
+
     {*    hier komt review page*}
     <div class="container mt-5 mb-5">
-        <h2>Add a Review</h2>
-        <form action="/submit-review" method="POST">
+        <h2>Place review</h2>
+        <form action="index.php?action=productDetail&name={$name}" method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -59,11 +60,39 @@
                     <option value="1">1 Star</option>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="review">Review:</label>
                 <textarea class="form-control" id="review" name="review" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit Review</button>
         </form>
+
+        {foreach $product->getReviews() as $review}
+
+{*            <p>{$review->getName()}</p>*}
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="card-body m-3">
+                                <div class="row">
+                                    <div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.webp"
+                                             class="rounded-circle img-fluid shadow-1" alt="woman avatar" width="200" height="200" />
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted fw-light mb-4">{$review->getComment()}
+                                        </p>
+                                        <p class="fw-bold lead mb-2"><strong>{$review->getName()}</strong></p>
+                                        <p class="fw-bold text-muted mb-0">{$review->getRating()}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {/foreach}
     </div>
 {/block}
