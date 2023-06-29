@@ -9,9 +9,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="images p-3">
-                                <div class="text-center p-4"><img id="main-image"
-                                                                  src="/template/img/{$product->imageName}.jpeg"
-                                                                  width="250"/></div>
+                                <div class="text-center p-4">
+                                    <img id="main-image" src="/template/img/{$product->imageName}.jpeg" width="250"/>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -32,6 +32,8 @@
 
                                 <div class="cart mt-4 align-items-center">
                                     <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button>
+                                    <input type="number" id="quantity" name="quantity" min="1" max="5">
+
                                     <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i>
                                 </div>
                             </div>

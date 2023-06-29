@@ -4,9 +4,10 @@ require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
 ini_set('xdebug.var_display_max_depth', -1);
-ini_set('xdebug.var_display_max_childeren', -1);
+ini_set('xdebug.var_display_max_children', -1);
 ini_set('xdebug.var_display_max_data', -1);
 
+use Losbanditos\ProductFavList;
 use Losbanditos\Product;
 use Losbanditos\User;
 use Losbanditos\Client;
@@ -14,9 +15,6 @@ use Losbanditos\login;
 
 session_start();
 $template = new Smarty();
-$template->clearAllCache();
-$template->clearCompiledTemplate();
-
 $template->clearAllCache();
 $template->clearCompiledTemplate();
 
@@ -33,6 +31,17 @@ if (isset($_SESSION['users'])) {
 
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
+}
+if (isset($_SESSION['username'])) {
+    // zoek user is $users en maak $user aan
+    foreach(User::$users as $checkuser)
+    {
+        if($checkuser->getUsername() == $_SESSION['username'])
+        {
+            $user = $checkuser;
+            break;
+        }
+    }
 }
 
 switch ($action) {
@@ -93,6 +102,10 @@ switch ($action) {
     case "loginForm":
         $template->display('template/loginform.tpl');
         break;
+
+    case "error":
+        $template->display('template/error.tpl');
+        break;
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             if (User::login($_POST['username'], $_POST['password'])) {
@@ -118,22 +131,39 @@ switch ($action) {
         session_destroy();
         header("Location: index.php?action=home");
         exit();
+        break;
+    case "favouritesAdd":
+        if($_POST['fav'])
+        {
+            $product = Product::productDetail($_POST['name']);
+            $user->userFav($product);
+        }
+        header("Location: index.php?action=favourites");
+        break;
+
+    case "favourites":
+//        $template->assign('fav', Product::productDetail($_GET['name']));
+        if (isset($_SESSION['username']) === true)
+        {
+            $template->assign('products', $user->getFav()->getFavourites());
+            $template->display('template/favourites.tpl');
+
+        }
+        else
+        {
+            header("Location: index.php?action=error");
+        }
 
         break;
+
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
     //$template->display('template/userpage.tpl');
 
-
 }
+
 $_SESSION['products'] = Product::$products;
+$_SESSION['fav'] = Product::$productFavList;
 $_SESSION['users'] = User::$users;
 
-
-//Browser link
-//https://losbanditos/index.php?action=productIndex
-
-//in_array
-
-var_dump($_SESSION);

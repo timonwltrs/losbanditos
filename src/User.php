@@ -6,8 +6,8 @@ class User
 {
     private string $username;
     private string $password;
+    private ProductFavList $productFavList;
     private bool $loggedIn;
-
     public static array $users = [];
 
     public function register(string $username, string $password1, string $password2)
@@ -17,6 +17,7 @@ class User
             $this->username = $username;
             $this->password = password_hash($password1, PASSWORD_BCRYPT);
             self::$users[] = $this;
+            $this->productFavList = new ProductFavList();
         } else {
             //foutmelding geven
         }
@@ -27,6 +28,11 @@ class User
             return true;
         }
         return false;
+    }
+
+    public function userFav(Product $product)
+    {
+        return $this->productFavList->addFavourites($product);
     }
 
     public static function login(string $username, string $password)
@@ -48,6 +54,16 @@ class User
             }
         }
         return false;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getFav()
+    {
+        return $this->productFavList;
     }
 
 }

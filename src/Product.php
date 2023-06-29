@@ -11,6 +11,7 @@ class Product
     public string $prodUrl;
     public static array $products = [];
     private array $reviews = [];
+    public static array $productFavList = [];
 
     public function __construct(string $brand, string $description, float $price, string $imageName, string $prodUrl)
     {
@@ -20,7 +21,6 @@ class Product
         $this->imageName = $imageName;
         //imageName = file name (image (jpeg))
         $this->prodUrl = $prodUrl;
-        //prodUrl = file name (php file)
         self::$products[] = $this;
 
     }
