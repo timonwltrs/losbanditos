@@ -128,7 +128,6 @@ switch ($action) {
         break;
     case "logout":
         unset($_SESSION['username']);
-        session_destroy();
         header("Location: index.php?action=home");
         exit();
         break;
