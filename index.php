@@ -93,6 +93,10 @@ switch ($action) {
     case "loginForm":
         $template->display('template/loginform.tpl');
         break;
+
+    case "error":
+        $template->display('template/error.tpl');
+        break;
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             if (User::login($_POST['username'], $_POST['password'])) {
@@ -118,7 +122,6 @@ switch ($action) {
         session_destroy();
         header("Location: index.php?action=home");
         exit();
-
         break;
     case "favouritesAdd":
         if($_POST['fav'])
@@ -131,8 +134,17 @@ switch ($action) {
 
     case "favourites":
 //        $template->assign('fav', Product::productDetail($_GET['name']));
-        $template->assign('products', $user->getFav()->getFavourites());
-        $template->display('template/favourites.tpl');
+        if (isset($_SESSION['username']) === true)
+        {
+            $template->assign('products', $user->getFav()->getFavourites());
+            $template->display('template/favourites.tpl');
+
+        }
+        else
+        {
+            header("Location: index.php?action=error");
+        }
+
         break;
 
     default:
