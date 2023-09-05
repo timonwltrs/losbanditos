@@ -3,6 +3,7 @@
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
+
 ini_set('xdebug.var_display_max_depth', -1);
 ini_set('xdebug.var_display_max_children', -1);
 ini_set('xdebug.var_display_max_data', -1);
@@ -158,11 +159,10 @@ switch ($action) {
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
-    //$template->display('template/userpage.tpl');
+        //$template->display('template/userpage.tpl');
 
 }
 
 $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['users'] = User::$users;
-

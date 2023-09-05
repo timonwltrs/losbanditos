@@ -11,6 +11,8 @@
 
   <link href="/template/css/bootstrap.min.css" rel="stylesheet" >
   <link href="/template/css/style.css" rel="stylesheet" >
+  <link rel="icon" type="image/png" href="/template/img/pablohead.png">
+
   <meta name="theme-color" content="#712cf9">
 
   <!-- Custom styles for this template -->
