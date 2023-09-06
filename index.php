@@ -153,7 +153,10 @@ switch ($action) {
         {
             header("Location: index.php?action=error");
         }
+        break;
 
+    case "cartIndex":
+        $template->display('template/cartIndex.tpl');
         break;
 
     default:
