@@ -155,9 +155,26 @@ switch ($action) {
         }
         break;
 
-    case "cartIndex":
-        $template->display('template/cartIndex.tpl');
+    case "cartAdd":
+        if($_POST['cartAdd'])
+        {
+            $product = Product::productDetail($_POST['name']);
+            $user->userFav($product);
+        }
+        header("Location: index.php?action=favourites");
         break;
+
+    case "cart":
+        if (isset($_SESSION['username']) === true)
+        {
+            $template->assign('products', $user->getCartList()->getCart());
+            $template->display('template/cartIndex.tpl');
+        }
+        else
+        {
+            header("Location: index.php?action=error");
+        }
+            break;
 
     default:
         $template->assign('users', User::$users);

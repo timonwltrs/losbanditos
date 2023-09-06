@@ -7,7 +7,7 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
                     <p><span class="h2">Shopping Cart </span><span class="h4">(1 item in your cart)</span></p>
-
+                    {foreach $product}
                     <div class="card mb-4">
                         <div class="card-body p-4">
 
@@ -18,8 +18,7 @@
                                 </div>
                                 <div class="col-md-2 d-flex justify-content-center">
                                     <div>
-                                        <p class="small text-muted mb-4 pb-2">Name</p>
-                                        <p class="lead fw-normal mb-0">iPad Air</p>
+                                        <p></p>
                                     </div>
                                 </div>
                                 <div class="col-md-2 d-flex justify-content-center">

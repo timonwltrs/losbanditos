@@ -7,6 +7,7 @@ class User
     private string $username;
     private string $password;
     private ProductFavList $productFavList;
+    private CartList $cartList;
     private bool $loggedIn;
     public static array $users = [];
 
@@ -66,5 +67,10 @@ class User
         return $this->productFavList;
     }
 
+    public function getCart()
+    {
+        return $this->cartList;
+
+    }
 }
 
