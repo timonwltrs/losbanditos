@@ -174,7 +174,7 @@ switch ($action) {
     case "cartIndex":
         if (isset($_SESSION['username']) === true)
         {
-            $template->assign('price', Product::getTotalPrice());
+            $template->assign('price', $user->getCartList()->getTotalPrice());
             $template->assign('products', $user->getCartList()->getCart());
             $template->display('template/cartIndex.tpl');
         }else

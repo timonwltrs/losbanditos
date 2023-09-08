@@ -47,6 +47,11 @@ class Product
         return $this->reviews;
     }
 
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
     public  static function getTotalPrice()
     {
         foreach (self::$productCartList as $list)

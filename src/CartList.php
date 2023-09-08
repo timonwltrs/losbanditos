@@ -16,6 +16,17 @@ class CartList
         return $this->cart;
     }
 
+    public function getTotalPrice(): float
+    {
+        $totalPrice = 0;
+        foreach($this->cart as $product)
+        {
+            $totalPrice += $product->getPrice();
+        }
+
+        return $totalPrice;
+    }
+
 
 }
 
