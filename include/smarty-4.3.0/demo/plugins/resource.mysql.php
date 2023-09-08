@@ -59,7 +59,7 @@ class Smarty_Resource_Mysql extends Smarty_Resource_Custom
     }
 
     /**
-     * Fetch a template and its modification time from database
+     * Fetch a template and its modification time from Mysql.php
      *
      * @param string  $name   template name
      * @param string  $source template source
@@ -82,7 +82,7 @@ class Smarty_Resource_Mysql extends Smarty_Resource_Custom
     }
 
     /**
-     * Fetch a template's modification time from database
+     * Fetch a template's modification time from Mysql.php
      *
      * @note implementing this method is optional. Only implement it if modification times can be accessed faster than
      *       loading the comple template source.

@@ -8,6 +8,8 @@ ini_set('xdebug.var_display_max_depth', -1);
 ini_set('xdebug.var_display_max_children', -1);
 ini_set('xdebug.var_display_max_data', -1);
 
+use Losbanditos\Db;
+use Losbanditos\Mysql;
 use Losbanditos\ProductFavList;
 use Losbanditos\Product;
 use Losbanditos\User;
@@ -30,6 +32,8 @@ if (isset($_SESSION['users'])) {
 }
 
 
+$database = new Db();
+
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
@@ -50,11 +54,12 @@ switch ($action) {
         // formulier laten zien
         $template->display('template/registratieform.tpl');
         break;
+
     case "register":
         // $_POST['username'], $_POST['password1'], $_POST['password2']
         if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2'])) {
             $user = new User();
-            $user->register($_POST['username'], $_POST['password1'], $_POST['password2']);
+            $user->register($_POST['username'], $_POST['password1'], $_POST['password2'], );
         }
 
         $template->display('template/register.tpl');

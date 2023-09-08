@@ -9,6 +9,9 @@ class User
     private ProductFavList $productFavList;
     private bool $loggedIn;
     public static array $users = [];
+    private $databse;
+
+    //dit is voor de register
 
     public function register(string $username, string $password1, string $password2)
     {
@@ -21,7 +24,11 @@ class User
         } else {
             //foutmelding geven
         }
+
+        Db::$db->insert("user",["username" => $username, "password1" => $password1]);
     }
+
+    //dit is om je wachtwoord the controlerren
     public function checkPassword(string $password1, string $password2)
     {
         if ($password1 === $password2) {
@@ -30,13 +37,15 @@ class User
         return false;
     }
 
+    //voor favoriten
     public function userFav(Product $product)
     {
         return $this->productFavList->addFavourites($product);
     }
-
+// dit is voor de login.
     public static function login(string $username, string $password)
     {
+        global $database;
         foreach(self::$users as $user)
         {
             if($user->username == $username)
@@ -52,6 +61,8 @@ class User
                 }
 
             }
+
+
         }
         return false;
     }
@@ -65,6 +76,7 @@ class User
     {
         return $this->productFavList;
     }
+
 
 }
 

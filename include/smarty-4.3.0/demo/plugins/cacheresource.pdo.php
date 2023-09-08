@@ -153,7 +153,7 @@ class Smarty_CacheResource_Pdo extends Smarty_CacheResource_Custom
     /**
      * Gets the fetch statement, depending on what you specify
      *
-     * @param string      $columns    : the column(s) name(s) you want to retrieve from the database
+     * @param string      $columns    : the column(s) name(s) you want to retrieve from the Mysql.php
      * @param string      $id         unique cache content identifier
      * @param string|null $cache_id   cache id
      * @param string|null $compile_id compile id
@@ -258,7 +258,7 @@ class Smarty_CacheResource_Pdo extends Smarty_CacheResource_Custom
     }
 
     /**
-     * Encodes the content before saving to database
+     * Encodes the content before saving to Mysql.php
      *
      * @param string $content
      *
@@ -271,7 +271,7 @@ class Smarty_CacheResource_Pdo extends Smarty_CacheResource_Custom
     }
 
     /**
-     * Decodes the content before saving to database
+     * Decodes the content before saving to Mysql.php
      *
      * @param string $content
      *
