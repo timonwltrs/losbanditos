@@ -1,4 +1,5 @@
 <?php
+
 namespace Losbanditos;
 
 use PDO;
@@ -10,8 +11,6 @@ class Mysql implements Database
     public static $db;
 
 
-
-
     public function __construct(string $host, string $dbname, string $username, string $password)
     {
         // TODO: Implement connact() method.
@@ -19,8 +18,7 @@ class Mysql implements Database
             self::$db = new PDO("mysql:host={$host};dbname={$dbname}", $username, $password);
             self::$db->setATTRIBUTE(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$db->setATTRIBUTE(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        }catch(PDOException $error)
-        {
+        } catch (PDOException $error) {
             throw new Exception($error->getMessage());
         }
 
@@ -31,30 +29,20 @@ class Mysql implements Database
         // TODO: Implement select() method.
     }
 
-    public function insert($table, $params = []) :void
+    public function insert($table, $params = []): void
     {
-        try{
+        try {
             // TODO: Implement insert() method.
             $colums = implode(',', array_keys($params));
-            $values = (":".implode(', :',array_keys($params)));
+            $values = (":" . implode(', :', array_keys($params)));
             $query = self::$db->prepare("INSERT INTO $table ($colums) VALUES ($values)");
-            foreach ($params as $key=>$value)
-            {
-                $query->bindValue(':'.$key, $value);
+            foreach ($params as $key => $value) {
+                $query->bindValue(':' . $key, $value);
             }
             $query->execute();
-        }catch (PDOException $error)
-        {
+        } catch (PDOException $error) {
             throw new Exception($error->getMessage());
         }
-
-
-
-
-//        $insert = $db->prepare("INSERT INTO users SET username=:username, password=:password");
-//        $insert->bindParam(":username",$user);
-//        $insert->bindParam(":password", $_POST['password']);
-//        $insert->execute();
 
     }
 
@@ -67,7 +55,6 @@ class Mysql implements Database
     {
         // TODO: Implement delete() method.
     }
-
 
 
 }
