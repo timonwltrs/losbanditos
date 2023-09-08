@@ -2,12 +2,13 @@
 
 namespace Losbanditos;
 
-class CartList{
+class CartList
+{
     protected array $cart = [];
 
-    public function addCart(Product $cartItem)
+    public function addCart(Product $product)
     {
-        return $this->cart[] = $cartItem;
+        return $this->cart[] = $product;
     }
 
     public function getCart(): array

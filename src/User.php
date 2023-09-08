@@ -19,6 +19,7 @@ class User
             $this->password = password_hash($password1, PASSWORD_BCRYPT);
             self::$users[] = $this;
             $this->productFavList = new ProductFavList();
+            $this->cartList = new CartList();
         } else {
             //foutmelding geven
         }
@@ -34,6 +35,11 @@ class User
     public function userFav(Product $product)
     {
         return $this->productFavList->addFavourites($product);
+    }
+
+    public function userCart(Product $product)
+    {
+        return $this->cartList->addCart($product);
     }
 
     public static function login(string $username, string $password)
@@ -67,10 +73,9 @@ class User
         return $this->productFavList;
     }
 
-    public function getCart()
+    public function getCartList()
     {
         return $this->cartList;
-
     }
 }
 

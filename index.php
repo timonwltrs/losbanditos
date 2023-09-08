@@ -8,6 +8,11 @@ ini_set('xdebug.var_display_max_depth', -1);
 ini_set('xdebug.var_display_max_children', -1);
 ini_set('xdebug.var_display_max_data', -1);
 
+ini_set ('display_errors', 1);
+ini_set ('display_startup_errors', 1);
+error_reporting (E_ALL);
+
+use Losbanditos\CartList;
 use Losbanditos\ProductFavList;
 use Losbanditos\Product;
 use Losbanditos\User;
@@ -40,6 +45,7 @@ if (isset($_SESSION['username'])) {
         if($checkuser->getUsername() == $_SESSION['username'])
         {
             $user = $checkuser;
+//            var_dump($user);
             break;
         }
     }
@@ -132,6 +138,7 @@ switch ($action) {
         header("Location: index.php?action=home");
         exit();
         break;
+
     case "favouritesAdd":
         if($_POST['fav'])
         {
@@ -147,7 +154,6 @@ switch ($action) {
         {
             $template->assign('products', $user->getFav()->getFavourites());
             $template->display('template/favourites.tpl');
-
         }
         else
         {
@@ -156,33 +162,34 @@ switch ($action) {
         break;
 
     case "cartAdd":
-        if($_POST['cartAdd'])
+        if($_POST['cart'])
         {
             $product = Product::productDetail($_POST['name']);
-            $user->userFav($product);
+            $user->userCart($product);
         }
-        header("Location: index.php?action=favourites");
+        header("Location: index.php?action=cartIndex");
         break;
 
-    case "cart":
+    case "cartIndex":
         if (isset($_SESSION['username']) === true)
         {
             $template->assign('products', $user->getCartList()->getCart());
             $template->display('template/cartIndex.tpl');
-        }
-        else
+        }else
         {
             header("Location: index.php?action=error");
+
         }
-            break;
+        break;
 
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
-        //$template->display('template/userpage.tpl');
 
 }
-
 $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
+$_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
+
+

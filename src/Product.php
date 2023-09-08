@@ -12,6 +12,7 @@ class Product
     public static array $products = [];
     private array $reviews = [];
     public static array $productFavList = [];
+    public static array $productCartList = [];
 
     public function __construct(string $brand, string $description, float $price, string $imageName, string $prodUrl)
     {
@@ -34,6 +35,16 @@ class Product
         }
     }
 
+//    public static function productCart(string $name)
+//    {
+//        foreach (self::$products as $product) {
+//            if ($name == $product->brand) {
+//                return $product;
+//            }
+//        }
+//    }
+
+
     public function addReview(string $name, int $rating, string $comment): void
     {
         $review = new Review($name, $rating, $comment);
@@ -44,6 +55,4 @@ class Product
     {
         return $this->reviews;
     }
-
-
 }
