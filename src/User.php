@@ -77,5 +77,6 @@ class User
     {
         return $this->cartList;
     }
+
 }
 

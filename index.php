@@ -46,6 +46,7 @@ if (isset($_SESSION['username'])) {
         {
             $user = $checkuser;
 //            var_dump($user);
+
             break;
         }
     }
@@ -173,6 +174,7 @@ switch ($action) {
     case "cartIndex":
         if (isset($_SESSION['username']) === true)
         {
+            $template->assign('price', Product::getTotalPrice());
             $template->assign('products', $user->getCartList()->getCart());
             $template->display('template/cartIndex.tpl');
         }else

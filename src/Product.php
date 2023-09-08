@@ -35,15 +35,6 @@ class Product
         }
     }
 
-//    public static function productCart(string $name)
-//    {
-//        foreach (self::$products as $product) {
-//            if ($name == $product->brand) {
-//                return $product;
-//            }
-//        }
-//    }
-
 
     public function addReview(string $name, int $rating, string $comment): void
     {
@@ -55,4 +46,17 @@ class Product
     {
         return $this->reviews;
     }
+
+    public  static function getTotalPrice()
+    {
+        foreach (self::$productCartList as $list)
+        {
+            $prices = $list->price;
+            array_sum($prices);
+            return $prices;
+
+        }
+    }
+
+
 }
