@@ -31,7 +31,7 @@
                             class="lead fw-normal"></span>
                 </p>
             </div>
-            <button type="button" class="btn btn-light btn" style="height: 50px">Continue shopping</button>
+            <a href="/index.php?action=productIndex" class="btn btn-light btn">Continue Shopping</a>
             <button type="button" class="btn btn-primary" style="height: 50px ">Checkout</button>
         </div>
     </div>
