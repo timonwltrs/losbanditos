@@ -183,8 +183,30 @@ switch ($action) {
         }
         break;
 
-    case "cartDelete":
+//    case "cartDelete":
+//        $cart = Product::$productCartList;
+//        if (isset($_POST['cancel'])) {
+//            unset($cart);
+//            echo "Cart session unset"; // Debugging message
+//            header("Location: index.php?action=cartIndex");
+//        }
+//        break;
 
+    case "cartDelete":
+        if (isset($_POST['cancel'])) {
+            $cart = $_SESSION['cart'];
+            $productToRemove = Product::productDetail($_POST['name']);
+
+            $key = array_search($productToRemove, $cart);
+
+            if ($key !== false) {
+                unset($cart[$key]);
+            }
+            $_SESSION['cart'] = $cart;
+
+            header("Location: index.php?action=cartIndex");
+            exit();
+        }
         break;
 
     default:

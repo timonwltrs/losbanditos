@@ -11,6 +11,7 @@ class CartList
         return $this->cart[] = $product;
     }
 
+
     public function getCart(): array
     {
         return $this->cart;

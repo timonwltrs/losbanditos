@@ -52,16 +52,7 @@ class Product
         return $this->price;
     }
 
-    public  static function getTotalPrice()
-    {
-        foreach (self::$productCartList as $list)
-        {
-            $prices = $list->price;
-            array_sum($prices);
-            return $prices;
 
-        }
-    }
 
 
 }
