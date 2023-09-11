@@ -180,8 +180,11 @@ switch ($action) {
         }else
         {
             header("Location: index.php?action=error");
-
         }
+        break;
+
+    case "cartDelete":
+
         break;
 
     default:
