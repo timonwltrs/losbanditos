@@ -18,14 +18,15 @@ class User
         if ($this->checkPassword($password1, $password2)) {
             // registeren
             $this->username = $username;
-            $this->password = password_hash($password1, PASSWORD_BCRYPT);
+            $hashedPassword = password_hash($password1, PASSWORD_DEFAULT);
+            $this->password = $hashedPassword;
             self::$users[] = $this;
             $this->productFavList = new ProductFavList();
-        } else {
-            //foutmelding geven
-        }
 
-        Db::$db->insert("user",["username" => $username, "password1" => $password1]);
+            Db::$db->insert("user", ["username" => $username, "password1" => $hashedPassword]);
+        } else {
+            return false;
+        }
     }
 
     //dit is om je wachtwoord the controlerren
