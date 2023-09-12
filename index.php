@@ -114,6 +114,7 @@ switch ($action) {
     case "error":
         $template->display('template/error.tpl');
         break;
+
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             if (User::login($_POST['username'], $_POST['password'])) {
@@ -126,8 +127,12 @@ switch ($action) {
                 echo "fout";
                 $template->display('template/layout.tpl');
             }
+            // ipv error, login gelukt
             $template->display('template/inlogSuccess.tpl');
-//            ipv error, login gelukt
+        }else
+        {
+            // als login niet lukt, error pagina
+            $template->display('template/error.tpl');
         }
 
         break;
@@ -150,7 +155,6 @@ switch ($action) {
         break;
 
     case "favourites":
-//        $template->assign('fav', Product::productDetail($_GET['name']));
         if (isset($_SESSION['username']) === true)
         {
             $template->assign('products', $user->getFav()->getFavourites());
@@ -183,30 +187,9 @@ switch ($action) {
         }
         break;
 
-//    case "cartDelete":
-//        $cart = Product::$productCartList;
-//        if (isset($_POST['cancel'])) {
-//            unset($cart);
-//            echo "Cart session unset"; // Debugging message
-//            header("Location: index.php?action=cartIndex");
-//        }
-//        break;
-
     case "cartDelete":
-        if (isset($_POST['cancel'])) {
-            $cart = $_SESSION['cart'];
-            $productToRemove = Product::productDetail($_POST['name']);
-
-            $key = array_search($productToRemove, $cart);
-
-            if ($key !== false) {
-                unset($cart[$key]);
-            }
-            $_SESSION['cart'] = $cart;
-
-            header("Location: index.php?action=cartIndex");
-            exit();
-        }
+       $user->getCartList()->removeItem($_POST['brand']);
+        header("Location: index.php?action=cartIndex");
         break;
 
     default:

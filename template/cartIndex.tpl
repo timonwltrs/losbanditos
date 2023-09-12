@@ -13,8 +13,8 @@
                     <h5 class="card-title">{$product->brand}</h5>
                     <p class="btn ">Price: €{$product->price}</p>
 {*                    form is voor het product uit de shopping cart te halen            *}
-                    <form action="/index.php?action=cartDelete&name={$product->brand}" method="POST">
-                        <input type="hidden" name="name" value="{$product->brand}">
+                    <form action="/index.php?action=cartDelete" method="POST">
+                        <input type="hidden" name="brand" value="{$product->brand}">
                         <input type="submit" name="cancel" value="❌" class="btn btn-dark fav-btn"/>
                     </form>
                 </div>
@@ -32,8 +32,15 @@
                             class="lead fw-normal"></span>
                 </p>
             </div>
-            <a href="/index.php?action=productIndex" class="btn btn-light btn">Continue Shopping</a>
+
+            <a href="/index.php?action=productIndex" class="btn btn-light btn" style="height: 50px;">Continue Shopping</a>
             <button type="button" class="btn btn-primary" style="height: 50px ">Checkout</button>
+
+{*            cancelen van order komt hier te staan     *}
+{*            <form action="/index.php?action=cartDelete">*}
+{*            <input type="button" class="btn btn-primary" value="Cancel" style="height: 50px;background-color:red;float: right">*}
+{*            </form>*}
+
         </div>
     </div>
     <div class="d-flex justify-content-end">
