@@ -28,20 +28,26 @@
         <div class="card-body p-4">
             <div >
                 <p class="mb-0 me-5 d-flex align-items-center">
-                    <span class="text-muted me-2">Order total: €{$price}</span> <span
-                            class="lead fw-normal"></span>
+                    <span class="card-title"   style="font-weight: bold;">Order total: €{$price}</span>
+                    <span class="lead fw-normal"></span>
+                    <br>
+                </p>
+                <p class="mb-0 me-5 d-flex align-items-center">
+                    <span class="text-muted me-2">FREE SHIPPING</span>
+                    <span class="lead fw-normal"></span>
+                    <br>
                 </p>
             </div>
 
             <a href="/index.php?action=productIndex" class="btn btn-light btn" style="height: 50px;">Continue Shopping</a>
-            <button type="button" class="btn btn-primary" style="height: 50px ">Checkout</button>
+{*            <button type="button" class="btn btn-primary" style="height: 50px ">Checkout</button>*}
 
 {*            cancelen van order komt hier te staan     *}
 {*            <form action="/index.php?action=cartDelete">*}
 {*            <input type="button" class="btn btn-primary" value="Cancel" style="height: 50px;background-color:red;float: right">*}
 {*            </form>*}
-
         </div>
     </div>
-    <div class="d-flex justify-content-end">
+
+
 {/block}

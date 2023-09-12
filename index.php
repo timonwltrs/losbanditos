@@ -75,7 +75,7 @@ switch ($action) {
         $template->assign('products', Product::$products);
         if(!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand'))))
         {
-            $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
+            $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
         }
         header('Location: index.php?action=productIndex');
         break;
@@ -134,8 +134,10 @@ switch ($action) {
             // als login niet lukt, error pagina
             $template->display('template/error.tpl');
         }
-
         break;
+
+
+
     case "inlogsuccess":
         $template->display('template/inlogSuccess.tpl');
         break;
@@ -180,6 +182,7 @@ switch ($action) {
         {
             $template->assign('price', $user->getCartList()->getTotalPrice());
             $template->assign('products', $user->getCartList()->getCart());
+
             $template->display('template/cartIndex.tpl');
         }else
         {
@@ -188,7 +191,7 @@ switch ($action) {
         break;
 
     case "cartDelete":
-       $user->getCartList()->removeItem($_POST['brand']);
+        $user->getCartList()->removeItem($_POST['brand']);
         header("Location: index.php?action=cartIndex");
         break;
 

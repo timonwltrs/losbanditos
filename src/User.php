@@ -24,6 +24,9 @@ class User
             //foutmelding geven
         }
     }
+
+
+
     public function checkPassword(string $password1, string $password2)
     {
         if ($password1 === $password2) {
