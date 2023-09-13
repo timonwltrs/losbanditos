@@ -119,6 +119,10 @@ switch ($action) {
         $template->display('template/noti/cartEmpty.tpl');
         break;
 
+    case "cartEmptySucces":
+        $template->display('template/noti/cartEmptySucces.tpl');
+        break;
+
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             if (User::login($_POST['username'], $_POST['password'])) {
@@ -140,8 +144,6 @@ switch ($action) {
         }
         break;
 
-
-
     case "inlogsuccess":
         $template->display('template/inlogSuccess.tpl');
         break;
@@ -149,7 +151,6 @@ switch ($action) {
         unset($_SESSION['username']);
         header("Location: index.php?action=home");
         exit();
-        break;
 
     case "favouritesAdd":
         if($_POST['fav'])
@@ -164,6 +165,10 @@ switch ($action) {
         if (isset($_SESSION['username']) === true)
         {
             $template->assign('products', $user->getFav()->getFavourites());
+            if (empty( $user->getFav()->getFavourites()))
+            {
+
+            }
             $template->display('template/favourites.tpl');
         }
         else
@@ -200,14 +205,18 @@ switch ($action) {
         break;
 
     case "cartDelete":
-        $user->getCartList()->removeItem($_POST['brand']);
+        if ($user->getCartList()->removeItem($_POST['brand']))
+        {
+            header("Location: index.php?action=cartEmptySucces");
+
+        }
         header("Location: index.php?action=cartIndex");
         break;
 
     case "cartCompleteDelete":
         if (empty($user->getCartList()->removeCart($_POST['brand'])))
         {
-            header("Location: index.php?action=cartIndex");
+            header("Location: index.php?action=cartEmptySucces");
         }
 
         break;
