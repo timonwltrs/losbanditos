@@ -46,7 +46,6 @@ class User
 // dit is voor de login.
     public static function login(string $username, string $password)
     {
-        global $database;
         foreach(self::$users as $user)
         {
             if($user->username == $username)
@@ -60,10 +59,7 @@ class User
                     // wachtwoord klopt niet, error weergeven
                     return false;
                 }
-
             }
-
-
         }
         return false;
     }
