@@ -11,5 +11,7 @@
             "email": "9012910@student.zadkine.nl"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-pdo": "#"
+    }
 }
