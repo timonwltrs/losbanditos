@@ -38,11 +38,13 @@
                 </p>
             </div>
 
-            <a href="/index.php?action=productIndex" class="btn btn-light btn" style="height: 50px;">Continue Shopping</a>
-            <form action="/index.php?action=cartCompleteDelete" method="POST">
-                <input type="hidden" name="brand" value="{$product->brand}">
-                <input type="submit" class="btn btn-primary" name="cancel" value="Cancel" style="height: 50px;background-color:red;float: right">
-            </form>
+            <div class=" d-flex flex-row">
+                <a href="/index.php?action=productIndex" class="btn btn-light btn" style="height: 50px;">Continue Shopping</a>
+                <form action="/index.php?action=cartCompleteDelete" method="POST">
+                    <input type="hidden" name="brand" value="{$product->brand}">
+                    <input type="submit" class="btn btn-primary" name="cancel" value="Cancel" style="height: 50px;background-color:red;float: right">
+                </form>
+            </div>
         </div>
     </div>
 
