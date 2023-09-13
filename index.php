@@ -8,6 +8,11 @@ ini_set('xdebug.var_display_max_depth', -1);
 ini_set('xdebug.var_display_max_children', -1);
 ini_set('xdebug.var_display_max_data', -1);
 
+ini_set ('display_errors', 1);
+ini_set ('display_startup_errors', 1);
+error_reporting (E_ALL);
+
+use Losbanditos\CartList;
 use Losbanditos\ProductFavList;
 use Losbanditos\Product;
 use Losbanditos\User;
@@ -40,6 +45,8 @@ if (isset($_SESSION['username'])) {
         if($checkuser->getUsername() == $_SESSION['username'])
         {
             $user = $checkuser;
+//            var_dump($user);
+
             break;
         }
     }
@@ -68,7 +75,7 @@ switch ($action) {
         $template->assign('products', Product::$products);
         if(!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand'))))
         {
-            $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename'], $_POST['produrl']);
+            $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
         }
         header('Location: index.php?action=productIndex');
         break;
@@ -105,8 +112,17 @@ switch ($action) {
         break;
 
     case "error":
-        $template->display('template/error.tpl');
+        $template->display('template/noti/error.tpl');
         break;
+
+    case "cartEmpty":
+        $template->display('template/noti/cartEmpty.tpl');
+        break;
+
+    case "cartEmptySucces":
+        $template->display('template/noti/cartEmptySucces.tpl');
+        break;
+
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             if (User::login($_POST['username'], $_POST['password'])) {
@@ -119,11 +135,15 @@ switch ($action) {
                 echo "fout";
                 $template->display('template/layout.tpl');
             }
+            // ipv error, login gelukt
             $template->display('template/inlogSuccess.tpl');
-//            ipv error, login gelukt
+        }else
+        {
+            // als login niet lukt, error pagina
+            $template->display('template/error.tpl');
         }
-
         break;
+
     case "inlogsuccess":
         $template->display('template/inlogSuccess.tpl');
         break;
@@ -131,7 +151,7 @@ switch ($action) {
         unset($_SESSION['username']);
         header("Location: index.php?action=home");
         exit();
-        break;
+
     case "favouritesAdd":
         if($_POST['fav'])
         {
@@ -142,16 +162,61 @@ switch ($action) {
         break;
 
     case "favourites":
-//        $template->assign('fav', Product::productDetail($_GET['name']));
         if (isset($_SESSION['username']) === true)
         {
             $template->assign('products', $user->getFav()->getFavourites());
-            $template->display('template/favourites.tpl');
+            if (empty( $user->getFav()->getFavourites()))
+            {
 
+            }
+            $template->display('template/favourites.tpl');
         }
         else
         {
             header("Location: index.php?action=error");
+        }
+        break;
+
+    case "cartAdd":
+        if($_POST['cart'])
+        {
+            $product = Product::productDetail($_POST['name']);
+            $user->userCart($product);
+        }
+        header("Location: index.php?action=cartIndex");
+        break;
+
+    case "cartIndex":
+        if (isset($_SESSION['username']) === true)
+        {
+            $template->assign('price', $user->getCartList()->getTotalPrice());
+            $template->assign('products', $user->getCartList()->getCart());
+            if (empty($user->getCartList()->getCart()))
+            {
+                $template->display('template/noti/cartEmpty.tpl');
+            }
+            else {
+                $template->display('template/cartIndex.tpl');
+            }
+        }else
+        {
+            header("Location: index.php?action=error");
+        }
+        break;
+
+    case "cartDelete":
+        if ($user->getCartList()->removeItem($_POST['brand']))
+        {
+            header("Location: index.php?action=cartEmptySucces");
+
+        }
+        header("Location: index.php?action=cartIndex");
+        break;
+
+    case "cartCompleteDelete":
+        if (empty($user->getCartList()->removeCart($_POST['brand'])))
+        {
+            header("Location: index.php?action=cartEmptySucces");
         }
 
         break;
@@ -159,10 +224,11 @@ switch ($action) {
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
-        //$template->display('template/userpage.tpl');
 
 }
-
 $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
+$_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
+
+

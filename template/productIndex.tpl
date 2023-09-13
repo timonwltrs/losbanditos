@@ -75,14 +75,19 @@
                     <div class="btn prod-card-btn">
                         <form action="/index.php?action=favouritesAdd&name{$product->brand}" method="POST">
                             <input type="hidden" name="name" value="{$product->brand}">
-                            <input type="submit" name="fav" value="♥" class="btn btn-dark fav-btn""/>
+                            <input type="submit" name="fav" value="♥" class="btn btn-dark fav-btn"/>
                         </form>
-                        <button type="button" class="btn btn-dark">Add to Cart</button>
+{*                        <form action="/index.php?action=">*}
+{*                            <input type="submit" name="fav" value="♥" class="btn btn-dark fav-btn"/>*}
+{*                        </form>*}
+                        <form action="/index.php?action=cartAdd&name={$product->brand}" method="POST">
+                            <input type="hidden" name="name" value="{$product->brand}">
+                            <input type="submit" name="cart" value="Add to Cart" class="btn btn-dark">
+                        </form>
                         <input type="number" id="quantity" name="quantity" min="1" max="5">
                         <form action="/index.php?action=productDetail&name={$product->brand}" method="POST">
                             <input type="submit" name="detail" value="Details" class="btn btn-dark info-btn""/>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -91,3 +96,5 @@
     <button type="button" value="submit" class="btn btn-add-product"><a href="/index.php?action=productAddform">Add
             Products</a></button>
 {/block}
+
+{*method="POST"*}

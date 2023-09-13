@@ -8,19 +8,18 @@ class Product
     public string $description;
     public float $price;
     public string $imageName;
-    public string $prodUrl;
     public static array $products = [];
     private array $reviews = [];
     public static array $productFavList = [];
+    public static array $productCartList = [];
 
-    public function __construct(string $brand, string $description, float $price, string $imageName, string $prodUrl)
+    public function __construct(string $brand, string $description, float $price, string $imageName)
     {
         $this->brand = $brand;
         $this->description = $description;
         $this->price = $price;
         $this->imageName = $imageName;
         //imageName = file name (image (jpeg))
-        $this->prodUrl = $prodUrl;
         self::$products[] = $this;
 
     }
@@ -34,6 +33,7 @@ class Product
         }
     }
 
+
     public function addReview(string $name, int $rating, string $comment): void
     {
         $review = new Review($name, $rating, $comment);
@@ -44,4 +44,11 @@ class Product
     {
         return $this->reviews;
     }
+
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+
 }
