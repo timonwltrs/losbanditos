@@ -94,6 +94,17 @@
 
         <form>
           <div class="col">
+            {if isset($smarty.session.username)}
+              <h5 class="card-title">{$smarty.session.username}</h5>
+              <form>
+                <button class="btn btn-login"><a href="/index.php?action=logout"">Logout</a></button>
+              </form>
+            {else}
+              <form>
+                <button class="btn btn-login"><a href="/index.php?action=regieForm"">Registreren</a></button>
+                <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
+              </form>
+            {/if}
               <h5 class="card-title">{if isset($smarty.session.username)}
                   {$smarty.session.username}
                 {/if}</h5>

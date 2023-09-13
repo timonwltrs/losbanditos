@@ -15,7 +15,7 @@ require_once 'cacheresource.pdo.php';
 class Smarty_CacheResource_Pdo_Gzip extends Smarty_CacheResource_Pdo
 {
     /**
-     * Encodes the content before saving to database
+     * Encodes the content before saving to Mysql.php
      *
      * @param string $content
      *
@@ -28,7 +28,7 @@ class Smarty_CacheResource_Pdo_Gzip extends Smarty_CacheResource_Pdo
     }
 
     /**
-     * Decodes the content before saving to database
+     * Decodes the content before saving to Mysql.php
      *
      * @param string $content
      *

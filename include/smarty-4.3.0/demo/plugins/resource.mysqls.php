@@ -5,7 +5,7 @@
  * Resource Implementation based on the Custom API to use
  * MySQL as the storage resource for Smarty's templates and configs.
  * Note that this MySQL implementation fetches the source and timestamps in
- * a single database query, instead of two separate like resource.mysql.php does.
+ * a single Mysql.php query, instead of two separate like resource.mysql.php does.
  * Table definition:
  * <pre>CREATE TABLE IF NOT EXISTS `templates` (
  *   `name` varchar(100) NOT NULL,
@@ -53,7 +53,7 @@ class Smarty_Resource_Mysqls extends Smarty_Resource_Custom
     }
 
     /**
-     * Fetch a template and its modification time from database
+     * Fetch a template and its modification time from Mysql.php
      *
      * @param string  $name   template name
      * @param string  $source template source
