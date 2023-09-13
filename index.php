@@ -112,7 +112,11 @@ switch ($action) {
         break;
 
     case "error":
-        $template->display('template/error.tpl');
+        $template->display('template/noti/error.tpl');
+        break;
+
+    case "cartEmpty":
+        $template->display('template/noti/cartEmpty.tpl');
         break;
 
     case "login":
@@ -182,8 +186,13 @@ switch ($action) {
         {
             $template->assign('price', $user->getCartList()->getTotalPrice());
             $template->assign('products', $user->getCartList()->getCart());
-
-            $template->display('template/cartIndex.tpl');
+            if (empty($user->getCartList()->getCart()))
+            {
+                $template->display('template/noti/cartEmpty.tpl');
+            }
+            else {
+                $template->display('template/cartIndex.tpl');
+            }
         }else
         {
             header("Location: index.php?action=error");
@@ -193,6 +202,14 @@ switch ($action) {
     case "cartDelete":
         $user->getCartList()->removeItem($_POST['brand']);
         header("Location: index.php?action=cartIndex");
+        break;
+
+    case "cartCompleteDelete":
+        if (empty($user->getCartList()->removeCart($_POST['brand'])))
+        {
+            header("Location: index.php?action=cartIndex");
+        }
+
         break;
 
     default:
