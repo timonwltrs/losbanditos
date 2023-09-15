@@ -5,11 +5,17 @@ namespace Losbanditos;
 class CartList
 {
     protected array $cart = [];
+    private ?Discount $discount = null;
 
     public function addCart(Product $product)
     {
         return $this->cart[] = $product;
     }
+
+//    public function applyDiscount(Discount $percentage): void
+//    {
+//        $this->discount = $percentage;
+//    }
 
 
     public function getCart(): array
@@ -23,6 +29,7 @@ class CartList
         foreach($this->cart as $product)
         {
             $totalPrice += $product->getPrice();
+
         }
 
         return $totalPrice;

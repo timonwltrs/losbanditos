@@ -20,6 +20,7 @@ use Losbanditos\Product;
 use Losbanditos\User;
 use Losbanditos\Client;
 use Losbanditos\login;
+//use Losbanditos\Discount;
 
 session_start();
 $template = new Smarty();
