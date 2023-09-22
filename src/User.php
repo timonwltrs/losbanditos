@@ -17,7 +17,8 @@ class User
     {
         $this->id = $id;
         $this->username = $username;
-        self::$users[] = $this;
+//        self::$users[] = $this;
+        $_SESSION['user'] = $this;
     }
 
 
@@ -122,22 +123,23 @@ class User
 
     public static function login(string $username, string $password)
     {
-        foreach(self::getUsers() as $user)
+        $columns = [
+            'user' => ['id', 'username', 'password1'],
+        ];
+
+        $params = [
+            'username' => $username,
+        ];
+        //haal 1 useer uit db
+        $user = Db::$db->select($columns, $params);
+//        var_dump($user);
+        if(password_verify($password, $user[0]['password1']))
         {
-            if($user->username == $username)
-            {
-                // ww controleren
-                if(password_verify($password, $user->password))
-                {
-                    // wachtwoord klopt, login
-                    return true;
-                }else{
-                    // wachtwoord klopt niet, error weergeven
-                    return false;
-                }
-            }
+            $user = new User($user[0]['username'], $user[0]['id']);
+            return $user;
+        }else{
+            return false;
         }
-        return false;
     }
 
     public function getFav()

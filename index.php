@@ -33,9 +33,9 @@ if (isset($_GET['action'])) {
     $action = null;
 }
 
-if (isset($_SESSION['users'])) {
-    User::$users = $_SESSION['users'];
-}
+//if (isset($_SESSION['users'])) {
+//    User::$users = $_SESSION['users'];
+//}
 
 
 $database = new Db();
@@ -43,19 +43,24 @@ $database = new Db();
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
-if (isset($_SESSION['username'])) {
-    // zoek user is $users en maak $user aan
-    foreach(User::$users as $checkuser)
-    {
-        if($checkuser->getUsername() == $_SESSION['username'])
-        {
-            $user = $checkuser;
-//            var_dump($user);
-
-            break;
-        }
-    }
+if(isset($_SESSION['user']))
+{
+    $user = $_SESSION['user'];
 }
+
+//if (isset($_SESSION['username'])) {
+//    // zoek user is $users en maak $user aan
+//    foreach(User::$users as $checkuser)
+//    {
+//        if($checkuser->getUsername() == $_SESSION['username'])
+//        {
+//            $user = $checkuser;
+////            var_dump($user);
+//
+//            break;
+//        }
+//    }
+//}
 
 switch ($action) {
     case "registerform":
@@ -143,17 +148,18 @@ switch ($action) {
 
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            if (User::login($_POST['username'], $_POST['password'])) {
-                // ingelogd
-                $_SESSION['username'] = $_POST['username'];
-                $template->display('template/layout.tpl');
-            } else {
+            $user = User::login($_POST['username'], $_POST['password']);
+            if($user === false){
                 // geef fout aan
                 echo "fout";
                 $template->display('template/layout.tpl');
+            } else {
+                // ingelogd
+//                $_SESSION['username'] = $_POST['username'];
+                $template->display('template/inlogSuccess.tpl');
             }
             // ipv error, login gelukt
-            $template->display('template/inlogSuccess.tpl');
+
         }else
         {
             // als login niet lukt, error pagina
@@ -167,6 +173,7 @@ switch ($action) {
 
     case "logout":
         unset($_SESSION['username']);
+        unset($_SESSION['user']);
         header("Location: index.php?action=home");
         exit();
 
@@ -240,7 +247,7 @@ switch ($action) {
         break;
 
     case "layout":
-        $template->assign('username', User::getUser($_GET['username']));
+//        $template->assign('username', User::getUser($_GET['username']));
 
         break;
 
@@ -253,5 +260,9 @@ $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
+
+echo "<pre>";
+var_dump($_SESSION);
+//session_destroy();
 
 
