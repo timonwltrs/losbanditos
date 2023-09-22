@@ -146,7 +146,6 @@ switch ($action) {
             if (User::login($_POST['username'], $_POST['password'])) {
                 // ingelogd
                 $_SESSION['username'] = $_POST['username'];
-                echo "ingelogd";
                 $template->display('template/layout.tpl');
             } else {
                 // geef fout aan
@@ -165,6 +164,7 @@ switch ($action) {
     case "inlogsuccess":
         $template->display('template/inlogSuccess.tpl');
         break;
+
     case "logout":
         unset($_SESSION['username']);
         header("Location: index.php?action=home");

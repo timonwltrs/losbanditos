@@ -95,14 +95,7 @@ class User
 
     public function getUsername(): string
     {
-        $columns = [
-            'user' => ['username']
-        ];
-
-        $users = Db::$db->select($columns);
-
-        self::$users = [];
-
+        return $this->username;
     }
 
 
@@ -129,7 +122,7 @@ class User
 
     public static function login(string $username, string $password)
     {
-        foreach(self::$users as $user)
+        foreach(self::getUsers() as $user)
         {
             if($user->username == $username)
             {
