@@ -10,7 +10,6 @@ class Mysql implements Database
 {
     public static $db;
 
-
     public function __construct(string $host, string $dbname, string $username, string $password)
     {
         // TODO: Implement connact() method.
@@ -24,12 +23,70 @@ class Mysql implements Database
 
     }
 
-    public function select()
+    public function select(array $columns, array $params = [])
     {
-        // TODO: Implement select() method.
+//        // TODO: Implement select() method.
+        try {
+            $query = "SELECT ";
+            $columnClauses = [];
+
+            if (is_array($columns)) {
+                foreach ($columns as $columnTable => $columnName) {
+                    if (is_array(array($columnName))) {
+                        foreach ($columnName as $columnString)
+                            $columnClauses[] = $columnTable . "." . $columnString;
+                    }
+                }
+            }
+            $query .= implode(", ", $columnClauses);
+            $query .= " FROM " . implode(", ", array_keys($columns));
+
+            if (!empty($params)) {
+                $query .= " WHERE ";
+                $conditions = [];
+                foreach ($params as $key => $value) {
+                    $tableAndColumn = explode(".", $key, 2);
+
+                    if (count($tableAndColumn) === 2) {
+                        $table = $tableAndColumn[0];
+                        $column = $tableAndColumn[1];
+                    } else {
+                        $table = array_keys($columns)[0];
+                        $column = $key;
+                    }
+
+                    if (is_array($value)) {
+                        //BETWEEN
+                        $conditions[] = $table . "." . $column . " '" . $value[0] . "' AND " . $value[1] . "'";
+                    } elseif (strpos($key, "LIKE") !== false) {
+                        //LIKE
+                        $conditions[] = $table . "." . $column . " '$value'";
+                    } elseif (strpos($key, "=") !== false) {
+                        // JOIN
+                        $conditions[] = $key;
+                    } else {
+                        // gelijk aan waarde
+                        $conditions[] = $table . "." . $column . " = '$value'";
+
+                    }
+                }
+                $query .= implode(' AND ', $conditions);
+            }
+
+            $result = self::$db->query($query);
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+
+//            !== controle op datatype
+//            var_dump($columnClauses);
+//            var_dump($query);
+//            var_dump($conditions);
+
+        } catch (PDOException $error) {
+            throw new Exception($error->getMessage());
+        }
     }
 
-    public function insert($table, $params = []): void
+    public function insert($table, $params = []): int
     {
         try {
             // TODO: Implement insert() method.
@@ -40,6 +97,7 @@ class Mysql implements Database
                 $query->bindValue(':' . $key, $value);
             }
             $query->execute();
+            return self::$db->lastInsertId();
         } catch (PDOException $error) {
             throw new Exception($error->getMessage());
         }

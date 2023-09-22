@@ -64,14 +64,26 @@ switch ($action) {
         break;
 
     case "register":
-        // $_POST['username'], $_POST['password1'], $_POST['password2']
-        if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2'])) {
-            $user = new User();
-            $user->register($_POST['username'], $_POST['password1'], $_POST['password2'], );
-        }
+        if (!empty($_POST['username'])&& !empty($_POST['password1']) && !empty($_POST['password2'])) {
+            $user = new User($_POST['username']);
+            $user->setUser($_POST['username'], $_POST['password1'],$_POST['password2']);
+            header('Location: index.php?action=registerSucces');
 
+        }
         $template->display('template/register.tpl');
         break;
+
+    case "showUser":
+        $user = User::getUser($_GET['user']);
+        var_dump($user);
+
+        break;
+
+    case "showUsers":
+        $users = User::getUsers();
+        var_dump($users);
+        break;
+
 
     case "productAddform":
         $template->display('template/productAddform.tpl');
@@ -224,6 +236,11 @@ switch ($action) {
         {
             header("Location: index.php?action=cartEmptySucces");
         }
+
+        break;
+
+    case "layout":
+        $template->assign('username', User::getUser($_GET['username']));
 
         break;
 
