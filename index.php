@@ -48,19 +48,19 @@ if(isset($_SESSION['user']))
     $user = $_SESSION['user'];
 }
 
-//if (isset($_SESSION['username'])) {
-//    // zoek user is $users en maak $user aan
-//    foreach(User::$users as $checkuser)
-//    {
-//        if($checkuser->getUsername() == $_SESSION['username'])
-//        {
-//            $user = $checkuser;
-////            var_dump($user);
-//
-//            break;
-//        }
-//    }
-//}
+if (isset($_SESSION['username'])) {
+    // zoek user is $users en maak $user aan
+    foreach(User::$users as $checkuser)
+    {
+        if($checkuser->getUsername() == $_SESSION['username'])
+        {
+            $user = $checkuser;
+//            var_dump($user);
+
+            break;
+        }
+    }
+}
 
 switch ($action) {
     case "registerform":
@@ -246,13 +246,9 @@ switch ($action) {
 
         break;
 
-    case "layout":
-//        $template->assign('username', User::getUser($_GET['username']));
-
-        break;
-
     default:
         $template->assign('users', User::$users);
+        $template->assign('username', $user->getUsername());
         $template->display('template/layout.tpl');
 
 }

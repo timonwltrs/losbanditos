@@ -17,7 +17,6 @@ class User
     {
         $this->id = $id;
         $this->username = $username;
-//        self::$users[] = $this;
         $_SESSION['user'] = $this;
     }
 
@@ -97,10 +96,11 @@ class User
     public function getUsername(): string
     {
         return $this->username;
+
     }
 
 
-    //dit is om je wachtwoord the controlerren
+    //dit is om je wachtwoord the controleren
     public function checkPassword(string $password1, string $password2)
     {
         if ($password1 === $password2) {
