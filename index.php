@@ -41,12 +41,12 @@ if(isset($_SESSION['user']))
 {
     $user = $_SESSION['user'];
     $template->assign('username', $user->getUsername());
-
-}
-
-if (isset($_SESSION['cart'])) {
     $user->setCart($_SESSION['cart']);
+
+
 }
+
+
 
 if (isset($_SESSION['username'])) {
     // zoek user is $users en maak $user aan
@@ -230,6 +230,7 @@ switch ($action) {
     case "cartDelete":
         if ($user->getCartList()->removeItem($_POST['brand']))
         {
+
             header("Location: index.php?action=cartEmptySuccess");
         }
         header("Location: index.php?action=cartIndex");
@@ -251,6 +252,6 @@ $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
-
-echo "<pre>";
-var_dump($_SESSION);
+//
+//echo "<pre>";
+//var_dump($_SESSION);
