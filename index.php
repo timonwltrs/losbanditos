@@ -98,12 +98,13 @@ switch ($action) {
         if(!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand'))))
         {
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
+            $product->setProduct($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
         }
         header('Location: index.php?action=productIndex');
         break;
 
     case "productIndex":
-        $template->assign('products', Product::$products);
+        $template->assign('products', Product::getProducts());
         $template->display('template/productIndex.tpl');
         break;
 
