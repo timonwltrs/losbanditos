@@ -31,11 +31,7 @@
                     <span class="lead fw-normal"></span>
                     <br>
                 </p>
-                <p class="mb-0 me-5 d-flex align-items-center">
-                    <span class="text-muted me-2">FREE SHIPPING</span>
-                    <span class="lead fw-normal"></span>
-                    <br>
-                </p>
+
             </div>
 
             <div class=" d-flex flex-row">

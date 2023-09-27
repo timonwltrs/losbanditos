@@ -19,8 +19,6 @@ class User
         $this->username = $username;
         $_SESSION['user'] = $this;
     }
-
-
     //dit is voor de oude register
 //    public function register(string $username, string $password1, string $password2)
 //    {
@@ -38,6 +36,24 @@ class User
 //        }
 //    }
 
+    public function setCart(array $cart)
+    {
+        if (!isset($this->cartList)) {
+            $this->cartList = new CartList();
+        }
+
+        foreach ($cart as $product) {
+            $this->cartList->addCart($product);
+        }
+    }
+
+
+    public function userCart(Product $product)
+    {
+        return $this->cartList->addCart($product);
+
+    }
+
     // nieuwe registratie
     public function setUser(string $username, string $password1, string $password2)
     {
@@ -47,8 +63,6 @@ class User
             $this->password = $password1;
             $userId = Db::$db->insert("user", ["username" => $username, "password1" => $password]);
             $this->id = $userId;
-            $this->productFavList = new ProductFavList();
-            $this->cartList = new CartList();
         }
     }
 
@@ -63,7 +77,7 @@ class User
         $params = [
             'id' => $id
         ];
-        //haal 1 useer uit db
+        //haal 1 user uit db
         $user = Db::$db->select($columns, $params);
         //maak static users leeg
         self::$users = [];
@@ -113,12 +127,8 @@ class User
     {
         return $this->productFavList->addFavourites($product);
     }
-// dit is voor de login.
 
-    public function userCart(Product $product)
-    {
-        return $this->cartList->addCart($product);
-    }
+
 
     public static function login(string $username, string $password)
     {
@@ -129,13 +139,14 @@ class User
         $params = [
             'username' => $username,
         ];
-        //haal 1 useer uit db
+        //haal 1 user uit db
         $user = Db::$db->select($columns, $params);
 //        var_dump($user);
         if(password_verify($password, $user[0]['password1']))
         {
             $user = new User($user[0]['username'], $user[0]['id']);
             return $user;
+
         }else{
             return false;
         }
