@@ -33,11 +33,6 @@ if (isset($_GET['action'])) {
     $action = null;
 }
 
-//if (isset($_SESSION['users'])) {
-//    User::$users = $_SESSION['users'];
-//}
-
-
 $database = new Db();
 
 if (isset($_SESSION['products'])) {
@@ -46,6 +41,8 @@ if (isset($_SESSION['products'])) {
 if(isset($_SESSION['user']))
 {
     $user = $_SESSION['user'];
+    $template->assign('username', $user->getUsername());
+//    var_dump($user->getUsername());
 }
 
 if (isset($_SESSION['username'])) {
@@ -73,7 +70,6 @@ switch ($action) {
             $user = new User($_POST['username']);
             $user->setUser($_POST['username'], $_POST['password1'],$_POST['password2']);
             header('Location: index.php?action=registerSucces');
-
         }
         $template->display('template/register.tpl');
         break;
@@ -155,20 +151,24 @@ switch ($action) {
                 $template->display('template/layout.tpl');
             } else {
                 // ingelogd
-//                $_SESSION['username'] = $_POST['username'];
-                $template->display('template/inlogSuccess.tpl');
+                header("Location: index.php?action=inlogSuccess");
             }
             // ipv error, login gelukt
-
         }else
         {
             // als login niet lukt, error pagina
             $template->display('template/error.tpl');
         }
+
         break;
 
-    case "inlogsuccess":
+    case "inlogSuccess":
         $template->display('template/inlogSuccess.tpl');
+//        if (isset($_SESSION['username']) === true)
+//        {
+//            header("refresh: 2; url=index.php?action=productIndex");
+//        }
+
         break;
 
     case "logout":
@@ -248,7 +248,6 @@ switch ($action) {
 
     default:
         $template->assign('users', User::$users);
-        $template->assign('username', $user->getUsername());
         $template->display('template/layout.tpl');
 
 }
@@ -257,8 +256,7 @@ $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
 
-echo "<pre>";
-var_dump($_SESSION);
-//session_destroy();
+//echo "<pre>";
+//var_dump($_SESSION);
 
 
