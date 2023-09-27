@@ -11,8 +11,6 @@ class CartList
         return $this->cart[] = $product;
     }
 
-
-
     public function getCart(): array
     {
         return $this->cart;
@@ -32,7 +30,6 @@ class CartList
     public function removeItem(string $productName)
     {
         $product = Product::productDetail($productName);
-
         $key = array_search($product, $this->cart, true);
         if($key !== false)
         {

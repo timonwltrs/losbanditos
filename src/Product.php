@@ -61,7 +61,6 @@ class Product
                 return $product;
             }
         }
-
     }
 
 

@@ -142,7 +142,7 @@ switch ($action) {
         break;
 
     case "cartEmptySucces":
-        $template->display('template/noti/cartEmptySucces.tpl');
+        $template->display('template/noti/cartEmptySuccess.tpl');
         break;
 
     case "login":
@@ -230,8 +230,7 @@ switch ($action) {
     case "cartDelete":
         if ($user->getCartList()->removeItem($_POST['brand']))
         {
-            header("Location: index.php?action=cartEmptySucces");
-
+            header("Location: index.php?action=cartEmptySuccess");
         }
         header("Location: index.php?action=cartIndex");
         break;
@@ -239,9 +238,8 @@ switch ($action) {
     case "cartCompleteDelete":
         if (empty($user->getCartList()->removeCart($_POST['brand'])))
         {
-            header("Location: index.php?action=cartEmptySucces");
+            header("Location: index.php?action=cartEmptySuccess");
         }
-
         break;
 
     default:
@@ -253,6 +251,6 @@ $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
-//
-//echo "<pre>";
-//var_dump($_SESSION);
+
+echo "<pre>";
+var_dump($_SESSION);

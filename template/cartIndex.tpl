@@ -3,7 +3,8 @@
 {block name="content"}
 
     <h1 class="mt-5">Shopping Cart</h1>
-    <div class="card-group">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+
 
     {foreach $products as $product}
         <div class="col">
