@@ -19,11 +19,8 @@ class Product
         $this->description = $description;
         $this->price = $price;
         $this->imageName = $imageName;
-        //imageName = file name (image (jpeg))
         self::$products[] = $this;
         Db::$db->insert("products", ["brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
-//        Db::$db->select("products", ["brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
-
     }
 
     public static function productDetail(string $name)
@@ -33,6 +30,7 @@ class Product
                 return $product;
             }
         }
+
     }
 
 

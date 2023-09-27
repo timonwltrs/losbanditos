@@ -7,7 +7,6 @@ require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 ini_set('xdebug.var_display_max_depth', -1);
 ini_set('xdebug.var_display_max_children', -1);
 ini_set('xdebug.var_display_max_data', -1);
-
 ini_set ('display_errors', 1);
 ini_set ('display_startup_errors', 1);
 error_reporting (E_ALL);
@@ -20,7 +19,7 @@ use Losbanditos\Product;
 use Losbanditos\User;
 use Losbanditos\Client;
 use Losbanditos\login;
-//use Losbanditos\Discount;
+
 
 session_start();
 $template = new Smarty();
@@ -42,7 +41,11 @@ if(isset($_SESSION['user']))
 {
     $user = $_SESSION['user'];
     $template->assign('username', $user->getUsername());
-//    var_dump($user->getUsername());
+
+}
+
+if (isset($_SESSION['cart'])) {
+    $user->setCart($_SESSION['cart']);
 }
 
 if (isset($_SESSION['username'])) {
@@ -114,7 +117,6 @@ switch ($action) {
 
         $template->assign('name', $_GET['name']);
         $template->assign('product', $product);
-
         $template->display('template/productDetail.tpl');
         break;
 
@@ -151,6 +153,7 @@ switch ($action) {
                 $template->display('template/layout.tpl');
             } else {
                 // ingelogd
+                $cart = $user->getCartList();
                 header("Location: index.php?action=inlogSuccess");
             }
             // ipv error, login gelukt
@@ -159,7 +162,6 @@ switch ($action) {
             // als login niet lukt, error pagina
             $template->display('template/error.tpl');
         }
-
         break;
 
     case "inlogSuccess":
@@ -200,8 +202,7 @@ switch ($action) {
         break;
 
     case "cartAdd":
-        if($_POST['cart'])
-        {
+        if ($_POST['cart']) {
             $product = Product::productDetail($_POST['name']);
             $user->userCart($product);
         }
@@ -209,22 +210,21 @@ switch ($action) {
         break;
 
     case "cartIndex":
-        if (isset($_SESSION['username']) === true)
+        if (isset($_SESSION['user']) && $user->getUsername() !== null)
         {
-            $template->assign('price', $user->getCartList()->getTotalPrice());
-            $template->assign('products', $user->getCartList()->getCart());
-            if (empty($user->getCartList()->getCart()))
-            {
+            $cartList = $user->getCartList();
+            if ($cartList === null || empty($cartList->getCart())) {
                 $template->display('template/noti/cartEmpty.tpl');
-            }
-            else {
+            } else {
+                $template->assign('price', $cartList->getTotalPrice());
+                $template->assign('products', $cartList->getCart());
                 $template->display('template/cartIndex.tpl');
             }
-        }else
-        {
+        } else {
             header("Location: index.php?action=error");
         }
         break;
+
 
     case "cartDelete":
         if ($user->getCartList()->removeItem($_POST['brand']))
@@ -252,8 +252,6 @@ $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
-
+//
 //echo "<pre>";
 //var_dump($_SESSION);
-
-
