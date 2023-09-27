@@ -164,10 +164,7 @@ switch ($action) {
 
     case "inlogSuccess":
         $template->display('template/inlogSuccess.tpl');
-//        if (isset($_SESSION['username']) === true)
-//        {
-//            header("refresh: 2; url=index.php?action=productIndex");
-//        }
+
 
         break;
 
