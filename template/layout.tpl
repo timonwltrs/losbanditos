@@ -94,8 +94,8 @@
 
         <form>
           <div class="col">
-            {if isset($smarty.session.username)}
-              <h5 class="card-title">{$smarty.session.username}</h5>
+            {if isset($username)}
+              <h5 class="card-title">{$username}</h5>
               <form>
                 <button class="btn btn-login"><a href="/index.php?action=logout"">Logout</a></button>
               </form>
@@ -108,9 +108,6 @@
           </div>
         </form>
 
-{*        <div>*}
-{*          {$countCart}*}
-{*        </div>*}
         <button>
 
           <a href="/index.php?action=cartIndex">

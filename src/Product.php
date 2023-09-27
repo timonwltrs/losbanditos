@@ -22,6 +22,7 @@ class Product
         //imageName = file name (image (jpeg))
         self::$products[] = $this;
         Db::$db->insert("products", ["brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
+//        Db::$db->select("products", ["brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
 
     }
 

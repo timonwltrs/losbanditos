@@ -20,6 +20,7 @@ use Losbanditos\Product;
 use Losbanditos\User;
 use Losbanditos\Client;
 use Losbanditos\login;
+//use Losbanditos\Discount;
 
 session_start();
 $template = new Smarty();
@@ -32,16 +33,18 @@ if (isset($_GET['action'])) {
     $action = null;
 }
 
-if (isset($_SESSION['users'])) {
-    User::$users = $_SESSION['users'];
-}
-
-
 $database = new Db();
 
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
+if(isset($_SESSION['user']))
+{
+    $user = $_SESSION['user'];
+    $template->assign('username', $user->getUsername());
+//    var_dump($user->getUsername());
+}
+
 if (isset($_SESSION['username'])) {
     // zoek user is $users en maak $user aan
     foreach(User::$users as $checkuser)
@@ -63,14 +66,25 @@ switch ($action) {
         break;
 
     case "register":
-        // $_POST['username'], $_POST['password1'], $_POST['password2']
-        if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2'])) {
-            $user = new User();
-            $user->register($_POST['username'], $_POST['password1'], $_POST['password2'], );
+        if (!empty($_POST['username'])&& !empty($_POST['password1']) && !empty($_POST['password2'])) {
+            $user = new User($_POST['username']);
+            $user->setUser($_POST['username'], $_POST['password1'],$_POST['password2']);
+            header('Location: index.php?action=registerSucces');
         }
-
         $template->display('template/register.tpl');
         break;
+
+    case "showUser":
+        $user = User::getUser($_GET['user']);
+        var_dump($user);
+
+        break;
+
+    case "showUsers":
+        $users = User::getUsers();
+        var_dump($users);
+        break;
+
 
     case "productAddform":
         $template->display('template/productAddform.tpl');
@@ -130,30 +144,33 @@ switch ($action) {
 
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            if (User::login($_POST['username'], $_POST['password'])) {
-                // ingelogd
-                $_SESSION['username'] = $_POST['username'];
-                echo "ingelogd";
-                $template->display('template/layout.tpl');
-            } else {
+            $user = User::login($_POST['username'], $_POST['password']);
+            if($user === false){
                 // geef fout aan
                 echo "fout";
                 $template->display('template/layout.tpl');
+            } else {
+                // ingelogd
+                header("Location: index.php?action=inlogSuccess");
             }
             // ipv error, login gelukt
-            $template->display('template/inlogSuccess.tpl');
         }else
         {
             // als login niet lukt, error pagina
             $template->display('template/error.tpl');
         }
+
         break;
 
-    case "inlogsuccess":
+    case "inlogSuccess":
         $template->display('template/inlogSuccess.tpl');
+
+
         break;
+
     case "logout":
         unset($_SESSION['username']);
+        unset($_SESSION['user']);
         header("Location: index.php?action=home");
         exit();
 
@@ -235,5 +252,8 @@ $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
+
+//echo "<pre>";
+//var_dump($_SESSION);
 
 
