@@ -123,6 +123,19 @@ class User
     }
 
     //voor favoriten
+
+
+    public function setFavourite(array $favourite)
+    {
+        if (!isset($this->productFavList)) {
+            $this->productFavList = new ProductFavList();
+        }
+
+        foreach ($favourite as $product) {
+            $this->productFavList->addFavourites($product);
+        }
+    }
+
     public function userFav(Product $product)
     {
         return $this->productFavList->addFavourites($product);

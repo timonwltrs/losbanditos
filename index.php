@@ -42,6 +42,7 @@ if(isset($_SESSION['user']))
     $user = $_SESSION['user'];
     $template->assign('username', $user->getUsername());
     $user->setCart($_SESSION['cart']);
+    $user->setFavourite($_SESSION['fav']);
 }
 
 
@@ -172,7 +173,7 @@ switch ($action) {
         exit();
 
     case "favouritesAdd":
-        if (isset($_SESSION['username']) === true) {
+        if (isset($_SESSION['user']) && $user->getUsername() !== null){
             if ($_POST['fav']) {
                 $product = Product::productDetail($_POST['name']);
                 $user->userFav($product);
@@ -181,20 +182,33 @@ switch ($action) {
             }
         }
         header("Location: index.php?action=favourites");
+
         break;
 
     case "favourites":
-        if (isset($_SESSION['username']) === true)
+//        if (isset($_SESSION['username']) === true)
+//        {
+//            $template->assign('products', $user->getFav()->getFavourites());
+//            if (empty( $user->getFav()->getFavourites()))
+//            {
+//                $template->display('template/noti/error.tpl');
+//            }
+//            $template->display('template/favourites.tpl');
+//        }
+//        else
+//        {
+//            header("Location: index.php?action=error");
+//        }
+        if (isset($_SESSION['user']) && $user->getUsername() !== null)
         {
-            $template->assign('products', $user->getFav()->getFavourites());
-            if (empty( $user->getFav()->getFavourites()))
-            {
-                $template->display('template/noti/error.tpl');
+            $favList = $user->getFav();
+            if ($favList === null || empty($favList->getFavourites())) {
+                $template->display('template/noti/cartEmpty.tpl');
+            } else {
+                $template->assign('products', $favList->getFavourites());
+                $template->display('template/favourites.tpl');
             }
-            $template->display('template/favourites.tpl');
-        }
-        else
-        {
+        } else {
             header("Location: index.php?action=error");
         }
         break;
