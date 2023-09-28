@@ -186,19 +186,7 @@ switch ($action) {
         break;
 
     case "favourites":
-//        if (isset($_SESSION['username']) === true)
-//        {
-//            $template->assign('products', $user->getFav()->getFavourites());
-//            if (empty( $user->getFav()->getFavourites()))
-//            {
-//                $template->display('template/noti/error.tpl');
-//            }
-//            $template->display('template/favourites.tpl');
-//        }
-//        else
-//        {
-//            header("Location: index.php?action=error");
-//        }
+
         if (isset($_SESSION['user']) && $user->getUsername() !== null)
         {
             $favList = $user->getFav();
@@ -248,7 +236,7 @@ switch ($action) {
 
             header("Location: index.php?action=cartEmptySuccess");
         }
-        header("Location: index.php?action=cartIndex");
+        header("Location: index.php?action=home");
         break;
 
     case "cartCompleteDelete":

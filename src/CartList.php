@@ -40,7 +40,6 @@ class CartList
     public function removeCart(string $products)
     {
         $product = Product::productDetail($products);
-
         $key = in_array($product, $this->cart, true);
         if ($key !== false)
         {
