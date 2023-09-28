@@ -42,8 +42,6 @@ if(isset($_SESSION['user']))
     $user = $_SESSION['user'];
     $template->assign('username', $user->getUsername());
     $user->setCart($_SESSION['cart']);
-
-
 }
 
 
@@ -72,7 +70,6 @@ switch ($action) {
         if (!empty($_POST['username'])&& !empty($_POST['password1']) && !empty($_POST['password2'])) {
             $user = new User($_POST['username']);
             $user->setUser($_POST['username'], $_POST['password1'],$_POST['password2']);
-            header('Location: index.php?action=registerSucces');
         }
         $template->display('template/register.tpl');
         break;
@@ -141,7 +138,7 @@ switch ($action) {
         $template->display('template/noti/cartEmpty.tpl');
         break;
 
-    case "cartEmptySucces":
+    case "cartEmptySuccess":
         $template->display('template/noti/cartEmptySuccess.tpl');
         break;
 
@@ -154,21 +151,18 @@ switch ($action) {
                 $template->display('template/layout.tpl');
             } else {
                 // ingelogd
-                $cart = $user->getCartList();
                 header("Location: index.php?action=inlogSuccess");
             }
-            // ipv error, login gelukt
         }else
         {
             // als login niet lukt, error pagina
             $template->display('template/error.tpl');
         }
+
         break;
 
     case "inlogSuccess":
         $template->display('template/inlogSuccess.tpl');
-
-
         break;
 
     case "logout":
@@ -178,10 +172,13 @@ switch ($action) {
         exit();
 
     case "favouritesAdd":
-        if($_POST['fav'])
-        {
-            $product = Product::productDetail($_POST['name']);
-            $user->userFav($product);
+        if (isset($_SESSION['username']) === true) {
+            if ($_POST['fav']) {
+                $product = Product::productDetail($_POST['name']);
+                $user->userFav($product);
+            } else {
+                $template->display('template/noti/error.tpl');
+            }
         }
         header("Location: index.php?action=favourites");
         break;
@@ -192,7 +189,7 @@ switch ($action) {
             $template->assign('products', $user->getFav()->getFavourites());
             if (empty( $user->getFav()->getFavourites()))
             {
-
+                $template->display('template/noti/error.tpl');
             }
             $template->display('template/favourites.tpl');
         }
@@ -203,9 +200,13 @@ switch ($action) {
         break;
 
     case "cartAdd":
-        if ($_POST['cart']) {
-            $product = Product::productDetail($_POST['name']);
-            $user->userCart($product);
+        if (isset($_SESSION['user']) && $user->getUsername() !== null){
+            if ($_POST['cart']) {
+                $product = Product::productDetail($_POST['name']);
+                $user->userCart($product);
+            }
+        }else{
+            header("Location: index.php?action=error");
         }
         header("Location: index.php?action=cartIndex");
         break;
@@ -253,5 +254,5 @@ $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
 //
-//echo "<pre>";
-//var_dump($_SESSION);
+echo "<pre>";
+var_dump($_SESSION);

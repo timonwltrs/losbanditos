@@ -30,7 +30,6 @@ class Product
         $this->imageName = $imageName;
         self::$products[] = $this;
         Db::$db->insert("products", ["brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
-
     }
 
     public static function getProducts()

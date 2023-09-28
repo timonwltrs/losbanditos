@@ -6,7 +6,7 @@
         {foreach $products as $product}
             <div class="col">
                 <div class="card">
-                    <img src="/template/img/{$product->imageName}.jpeg" class="card-img-top" alt="..." >
+                    <img src="/template/img/{$product->imageName}.jpeg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{$product->brand}</h5>
                         <p class="card-text">{$product->description}</p>
