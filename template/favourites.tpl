@@ -1,7 +1,10 @@
 {extends file="template/layout.tpl"}
 
 {block name="content"}
-    <h1 class="mt-5">Favourites List</h1>
+    <div class="text-center my-5">
+
+        <h1 class="mt-5">Favourites List</h1>
+    </div>
     <div class="card-group">
 
         {foreach $products as $product}

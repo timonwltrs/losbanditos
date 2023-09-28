@@ -1,7 +1,10 @@
 {extends file="template/layout.tpl"}
 
 {block name="content"}
-    <h1 class="mt-5">Shopping Cart</h1>
+    <div class="text-center my-5">
+
+        <h1 class="mt-5">Shopping Cart</h1>
+    </div>
     <div class="row row-cols-1 row-cols-md-4 g-4">
         {foreach $products as $product}
             <div class="col">
@@ -13,15 +16,15 @@
                         <p class="btn ">Price: €{$product->price}</p>
                         <div class="btn prod-card-btn">
 
-                        <form action="/index.php?action=favouritesAdd&name{$product->brand}" method="POST">
-                            <input type="hidden" name="name" value="{$product->brand}">
-                            <input type="submit" name="fav" value="♥" class="btn btn-dark fav-btn"/>
-                        </form>
-                        <form action="/index.php?action=cartDelete" method="POST">
-                            <input type="hidden" name="brand" value="{$product->brand}">
-                            <input type="submit" name="cancel" value="Delete" class="btn btn-dark fav-btn"
-                                   style="font-size: 14px; color: white; background-color: red"/>
-                        </form>
+                            <form action="/index.php?action=favouritesAdd&name{$product->brand}" method="POST">
+                                <input type="hidden" name="name" value="{$product->brand}">
+                                <input type="submit" name="fav" value="♥" class="btn btn-dark fav-btn"/>
+                            </form>
+                            <form action="/index.php?action=cartDelete" method="POST">
+                                <input type="hidden" name="brand" value="{$product->brand}">
+                                <input type="submit" name="cancel" value="Delete" class="btn btn-dark fav-btn"
+                                       style="font-size: 14px; color: white; background-color: red"/>
+                            </form>
                         </div>
                     </div>
                 </div>
