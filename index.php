@@ -255,6 +255,6 @@ $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
-//
+
 echo "<pre>";
 var_dump($_SESSION);

@@ -39,19 +39,7 @@
                 <button type="button" class="btn btn-dark">Add to Cart</button>
             </div>
         </div>
-
-        <div class="col">
-            <div class="card">
-                <img src="/template/img/leatherjacket.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Pull & Bear</h5>
-                    <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</p>
-                    <p class="card-text">$69.99</p>
-                </div>
-                <button type="button" class="btn btn-dark"><a href="#">Add to Cart</button>
-            </div>
-        </div>
-
+        
         {foreach $products as $product}
             <div class="col">
                 <div class="card">
