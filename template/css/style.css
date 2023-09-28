@@ -80,6 +80,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
 /*home*/
 
 section{
@@ -148,9 +149,6 @@ background-position: center;
 a{
     text-decoration: none;
 }
-
-
-
 
 .info-btn{
     float: right;

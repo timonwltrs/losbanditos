@@ -20,7 +20,37 @@ class Product
         $this->price = $price;
         $this->imageName = $imageName;
         self::$products[] = $this;
+    }
+
+    public function setProduct(string $brand, string $description, float $price, string $imageName)
+    {
+        $this->brand = $brand;
+        $this->description = $description;
+        $this->price = $price;
+        $this->imageName = $imageName;
+        self::$products[] = $this;
         Db::$db->insert("products", ["brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
+    }
+
+    public static function getProducts()
+    {
+        //wat selecteer ik
+        $columns = [
+            'products' => ['brand', 'description', 'price', 'imageName']
+        ];
+
+        //hier haal ik alles op uit de database
+        $products = Db::$db->select($columns);
+
+        self::$products = [];
+
+        foreach ($products as $product)
+        {
+            $product = new Product($product['brand'],$product['description'],$product['price'],$product['imageName']);
+        }
+
+        return self::$products;
+
     }
 
     public static function productDetail(string $name)
@@ -30,7 +60,6 @@ class Product
                 return $product;
             }
         }
-
     }
 
 
