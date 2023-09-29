@@ -191,7 +191,7 @@ switch ($action) {
         {
             $favList = $user->getFav();
             if ($favList === null || empty($favList->getFavourites())) {
-                $template->display('template/noti/cartEmpty.tpl');
+                $template->display('template/noti/favouriteEmpty.tpl');
             } else {
                 $template->assign('products', $favList->getFavourites());
                 $template->display('template/favourites.tpl');
@@ -233,10 +233,8 @@ switch ($action) {
     case "cartDelete":
         if ($user->getCartList()->removeItem($_POST['brand']))
         {
-
             header("Location: index.php?action=cartEmptySuccess");
         }
-        header("Location: index.php?action=home");
         break;
 
     case "cartCompleteDelete":
@@ -249,7 +247,6 @@ switch ($action) {
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
-
 }
 $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;

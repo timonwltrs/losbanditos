@@ -18,6 +18,7 @@ class User
         $this->id = $id;
         $this->username = $username;
         $_SESSION['user'] = $this;
+
     }
     //dit is voor de oude register
 //    public function register(string $username, string $password1, string $password2)

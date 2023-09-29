@@ -20,6 +20,7 @@ class Product
         $this->price = $price;
         $this->imageName = $imageName;
         self::$products[] = $this;
+
     }
 
     public function setProduct(string $brand, string $description, float $price, string $imageName)
