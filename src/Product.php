@@ -2,6 +2,8 @@
 
 namespace Losbanditos;
 
+use Cassandra\Date;
+
 class Product
 {
     public string $brand;
@@ -56,11 +58,27 @@ class Product
 
     public static function productDetail(string $name)
     {
-        foreach (self::$products as $product) {
-            if ($name == $product->brand) {
-                return $product;
-            }
-        }
+//        foreach (self::$products as $product) {
+//            if ($name == $product->brand) {
+//                return $product;
+//            }
+//
+
+        //selecteren vanuit db
+        $columns = [
+            'products' => ['brand', 'description', 'price', 'imageName']
+        ];
+
+        $params = [
+            'brand' => $name
+        ];
+
+        $productArray = Db::$db->select($columns, $params);
+        $product = new Product($productArray[0]['brand'],$productArray[0]['description'], $productArray[0]['price'], $productArray[0]['imageName']);
+        var_dump($productArray);
+        self::$products = [];
+
+        return $product;
     }
 
 

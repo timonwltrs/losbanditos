@@ -37,14 +37,10 @@ class User
 //        }
 //    }
 
-    public function setCart(array $cart)
+    public function setCart()
     {
         if (!isset($this->cartList)) {
             $this->cartList = new CartList();
-        }
-
-        foreach ($cart as $product) {
-            $this->cartList->addCart($product);
         }
     }
 
@@ -52,7 +48,6 @@ class User
     public function userCart(Product $product)
     {
         return $this->cartList->addCart($product);
-
     }
 
     // nieuwe registratie
@@ -160,7 +155,6 @@ class User
         {
             $user = new User($user[0]['username'], $user[0]['id']);
             return $user;
-
         }else{
             return false;
         }

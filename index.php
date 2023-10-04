@@ -20,7 +20,6 @@ use Losbanditos\User;
 use Losbanditos\Client;
 use Losbanditos\login;
 
-
 session_start();
 $template = new Smarty();
 $template->clearAllCache();
@@ -34,18 +33,19 @@ if (isset($_GET['action'])) {
 
 $database = new Db();
 
-if (isset($_SESSION['products'])) {
-    Product::$products = $_SESSION['products'];
-}
+//if (isset($_SESSION['products'])) {
+//    Product::$products = $_SESSION['products'];
+//}
+
 if(isset($_SESSION['user']))
 {
     $user = $_SESSION['user'];
     $template->assign('username', $user->getUsername());
-    $user->setCart($_SESSION['cart']);
+    //db versie moet nog gebeuren
+    $user->setCart();
     $user->setFavourite($_SESSION['fav']);
+
 }
-
-
 
 if (isset($_SESSION['username'])) {
     // zoek user is $users en maak $user aan
@@ -54,8 +54,7 @@ if (isset($_SESSION['username'])) {
         if($checkuser->getUsername() == $_SESSION['username'])
         {
             $user = $checkuser;
-//            var_dump($user);
-
+            //var_dump($user);
             break;
         }
     }
@@ -78,14 +77,12 @@ switch ($action) {
     case "showUser":
         $user = User::getUser($_GET['user']);
         var_dump($user);
-
         break;
 
     case "showUsers":
         $users = User::getUsers();
         var_dump($users);
         break;
-
 
     case "productAddform":
         $template->display('template/productAddform.tpl');
@@ -154,12 +151,10 @@ switch ($action) {
                 // ingelogd
                 header("Location: index.php?action=inlogSuccess");
             }
-        }else
-        {
+        } else {
             // als login niet lukt, error pagina
             $template->display('template/error.tpl');
         }
-
         break;
 
     case "inlogSuccess":
@@ -182,11 +177,9 @@ switch ($action) {
             }
         }
         header("Location: index.php?action=favourites");
-
         break;
 
     case "favourites":
-
         if (isset($_SESSION['user']) && $user->getUsername() !== null)
         {
             $favList = $user->getFav();
@@ -207,7 +200,7 @@ switch ($action) {
                 $product = Product::productDetail($_POST['name']);
                 $user->userCart($product);
             }
-        }else{
+        } else {
             header("Location: index.php?action=error");
         }
         header("Location: index.php?action=cartIndex");
@@ -225,7 +218,8 @@ switch ($action) {
                 $template->display('template/cartIndex.tpl');
             }
         } else {
-            header("Location: index.php?action=error");
+            $template->display('template/noti/error.tpl');
+
         }
         break;
 
@@ -233,7 +227,9 @@ switch ($action) {
     case "cartDelete":
         if ($user->getCartList()->removeItem($_POST['brand']))
         {
-            header("Location: index.php?action=cartEmptySuccess");
+            $template->display('template/noti/cartEmptySuccess.tpl');
+        } else {
+            $template->display('template/noti/error.tpl');
         }
         break;
 
@@ -248,10 +244,10 @@ switch ($action) {
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
 }
-$_SESSION['products'] = Product::$products;
+//$_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
-$_SESSION['cart'] = Product::$productCartList;
-$_SESSION['users'] = User::$users;
+//$_SESSION['cart'] = Product::$productCartList;
+//$_SESSION['users'] = User::$users;
 
 echo "<pre>";
 var_dump($_SESSION);
