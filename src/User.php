@@ -54,7 +54,7 @@ class User
     public function setUser(string $username, string $password1, string $password2)
     {
         $this->username = $username;
-        if ($password1 == $password2){
+        if ($password1 == $password2) {
             $password = password_hash($password1, PASSWORD_DEFAULT);
             $this->password = $password1;
             $userId = Db::$db->insert("user", ["username" => $username, "password1" => $password]);
@@ -78,7 +78,7 @@ class User
         //maak static users leeg
         self::$users = [];
         //maak een object van de opgehaalde user uit de db
-        $userObject = new User( $user['username'],$user['id']);
+        $userObject = new User($user['username'], $user['id']);
         return $userObject;
     }
 
@@ -87,7 +87,7 @@ class User
     {
         //wat selecteer ik
         $columns = [
-            'user' => ['username' , 'id']
+            'user' => ['username', 'id']
         ];
 
         // haal alle user op
@@ -121,22 +121,10 @@ class User
     //voor favoriten
 
 
-    public function setFavourite(array $favourite)
-    {
-        if (!isset($this->productFavList)) {
-            $this->productFavList = new ProductFavList();
-        }
-
-        foreach ($favourite as $product) {
-            $this->productFavList->addFavourites($product);
-        }
-    }
-
     public function userFav(Product $product)
     {
         return $this->productFavList->addFavourites($product);
     }
-
 
 
     public static function login(string $username, string $password)
@@ -151,11 +139,10 @@ class User
         //haal 1 user uit db
         $user = Db::$db->select($columns, $params);
 //        var_dump($user);
-        if(password_verify($password, $user[0]['password1']))
-        {
+        if (password_verify($password, $user[0]['password1'])) {
             $user = new User($user[0]['username'], $user[0]['id']);
             return $user;
-        }else{
+        } else {
             return false;
         }
     }
@@ -165,10 +152,49 @@ class User
         return $this->productFavList;
     }
 
+    public function setFavouriteList()
+    {
+        if (!isset($this->productFavList)) {
+            $this->productFavList = new ProductFavList();
+        }
+
+    }
+
+    public function setFavourite(int $userId, string $brand, string $description, float $price, string $imageName)
+    {
+        $this->id = $userId;
+        // hoe zit het met brand
+        // zit deze methode uberhaupt in de goeie class??
+        Db::$db->insert("favourites", ["userId" => $userId, "brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
+    }
+
+    public static function getFavouriteList()
+    {
+        //wat selecteer ik
+        $columns = [
+            'favourites' => ['userid','brand', 'description', 'price', 'imageName']
+        ];
+
+        $params = [
+            'userid' => $_SESSION['user']
+        ];
+
+        //hier haal ik alles op uit de database
+        $products = Db::$db->select($columns, $params);
+
+        Product::$products = [];
+
+        foreach ($products as $product)
+        {
+            $product = new Product($product['brand'],$product['description'],$product['price'],$product['imageName']);
+        }
+        return Product::$products;
+    }
+
     public function getCartList()
     {
         return $this->cartList;
     }
-
+//userid insert meenemen
 }
 

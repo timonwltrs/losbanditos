@@ -75,11 +75,12 @@ class Product
 
         $productArray = Db::$db->select($columns, $params);
         $product = new Product($productArray[0]['brand'],$productArray[0]['description'], $productArray[0]['price'], $productArray[0]['imageName']);
-        var_dump($productArray);
+        //var_dump($productArray);
         self::$products = [];
 
         return $product;
     }
+
 
 
     public function addReview(string $name, int $rating, string $comment): void

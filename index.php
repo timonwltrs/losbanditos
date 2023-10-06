@@ -30,12 +30,8 @@ if (isset($_GET['action'])) {
 } else {
     $action = null;
 }
-
 $database = new Db();
 
-//if (isset($_SESSION['products'])) {
-//    Product::$products = $_SESSION['products'];
-//}
 
 if(isset($_SESSION['user']))
 {
@@ -43,7 +39,7 @@ if(isset($_SESSION['user']))
     $template->assign('username', $user->getUsername());
     //db versie moet nog gebeuren
     $user->setCart();
-    $user->setFavourite($_SESSION['fav']);
+    $user->setFavouriteList();
 
 }
 
@@ -172,6 +168,7 @@ switch ($action) {
             if ($_POST['fav']) {
                 $product = Product::productDetail($_POST['name']);
                 $user->userFav($product);
+                $user->setFavourite($_POST['userId'],$_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
             } else {
                 $template->display('template/noti/error.tpl');
             }
@@ -245,7 +242,7 @@ switch ($action) {
         $template->display('template/layout.tpl');
 }
 //$_SESSION['products'] = Product::$products;
-$_SESSION['fav'] = Product::$productFavList;
+//$_SESSION['fav'] = Product::$productFavList;
 //$_SESSION['cart'] = Product::$productCartList;
 //$_SESSION['users'] = User::$users;
 
