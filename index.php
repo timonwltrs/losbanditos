@@ -166,9 +166,12 @@ switch ($action) {
     case "favouritesAdd":
         if (isset($_SESSION['user']) && $user->getUsername() !== null){
             if ($_POST['fav']) {
-                $product = Product::productDetail($_POST['name']);
-                $user->userFav($product);
-                $user->setFavourite($_POST['userId'],$_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
+//                $product = Product::productDetail($_POST['name']);
+//                $user->userFav($product);
+                //toegevoegd maar is dit ok ?
+                var_dump(intval($_POST['productid']));
+                var_dump($_SESSION['user']->getId());
+                $user->setFavourite(intval($_POST['productid']), $_SESSION['user']->getId());
             } else {
                 $template->display('template/noti/error.tpl');
             }
@@ -241,10 +244,6 @@ switch ($action) {
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
 }
-//$_SESSION['products'] = Product::$products;
-//$_SESSION['fav'] = Product::$productFavList;
-//$_SESSION['cart'] = Product::$productCartList;
-//$_SESSION['users'] = User::$users;
 
 echo "<pre>";
 var_dump($_SESSION);

@@ -2,10 +2,9 @@
 
 namespace Losbanditos;
 
-use Cassandra\Date;
-
 class Product
 {
+    public int $id;
     public string $brand;
     public string $description;
     public float $price;
@@ -15,8 +14,9 @@ class Product
     public static array $productFavList = [];
     public static array $productCartList = [];
 
-    public function __construct(string $brand, string $description, float $price, string $imageName)
+    public function __construct(int $id, string $brand, string $description, float $price, string $imageName)
     {
+        $this->id = $id;
         $this->brand = $brand;
         $this->description = $description;
         $this->price = $price;
@@ -35,11 +35,13 @@ class Product
         Db::$db->insert("products", ["brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
     }
 
+
+
     public static function getProducts()
     {
         //wat selecteer ik
         $columns = [
-            'products' => ['brand', 'description', 'price', 'imageName']
+            'products' => ['id', 'brand', 'description', 'price', 'imageName']
         ];
 
         //hier haal ik alles op uit de database
@@ -49,21 +51,14 @@ class Product
 
         foreach ($products as $product)
         {
-            $product = new Product($product['brand'],$product['description'],$product['price'],$product['imageName']);
+            $product = new Product($product['id'], $product['brand'],$product['description'],$product['price'],$product['imageName']);
         }
-
         return self::$products;
 
     }
 
     public static function productDetail(string $name)
     {
-//        foreach (self::$products as $product) {
-//            if ($name == $product->brand) {
-//                return $product;
-//            }
-//
-
         //selecteren vanuit db
         $columns = [
             'products' => ['brand', 'description', 'price', 'imageName']

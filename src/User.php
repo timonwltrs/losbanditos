@@ -157,22 +157,19 @@ class User
         if (!isset($this->productFavList)) {
             $this->productFavList = new ProductFavList();
         }
-
     }
 
-    public function setFavourite(int $userId, string $brand, string $description, float $price, string $imageName)
+    public function setFavourite(int $productid, int $userId)
     {
-        $this->id = $userId;
-        // hoe zit het met brand
-        // zit deze methode uberhaupt in de goeie class??
-        Db::$db->insert("favourites", ["userId" => $userId, "brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
+//        $this->id = $userId;
+        Db::$db->insert("favourites", ["userid" => $userId, "productid" => $productid]);
     }
 
     public static function getFavouriteList()
     {
         //wat selecteer ik
         $columns = [
-            'favourites' => ['userid','brand', 'description', 'price', 'imageName']
+            'favourites' => ['userid' ,'brand', 'description', 'price', 'imageName']
         ];
 
         $params = [
@@ -195,6 +192,10 @@ class User
     {
         return $this->cartList;
     }
-//userid insert meenemen
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }
 

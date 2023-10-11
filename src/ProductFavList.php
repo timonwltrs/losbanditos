@@ -9,7 +9,6 @@ class ProductFavList
     public function addFavourites(Product $product)
     {
         return $this->favourites[] = $product;
-
     }
 
     public function getFavourites(): array
