@@ -147,46 +147,29 @@ class User
         }
     }
 
-    public function getFav()
-    {
-        return $this->productFavList;
-    }
-
-    public function setFavouriteList()
-    {
-        if (!isset($this->productFavList)) {
-            $this->productFavList = new ProductFavList();
-        }
-    }
-
     public function setFavourite(int $productid, int $userId)
     {
 //        $this->id = $userId;
         Db::$db->insert("favourites", ["userid" => $userId, "productid" => $productid]);
     }
 
-    public static function getFavouriteList()
+    public function getFavouriteList()
     {
-        //wat selecteer ik
         $columns = [
-            'favourites' => ['userid' ,'brand', 'description', 'price', 'imageName']
+            'favourites' => ['userid', 'productid']
         ];
 
-        $params = [
-            'userid' => $_SESSION['user']
-        ];
 
-        //hier haal ik alles op uit de database
-        $products = Db::$db->select($columns, $params);
+        $favourites = Db::$db->select($columns);
 
-        Product::$products = [];
-
-        foreach ($products as $product)
+        foreach ($favourites as $fav)
         {
-            $product = new Product($product['brand'],$product['description'],$product['price'],$product['imageName']);
+            $fav = new ProductFavList();
         }
-        return Product::$products;
+        return $favourites;
     }
+
+
 
     public function getCartList()
     {

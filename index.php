@@ -39,8 +39,6 @@ if(isset($_SESSION['user']))
     $template->assign('username', $user->getUsername());
     //db versie moet nog gebeuren
     $user->setCart();
-    $user->setFavouriteList();
-
 }
 
 if (isset($_SESSION['username'])) {
@@ -88,7 +86,7 @@ switch ($action) {
         $template->assign('products', Product::$products);
         if(!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand'))))
         {
-            $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
+            $product = new Product($_POST['productid'], $_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
             $product->setProduct($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
         }
         header('Location: index.php?action=productIndex');
@@ -166,11 +164,6 @@ switch ($action) {
     case "favouritesAdd":
         if (isset($_SESSION['user']) && $user->getUsername() !== null){
             if ($_POST['fav']) {
-//                $product = Product::productDetail($_POST['name']);
-//                $user->userFav($product);
-                //toegevoegd maar is dit ok ?
-                var_dump(intval($_POST['productid']));
-                var_dump($_SESSION['user']->getId());
                 $user->setFavourite(intval($_POST['productid']), $_SESSION['user']->getId());
             } else {
                 $template->display('template/noti/error.tpl');
@@ -182,11 +175,11 @@ switch ($action) {
     case "favourites":
         if (isset($_SESSION['user']) && $user->getUsername() !== null)
         {
-            $favList = $user->getFav();
-            if ($favList === null || empty($favList->getFavourites())) {
+            $favList = $user->getFavouriteList();
+            if (empty($favList)) {
                 $template->display('template/noti/favouriteEmpty.tpl');
             } else {
-                $template->assign('products', $favList->getFavourites());
+                $template->assign('favourites', $favList);
                 $template->display('template/favourites.tpl');
             }
         } else {
