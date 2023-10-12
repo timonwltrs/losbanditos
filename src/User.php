@@ -159,6 +159,7 @@ class User
             'favourites' => ['userid', 'productid']
         ];
 
+        
 
         $favourites = Db::$db->select($columns);
 

@@ -104,7 +104,6 @@ switch ($action) {
         {
             $product->addReview($_POST['name'], $_POST['rating'], $_POST['review']);
         }
-
         $template->assign('name', $_GET['name']);
         $template->assign('product', $product);
         $template->display('template/productDetail.tpl');
@@ -122,6 +121,8 @@ switch ($action) {
         $template->display('template/loginform.tpl');
         break;
 
+//        notifications
+
     case "error":
         $template->display('template/noti/error.tpl');
         break;
@@ -132,6 +133,10 @@ switch ($action) {
 
     case "cartEmptySuccess":
         $template->display('template/noti/cartEmptySuccess.tpl');
+        break;
+
+    case "favouriteMustLogIn":
+        $template->display('template/noti/favouriteMustLogIn.tpl');
         break;
 
     case "login":
@@ -183,8 +188,10 @@ switch ($action) {
                 $template->display('template/favourites.tpl');
             }
         } else {
-            header("Location: index.php?action=error");
+            header("Location: index.php?action=favouriteMustLogIn");
         }
+        echo "<pre>";
+        var_dump($user->getFavouriteList());
         break;
 
     case "cartAdd":
@@ -237,6 +244,6 @@ switch ($action) {
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
 }
-
-echo "<pre>";
-var_dump($_SESSION);
+//
+//echo "<pre>";
+//var_dump($_SESSION);
