@@ -61,7 +61,7 @@ class Product
     {
         //selecteren vanuit db
         $columns = [
-            'products' => ['brand', 'description', 'price', 'imageName']
+            'products' => ['id', 'brand', 'description', 'price', 'imageName']
         ];
 
         $params = [
@@ -69,7 +69,7 @@ class Product
         ];
 
         $productArray = Db::$db->select($columns, $params);
-        $product = new Product($productArray[0]['brand'],$productArray[0]['description'], $productArray[0]['price'], $productArray[0]['imageName']);
+        $product = new Product($productArray[0]['id'],$productArray[0]['brand'],$productArray[0]['description'], $productArray[0]['price'], $productArray[0]['imageName']);
         //var_dump($productArray);
         self::$products = [];
 

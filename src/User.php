@@ -138,7 +138,7 @@ class User
         ];
         //haal 1 user uit db
         $user = Db::$db->select($columns, $params);
-//        var_dump($user);
+
         if (password_verify($password, $user[0]['password1'])) {
             $user = new User($user[0]['username'], $user[0]['id']);
             return $user;
@@ -149,25 +149,30 @@ class User
 
     public function setFavourite(int $productid, int $userId)
     {
-//        $this->id = $userId;
         Db::$db->insert("favourites", ["userid" => $userId, "productid" => $productid]);
     }
 
     public function getFavouriteList()
     {
         $columns = [
-            'favourites' => ['userid', 'productid']
+            'favourites' => ['userid', 'productid'],
+            'user' => []
         ];
 
-        
+        $params = [
+            'favourites.productid' => 'product.id',
+            'user.id' => $this->id
+        ];
 
-        $favourites = Db::$db->select($columns);
+        $favouriteArray = Db::$db->select($columns, $params);
 
-        foreach ($favourites as $fav)
-        {
-            $fav = new ProductFavList();
-        }
-        return $favourites;
+        var_dump($favouriteArray);
+//        foreach ($favouriteArray as $item)
+//        {
+//            $product = new Product();
+//        }
+
+     
     }
 
 
