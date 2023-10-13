@@ -156,22 +156,18 @@ class User
     {
         $columns = [
             'favourites' => ['userid', 'productid'],
-            'user' => []
+            'user' => [],
+            'products' => []
         ];
 
         $params = [
-            'favourites.productid' => 'product.id',
+            'favourites.productid' => "products.id",
             'user.id' => $this->id
         ];
 
         $favouriteArray = Db::$db->select($columns, $params);
 
         var_dump($favouriteArray);
-//        foreach ($favouriteArray as $item)
-//        {
-//            $product = new Product();
-//        }
-
      
     }
 

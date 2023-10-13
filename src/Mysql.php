@@ -74,6 +74,7 @@ class Mysql implements Database
             }
 
             $result = self::$db->query($query);
+            var_dump($result);
             return $result->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $error) {
