@@ -32,7 +32,7 @@ class Product
         $this->price = $price;
         $this->imageName = $imageName;
         self::$products[] = $this;
-        Db::$db->insert("products", ["brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
+        Db::$db->insert("products", ["id" => $this->id,  "brand" => $brand, "description" => $description, "price" => $price, "imageName" => $imageName]);
     }
 
 

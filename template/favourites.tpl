@@ -10,7 +10,7 @@
         {foreach $favourites as $fav}
             <div class="col">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="/template/img/{$fav}.jpeg" alt="Card image cap">
+                    <img class="card-img-top" src="/template/img/{$fav.imageName}.jpeg" alt="Card image cap">
 
 {*                    <div class="card-body">*}
 {*                        <h5 class="card-title">{$fav->brand}</h5>*}

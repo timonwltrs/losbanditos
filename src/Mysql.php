@@ -66,8 +66,12 @@ class Mysql implements Database
                         $conditions[] = $key;
                     } else {
                         // gelijk aan waarde
-                        $conditions[] = $table . "." . $column . " = '$value'";
+                        if (strpos($value, ".")){
+                            $conditions[] = $table . "." . $column . " = $value";
+                        }else{
 
+                        $conditions[] = $table . "." . $column . " = '$value'";
+                        }
                     }
                 }
                 $query .= implode(' AND ', $conditions);
