@@ -168,11 +168,9 @@ class User
 
         $favouriteArray = Db::$db->select($columns, $params);
 
-        foreach($favouriteArray as $item)
-        {
-            $item = new Product($item[''],$item[''],$item[''],$item[''],$item['']);
+        foreach ($favouriteArray as $fav) {
+        $fav = new Product($fav['productid'],$fav['productid'],$fav['productid'],$fav['productid'],$fav['productid']);
         }
-
         return $favouriteArray;
     }
 
