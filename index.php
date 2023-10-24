@@ -245,5 +245,5 @@ switch ($action) {
         $template->display('template/layout.tpl');
 }
 //
-//echo "<pre>";
+echo "<pre>";
 var_dump($_SESSION);

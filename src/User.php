@@ -157,7 +157,7 @@ class User
         $columns = [
             'favourites' => ['userid', 'productid'],
             'user' => [],
-            'products' => []
+            'products' => ['brand', 'description' , 'price' , 'imageName']
         ];
 
         $params = [
