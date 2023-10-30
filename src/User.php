@@ -42,14 +42,10 @@ class User
 //        }
 //    }
 
-    public function setCart(array $cart)
+    public function setCart()
     {
         if (!isset($this->cartList)) {
             $this->cartList = new CartList();
-        }
-
-        foreach ($cart as $product) {
-            $this->cartList->addCart($product);
         }
     }
 
@@ -57,14 +53,13 @@ class User
     public function userCart(Product $product)
     {
         return $this->cartList->addCart($product);
-
     }
 
     // nieuwe registratie
     public function setUser(string $username, string $password1, string $password2, string $usertype)
     {
         $this->username = $username;
-        if ($password1 == $password2){
+        if ($password1 == $password2) {
             $password = password_hash($password1, PASSWORD_DEFAULT);
             $this->password = $password1;
             $userId = Db::$db->insert("user", ["username" => $username, "password1" => $password, "usertype" => $usertype]);
@@ -97,7 +92,7 @@ class User
     {
         //wat selecteer ik
         $columns = [
-            'user' => ['username' , 'id']
+            'user' => ['username', 'id']
         ];
 
         // haal alle user op
@@ -135,22 +130,10 @@ class User
     //voor favoriten
 
 
-    public function setFavourite(array $favourite)
-    {
-        if (!isset($this->productFavList)) {
-            $this->productFavList = new ProductFavList();
-        }
-
-        foreach ($favourite as $product) {
-            $this->productFavList->addFavourites($product);
-        }
-    }
-
     public function userFav(Product $product)
     {
         return $this->productFavList->addFavourites($product);
     }
-
 
 
     public static function login(string $username, string $password)
@@ -169,16 +152,39 @@ class User
         {
             $user = new User($user[0]['username'], $user[0]['usertype'], $user[0]['id']);
             return $user;
-
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function getFav()
+    public function setFavourite(int $productid, int $userId)
     {
-        return $this->productFavList;
+        Db::$db->insert("favourites", ["userid" => $userId, "productid" => $productid]);
     }
+
+    public function getFavouriteList()
+    {
+        $columns = [
+            'favourites' => ['userid', 'productid'],
+            'user' => [],
+            'products' => ['brand', 'description' , 'price' , 'imageName']
+        ];
+
+        $params = [
+            'favourites.productid' => "products.id",
+            'favourites.userid' => $this->id,
+            'user.id' => 'favourites.userid'
+        ];
+
+        $favouriteArray = Db::$db->select($columns, $params);
+
+        foreach ($favouriteArray as $fav) {
+        $fav = new Product($fav['productid'],$fav['productid'],$fav['productid'],$fav['productid'],$fav['productid']);
+        }
+        return $favouriteArray;
+    }
+
+
 
     public function getCartList()
     {

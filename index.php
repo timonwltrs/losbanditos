@@ -20,7 +20,6 @@ use Losbanditos\User;
 use Losbanditos\Client;
 use Losbanditos\login;
 
-
 session_start();
 $template = new Smarty();
 $template->clearAllCache();
@@ -31,7 +30,6 @@ if (isset($_GET['action'])) {
 } else {
     $action = null;
 }
-
 $database = new Db();
 
 if (isset($_SESSION['products'])) {
@@ -40,8 +38,8 @@ if (isset($_SESSION['products'])) {
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
     $template->assign('username', $user->getUsername());
-    $user->setCart($_SESSION['cart']);
-    $user->setFavourite($_SESSION['fav']);
+    //db versie moet nog gebeuren
+    $user->setCart();
 }
 
 
@@ -50,8 +48,7 @@ if (isset($_SESSION['username'])) {
     foreach (User::$users as $checkuser) {
         if ($checkuser->getUsername() == $_SESSION['username']) {
             $user = $checkuser;
-//            var_dump($user);
-
+            //var_dump($user);
             break;
         }
     }
@@ -75,14 +72,12 @@ switch ($action) {
     case "showUser":
         $user = User::getUser($_GET['user']);
         var_dump($user);
-
         break;
 
     case "showUsers":
         $users = User::getUsers();
         var_dump($users);
         break;
-
 
     case "productAddform":
         $template->display('template/productAddform.tpl');
@@ -108,7 +103,6 @@ switch ($action) {
         if (!empty($_POST['name']) && !empty($_POST['review'])) {
             $product->addReview($_POST['name'], $_POST['rating'], $_POST['review']);
         }
-
         $template->assign('name', $_GET['name']);
         $template->assign('product', $product);
         $template->display('template/productDetail.tpl');
@@ -126,6 +120,8 @@ switch ($action) {
         $template->display('template/loginform.tpl');
         break;
 
+//        notifications
+
     case "error":
         $template->display('template/noti/error.tpl');
         break;
@@ -136,6 +132,10 @@ switch ($action) {
 
     case "cartEmptySuccess":
         $template->display('template/noti/cartEmptySuccess.tpl');
+        break;
+
+    case "favouriteMustLogIn":
+        $template->display('template/noti/favouriteMustLogIn.tpl');
         break;
 
     case "login":
@@ -153,7 +153,6 @@ switch ($action) {
             // als login niet lukt, error pagina
             $template->display('template/error.tpl');
         }
-
         break;
 
     case "inlogSuccess":
@@ -169,14 +168,12 @@ switch ($action) {
     case "favouritesAdd":
         if (isset($_SESSION['user']) && $user->getUsername() !== null) {
             if ($_POST['fav']) {
-                $product = Product::productDetail($_POST['name']);
-                $user->userFav($product);
+                $user->setFavourite(intval($_POST['productid']), $_SESSION['user']->getId());
             } else {
                 $template->display('template/noti/error.tpl');
             }
         }
         header("Location: index.php?action=favourites");
-
         break;
 
     case "favourites":
@@ -186,12 +183,14 @@ switch ($action) {
             if ($favList === null || empty($favList->getFavourites())) {
                 $template->display('template/noti/cartEmpty.tpl');
             } else {
-                $template->assign('products', $favList->getFavourites());
+                $template->assign('favourites', $favList);
                 $template->display('template/favourites.tpl');
             }
         } else {
-            header("Location: index.php?action=error");
+            header("Location: index.php?action=favouriteMustLogIn");
         }
+        echo "<pre>";
+        var_dump($user->getFavouriteList());
         break;
 
     case "cartAdd":
@@ -217,7 +216,8 @@ switch ($action) {
                 $template->display('template/cartIndex.tpl');
             }
         } else {
-            header("Location: index.php?action=error");
+            $template->display('template/noti/error.tpl');
+
         }
         break;
 
@@ -227,7 +227,6 @@ switch ($action) {
 
             header("Location: index.php?action=cartEmptySuccess");
         }
-        header("Location: index.php?action=home");
         break;
 
     case "cartCompleteDelete":
@@ -236,10 +235,13 @@ switch ($action) {
         }
         break;
 
+//    case "testUser":
+//        $user->updateUser();
+//        break;
+
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
-
 }
 $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;

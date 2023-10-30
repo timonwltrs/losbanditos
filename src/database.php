@@ -10,7 +10,7 @@ interface database
 
     public function insert(string $table, array $params);
 
-    public function update();
+    public function update(string $table, array $params, array $conditions);
 
-    public function delete();
+    public function delete(string $table, array $conditions);
 }
