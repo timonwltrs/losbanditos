@@ -181,9 +181,16 @@ class User
         return $this->cartList;
     }
 
+
     public function getId(): int
     {
         return $this->id;
     }
+
+//    public function updateUser()
+//    {
+//        $this->username = "Bla";
+//        Db::$db->update("user", ["username" => $this->username], ["id" => $this->id]);
+//    }
 }
 

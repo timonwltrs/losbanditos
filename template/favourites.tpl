@@ -25,7 +25,7 @@
                             <form action="/index.php?action=cartDelete" method="POST">
                                 <input type="hidden" name="brand" value="{$fav.brand}">
                                 <input type="submit" name="cancel" value="Delete" class="btn btn-dark fav-btn"
-                                       style="font-size: 14px; color: white; background-color: red" disabled/>
+                                       style="font-size: 14px; color: white; background-color: red"/>
                             </form>
                         </div>
                     </div>

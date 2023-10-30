@@ -1,5 +1,5 @@
 {extends file="template/layout.tpl"}
-
+{* product namen met tekens doen het niet met de detail pagina*}
 {block name="content"}
     <h1 class="mt-5">Product Details</h1>
     <div class="container mt-5 mb-5">

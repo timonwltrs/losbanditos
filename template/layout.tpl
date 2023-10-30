@@ -101,7 +101,8 @@
               <form>
                 <button class="btn btn-login"><a href="/index.php?action=logout"">Logout</a></button>
               </form>
-{*              hier kunnen we later user information neerzetten            *}
+{*              hier kunnen we later user information neerzetten*}
+
 {*              <i class="fa-regular fa-user fa-lg" style="color: #bfbfbf; margin-top: 25px; margin-left: 10px; margin-right: 10px"></i>*}
             {else}
               <form>

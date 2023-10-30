@@ -66,11 +66,11 @@ class Mysql implements Database
                         $conditions[] = $key;
                     } else {
                         // gelijk aan waarde
-                        if (strpos($value, ".")){
+                        if (strpos($value, ".")) {
                             $conditions[] = $table . "." . $column . " = $value";
-                        }else{
+                        } else {
 
-                        $conditions[] = $table . "." . $column . " = '$value'";
+                            $conditions[] = $table . "." . $column . " = '$value'";
                         }
                     }
                 }
@@ -104,14 +104,47 @@ class Mysql implements Database
 
     }
 
-    public function update()
+    public function update(string $table, array $params, array $conditions)
     {
-        // TODO: Implement update() method.
+        $sql = "UPDATE $table SET ";
+        $sql .= implode(", ", array_map(function ($column) {
+            return $column . " = :$column";
+        }, array_keys($params)));
+        $sql .= " WHERE ";
+        $sql .= implode( " AND ", array_map(function ($column){
+            return $column . " = :$column";
+        }, array_keys($conditions)));
+
+        $query = self::$db->prepare($sql);
+        foreach ($params as $key => $value) {
+            $query->bindValue(':' . $key, $value);
+        }
+        foreach ($conditions as $key => $value) {
+            $query->bindValue(':' . $key, $value);
+        }
+
+
+        $query->execute();
+
+
     }
 
-    public function delete()
+    public function delete(string $table, array $conditions)
     {
-        // TODO: Implement delete() method.
+        $sql = "DELETE FROM $table WHERE";
+
+        $sql .= " WHERE ";
+        $sql .= implode( " AND ", array_map(function ($column){
+            return $column . " = :$column";
+        }, array_keys($conditions)));
+
+        $query = self::$db->prepare($sql);
+        foreach ($conditions as $key => $value) {
+            $query->bindValue(':' . $key, $value);
+        }
+        $query->execute();
+        var_dump($query);
+
     }
 
 

@@ -240,6 +240,10 @@ switch ($action) {
         }
         break;
 
+//    case "testUser":
+//        $user->updateUser();
+//        break;
+
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
