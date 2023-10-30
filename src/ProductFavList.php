@@ -15,4 +15,8 @@ class ProductFavList
     {
         return $this->favourites;
     }
+
+
+
+
 }

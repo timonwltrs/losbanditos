@@ -66,20 +66,20 @@ class Mysql implements Database
                         $conditions[] = $key;
                     } else {
                         // gelijk aan waarde
-                        $conditions[] = $table . "." . $column . " = '$value'";
+                        if (strpos($value, ".")) {
+                            $conditions[] = $table . "." . $column . " = $value";
+                        } else {
 
+                            $conditions[] = $table . "." . $column . " = '$value'";
+                        }
                     }
                 }
                 $query .= implode(' AND ', $conditions);
             }
 
             $result = self::$db->query($query);
+            var_dump($result);
             return $result->fetchAll(PDO::FETCH_ASSOC);
-
-//            !== controle op datatype
-//            var_dump($columnClauses);
-//            var_dump($query);
-//            var_dump($conditions);
 
         } catch (PDOException $error) {
             throw new Exception($error->getMessage());
@@ -104,14 +104,47 @@ class Mysql implements Database
 
     }
 
-    public function update()
+    public function update(string $table, array $params, array $conditions)
     {
-        // TODO: Implement update() method.
+        $sql = "UPDATE $table SET ";
+        $sql .= implode(", ", array_map(function ($column) {
+            return $column . " = :$column";
+        }, array_keys($params)));
+        $sql .= " WHERE ";
+        $sql .= implode( " AND ", array_map(function ($column){
+            return $column . " = :$column";
+        }, array_keys($conditions)));
+
+        $query = self::$db->prepare($sql);
+        foreach ($params as $key => $value) {
+            $query->bindValue(':' . $key, $value);
+        }
+        foreach ($conditions as $key => $value) {
+            $query->bindValue(':' . $key, $value);
+        }
+
+
+        $query->execute();
+
+
     }
 
-    public function delete()
+    public function delete(string $table, array $conditions)
     {
-        // TODO: Implement delete() method.
+        $sql = "DELETE FROM $table WHERE";
+
+        $sql .= " WHERE ";
+        $sql .= implode( " AND ", array_map(function ($column){
+            return $column . " = :$column";
+        }, array_keys($conditions)));
+
+        $query = self::$db->prepare($sql);
+        foreach ($conditions as $key => $value) {
+            $query->bindValue(':' . $key, $value);
+        }
+        $query->execute();
+        var_dump($query);
+
     }
 
 

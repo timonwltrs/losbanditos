@@ -18,6 +18,7 @@ class User
         $this->id = $id;
         $this->username = $username;
         $_SESSION['user'] = $this;
+
     }
     //dit is voor de oude register
 //    public function register(string $username, string $password1, string $password2)
@@ -36,14 +37,10 @@ class User
 //        }
 //    }
 
-    public function setCart(array $cart)
+    public function setCart()
     {
         if (!isset($this->cartList)) {
             $this->cartList = new CartList();
-        }
-
-        foreach ($cart as $product) {
-            $this->cartList->addCart($product);
         }
     }
 
@@ -51,14 +48,13 @@ class User
     public function userCart(Product $product)
     {
         return $this->cartList->addCart($product);
-
     }
 
     // nieuwe registratie
     public function setUser(string $username, string $password1, string $password2)
     {
         $this->username = $username;
-        if ($password1 == $password2){
+        if ($password1 == $password2) {
             $password = password_hash($password1, PASSWORD_DEFAULT);
             $this->password = $password1;
             $userId = Db::$db->insert("user", ["username" => $username, "password1" => $password]);
@@ -82,7 +78,7 @@ class User
         //maak static users leeg
         self::$users = [];
         //maak een object van de opgehaalde user uit de db
-        $userObject = new User( $user['username'],$user['id']);
+        $userObject = new User($user['username'], $user['id']);
         return $userObject;
     }
 
@@ -91,7 +87,7 @@ class User
     {
         //wat selecteer ik
         $columns = [
-            'user' => ['username' , 'id']
+            'user' => ['username', 'id']
         ];
 
         // haal alle user op
@@ -125,22 +121,10 @@ class User
     //voor favoriten
 
 
-    public function setFavourite(array $favourite)
-    {
-        if (!isset($this->productFavList)) {
-            $this->productFavList = new ProductFavList();
-        }
-
-        foreach ($favourite as $product) {
-            $this->productFavList->addFavourites($product);
-        }
-    }
-
     public function userFav(Product $product)
     {
         return $this->productFavList->addFavourites($product);
     }
-
 
 
     public static function login(string $username, string $password)
@@ -154,26 +138,59 @@ class User
         ];
         //haal 1 user uit db
         $user = Db::$db->select($columns, $params);
-//        var_dump($user);
-        if(password_verify($password, $user[0]['password1']))
-        {
+
+        if (password_verify($password, $user[0]['password1'])) {
             $user = new User($user[0]['username'], $user[0]['id']);
             return $user;
-
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function getFav()
+    public function setFavourite(int $productid, int $userId)
     {
-        return $this->productFavList;
+        Db::$db->insert("favourites", ["userid" => $userId, "productid" => $productid]);
     }
+
+    public function getFavouriteList()
+    {
+        $columns = [
+            'favourites' => ['userid', 'productid'],
+            'user' => [],
+            'products' => ['brand', 'description' , 'price' , 'imageName']
+        ];
+
+        $params = [
+            'favourites.productid' => "products.id",
+            'favourites.userid' => $this->id,
+            'user.id' => 'favourites.userid'
+        ];
+
+        $favouriteArray = Db::$db->select($columns, $params);
+
+        foreach ($favouriteArray as $fav) {
+        $fav = new Product($fav['productid'],$fav['productid'],$fav['productid'],$fav['productid'],$fav['productid']);
+        }
+        return $favouriteArray;
+    }
+
+
 
     public function getCartList()
     {
         return $this->cartList;
     }
 
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+//    public function updateUser()
+//    {
+//        $this->username = "Bla";
+//        Db::$db->update("user", ["username" => $this->username], ["id" => $this->id]);
+//    }
 }
 

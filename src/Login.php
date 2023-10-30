@@ -10,10 +10,7 @@ class Login {
     private $loggedInUser;
 
     public function login($username, $password) {
-
-
         $user = new User($username, $password);
-
         if ($user->authenticate($username, $password)) {
             $this->loggedInUser = $user;
             $_SESSION['user'] = $user;
