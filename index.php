@@ -7,9 +7,9 @@ require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 ini_set('xdebug.var_display_max_depth', -1);
 ini_set('xdebug.var_display_max_children', -1);
 ini_set('xdebug.var_display_max_data', -1);
-ini_set ('display_errors', 1);
-ini_set ('display_startup_errors', 1);
-error_reporting (E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 use Losbanditos\CartList;
 use Losbanditos\Db;
@@ -37,8 +37,7 @@ $database = new Db();
 if (isset($_SESSION['products'])) {
     Product::$products = $_SESSION['products'];
 }
-if(isset($_SESSION['user']))
-{
+if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
     $template->assign('username', $user->getUsername());
     $user->setCart($_SESSION['cart']);
@@ -46,13 +45,10 @@ if(isset($_SESSION['user']))
 }
 
 
-
 if (isset($_SESSION['username'])) {
     // zoek user is $users en maak $user aan
-    foreach(User::$users as $checkuser)
-    {
-        if($checkuser->getUsername() == $_SESSION['username'])
-        {
+    foreach (User::$users as $checkuser) {
+        if ($checkuser->getUsername() == $_SESSION['username']) {
             $user = $checkuser;
 //            var_dump($user);
 
@@ -61,16 +57,17 @@ if (isset($_SESSION['username'])) {
     }
 }
 
+
 switch ($action) {
     case "registerform":
-        // formulier laten zien
+        // formulier laten zienx
         $template->display('template/registratieform.tpl');
         break;
 
     case "register":
-        if (!empty($_POST['username'])&& !empty($_POST['password1']) && !empty($_POST['password2'])) {
-            $user = new User($_POST['username']);
-            $user->setUser($_POST['username'], $_POST['password1'],$_POST['password2']);
+        if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2'])) {
+            $user = new User($_POST['username'], 'user');
+            $user->setUser($_POST['username'], $_POST['password1'], $_POST['password2'], 'user');
         }
         $template->display('template/register.tpl');
         break;
@@ -93,8 +90,7 @@ switch ($action) {
 
     case "productAdd":
         $template->assign('products', Product::$products);
-        if(!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand'))))
-        {
+        if (!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand')))) {
             $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
             $product->setProduct($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
         }
@@ -109,8 +105,7 @@ switch ($action) {
     case "productDetail":
         // als POST, dan review opslaan
         $product = Product::productDetail($_GET['name']);
-        if(!empty($_POST['name']) && !empty($_POST['review']))
-        {
+        if (!empty($_POST['name']) && !empty($_POST['review'])) {
             $product->addReview($_POST['name'], $_POST['rating'], $_POST['review']);
         }
 
@@ -146,7 +141,7 @@ switch ($action) {
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             $user = User::login($_POST['username'], $_POST['password']);
-            if($user === false){
+            if ($user === false) {
                 // geef fout aan
                 echo "fout";
                 $template->display('template/layout.tpl');
@@ -154,8 +149,7 @@ switch ($action) {
                 // ingelogd
                 header("Location: index.php?action=inlogSuccess");
             }
-        }else
-        {
+        } else {
             // als login niet lukt, error pagina
             $template->display('template/error.tpl');
         }
@@ -173,7 +167,7 @@ switch ($action) {
         exit();
 
     case "favouritesAdd":
-        if (isset($_SESSION['user']) && $user->getUsername() !== null){
+        if (isset($_SESSION['user']) && $user->getUsername() !== null) {
             if ($_POST['fav']) {
                 $product = Product::productDetail($_POST['name']);
                 $user->userFav($product);
@@ -187,8 +181,7 @@ switch ($action) {
 
     case "favourites":
 
-        if (isset($_SESSION['user']) && $user->getUsername() !== null)
-        {
+        if (isset($_SESSION['user']) && $user->getUsername() !== null) {
             $favList = $user->getFav();
             if ($favList === null || empty($favList->getFavourites())) {
                 $template->display('template/noti/cartEmpty.tpl');
@@ -202,20 +195,19 @@ switch ($action) {
         break;
 
     case "cartAdd":
-        if (isset($_SESSION['user']) && $user->getUsername() !== null){
+        if (isset($_SESSION['user']) && $user->getUsername() !== null) {
             if ($_POST['cart']) {
                 $product = Product::productDetail($_POST['name']);
                 $user->userCart($product);
             }
-        }else{
+        } else {
             header("Location: index.php?action=error");
         }
         header("Location: index.php?action=cartIndex");
         break;
 
     case "cartIndex":
-        if (isset($_SESSION['user']) && $user->getUsername() !== null)
-        {
+        if (isset($_SESSION['user']) && $user->getUsername() !== null) {
             $cartList = $user->getCartList();
             if ($cartList === null || empty($cartList->getCart())) {
                 $template->display('template/noti/cartEmpty.tpl');
@@ -231,8 +223,7 @@ switch ($action) {
 
 
     case "cartDelete":
-        if ($user->getCartList()->removeItem($_POST['brand']))
-        {
+        if ($user->getCartList()->removeItem($_POST['brand'])) {
 
             header("Location: index.php?action=cartEmptySuccess");
         }
@@ -240,8 +231,7 @@ switch ($action) {
         break;
 
     case "cartCompleteDelete":
-        if (empty($user->getCartList()->removeCart($_POST['brand'])))
-        {
+        if (empty($user->getCartList()->removeCart($_POST['brand']))) {
             header("Location: index.php?action=cartEmptySuccess");
         }
         break;
@@ -255,6 +245,7 @@ $_SESSION['products'] = Product::$products;
 $_SESSION['fav'] = Product::$productFavList;
 $_SESSION['cart'] = Product::$productCartList;
 $_SESSION['users'] = User::$users;
+
 
 echo "<pre>";
 var_dump($_SESSION);
