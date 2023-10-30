@@ -31,7 +31,10 @@
                                 <p class="about">{$product->description}</p>
 
                                 <div class="cart mt-4 align-items-center">
-                                    <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button>
+                                    <form action="/index.php?action=cartAdd&name={$product->brand}" method="POST">
+                                        <input type="hidden" name="name" value="{$product->brand}">
+                                        <input class="btn btn-danger text-uppercase mr-2 px-4" type="submit" name="cart" value="Add to Cart" class="btn btn-dark">
+                                    </form>
                                     <input type="number" id="quantity" name="quantity" min="1" max="5">
 
                                     <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i>

@@ -28,13 +28,6 @@
                 <input type="text" name="imagename" class="form-control" id="inputImagename">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="inputProdurl" class="col-sm-2 col-form-label">Product url</label>
-            <div class="col-sm-10">
-                <input type="text" name="produrl" class="form-control" id="inputProdurl">
-            </div>
-        </div>
-
         <button type="submit" class="btn btn-primary">Add product</button>
     </form>
 
