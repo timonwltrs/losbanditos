@@ -99,7 +99,7 @@ switch ($action) {
 
     case "productDetail":
         // als POST, dan review opslaan
-        $product = Product::productDetail($_GET['name']);
+        $product = Product::productDetail(($_GET['name']));
         if(!empty($_POST['name']) && !empty($_POST['review']))
         {
             $product->addReview($_POST['name'], $_POST['rating'], $_POST['review']);
@@ -107,6 +107,10 @@ switch ($action) {
         $template->assign('name', $_GET['name']);
         $template->assign('product', $product);
         $template->display('template/productDetail.tpl');
+        break;
+
+    case "changeProductForm":
+        $template->display('template/changeProductForm.tpl');
         break;
 
     case "home":
@@ -180,9 +184,8 @@ switch ($action) {
     case "favouritesDelete":
         if ($_POST['deleteFav']){
             $user->deleteFavourite(intval($_POST['id']));
+            header('Location: index.php?action=favourites');
         }
-//        header("Location: index.php?action=favourites");
-
         break;
 
     case "favourites":

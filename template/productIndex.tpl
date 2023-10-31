@@ -36,6 +36,11 @@
                         <form action="/index.php?action=productDetail&name={$product->brand}" method="POST">
                             <input type="submit" name="detail" value="Details" class="btn btn-dark info-btn""/>
                         </form>
+
+                        <form action="/index.php?action=changeProductForm&name={$product->brand}" method="POST">
+                            <input type="submit" name="change" value="✎">
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -57,5 +62,3 @@
 
     </div>
 {/block}
-
-{*method="POST"*}
