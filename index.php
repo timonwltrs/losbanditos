@@ -177,6 +177,14 @@ switch ($action) {
         header("Location: index.php?action=favourites");
         break;
 
+    case "favouritesDelete":
+        if ($_POST['deleteFav']){
+            $user->deleteFavourite(intval($_POST['id']));
+        }
+//        header("Location: index.php?action=favourites");
+
+        break;
+
     case "favourites":
         if (isset($_SESSION['user']) && $user->getUsername() !== null)
         {
@@ -193,6 +201,8 @@ switch ($action) {
         echo "<pre>";
         var_dump($user->getFavouriteList());
         break;
+
+
 
     case "cartAdd":
         if (isset($_SESSION['user']) && $user->getUsername() !== null){

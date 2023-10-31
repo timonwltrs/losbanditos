@@ -131,9 +131,9 @@ class Mysql implements Database
 
     public function delete(string $table, array $conditions)
     {
-        $sql = "DELETE FROM $table WHERE";
+        $sql = "DELETE FROM $table WHERE ";
 
-        $sql .= " WHERE ";
+//        $sql .= " WHERE ";
         $sql .= implode( " AND ", array_map(function ($column){
             return $column . " = :$column";
         }, array_keys($conditions)));
