@@ -1,5 +1,6 @@
 <?php
 
+global $product;
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
@@ -61,9 +62,9 @@ switch ($action) {
         break;
 
     case "register":
-        if (!empty($_POST['username'])&& !empty($_POST['password1']) && !empty($_POST['password2'])) {
+        if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2'])) {
             $user = new User($_POST['username']);
-            $user->setUser($_POST['username'], $_POST['password1'],$_POST['password2']);
+            $user->setUser($_POST['username'], $_POST['password1'], $_POST['password2']);
         }
         $template->display('template/register.tpl');
         break;
@@ -84,8 +85,7 @@ switch ($action) {
 
     case "productAdd":
         $template->assign('products', Product::$products);
-        if(!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand'))))
-        {
+        if (!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand')))) {
             $product = new Product($_POST['productid'], $_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
             $product->setProduct($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
         }
@@ -100,8 +100,7 @@ switch ($action) {
     case "productDetail":
         // als POST, dan review opslaan
         $product = Product::productDetail(($_GET['name']));
-        if(!empty($_POST['name']) && !empty($_POST['review']))
-        {
+        if (!empty($_POST['name']) && !empty($_POST['review'])) {
             $product->addReview($_POST['name'], $_POST['rating'], $_POST['review']);
         }
         $template->assign('name', $_GET['name']);
@@ -110,7 +109,13 @@ switch ($action) {
         break;
 
     case "changeProductForm":
+        $template->assign('product', Product::productDetail($_GET['name']));
         $template->display('template/changeProductForm.tpl');
+        break;
+
+    case "changeProduct":
+            $product = Product::getProductById(intval($_POST['id']));
+            $product->changeProduct($_POST['id'], $_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
         break;
 
     case "home":
@@ -126,7 +131,6 @@ switch ($action) {
         break;
 
 //        notifications
-
     case "error":
         $template->display('template/noti/error.tpl');
         break;
@@ -182,6 +186,7 @@ switch ($action) {
         break;
 
     case "favouritesDelete":
+
         if ($_POST['deleteFav']){
             $user->deleteFavourite(intval($_POST['id']));
             header('Location: index.php?action=favourites');
@@ -253,9 +258,7 @@ switch ($action) {
         }
         break;
 
-//    case "testUser":
-//        $user->updateUser();
-//        break;
+
 
     default:
         $template->assign('users', User::$users);

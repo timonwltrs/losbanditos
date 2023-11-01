@@ -76,6 +76,25 @@ class Product
         return $product;
     }
 
+    public static function getProductById(int $id)
+    {
+         //selecteren vanuit db
+        $columns = [
+            'products' => ['id', 'brand', 'description', 'price', 'imageName']
+        ];
+
+        $params = [
+            'id' => $id
+        ];
+
+        $productArray = Db::$db->select($columns, $params);
+        $product = new Product($productArray[0]['id'],$productArray[0]['brand'],$productArray[0]['description'], $productArray[0]['price'], $productArray[0]['imageName']);
+        //var_dump($productArray);
+        self::$products = [];
+
+        return $product;
+    }
+
 
 
     public function addReview(string $name, int $rating, string $comment): void
@@ -94,5 +113,15 @@ class Product
         return $this->price;
     }
 
+    public function changeProduct(int $id, string $brand, string $description, float $price, string $imageName)
+    {
+        $this->id = $id;
+        $this->brand = $brand;
+        $this->description = $description;
+        $this->price = $price;
+        $this->imageName = $imageName;
+        Db::$db->update("products", ["id" => $this->id, "brand" => $this->brand, "description" => $this->description, "price" => $this->price, "imageName" => $this->imageName],
+            ["products.id" => $this->id]);
+    }
 
 }
