@@ -22,9 +22,9 @@
                                 <input type="hidden" name="name" value="{$fav.brand}">
                                 <input type="submit" name="cart" value="Add to Cart" class="btn btn-dark">
                             </form>
-                            <form action="/index.php?action=cartDelete" method="POST">
-                                <input type="hidden" name="brand" value="{$fav.brand}">
-                                <input type="submit" name="cancel" value="Delete" class="btn btn-dark fav-btn"
+                            <form action="/index.php?action=favouritesDelete&id={$fav.id}" method="POST">
+                                <input type="hidden" name="id" value="{$fav.id}">
+                                <input type="submit" name="deleteFav" value="Delete" class="btn btn-dark fav-btn"
                                        style="font-size: 14px; color: white; background-color: red"/>
                             </form>
                         </div>

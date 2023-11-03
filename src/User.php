@@ -25,22 +25,7 @@ class User
         $_SESSION['user'] = $this;
 
     }
-    //dit is voor de oude register
-//    public function register(string $username, string $password1, string $password2)
-//    {
-//        if ($this->checkPassword($password1, $password2)) {
-//            // registeren
-//            $this->username = $username;
-//            $hashedPassword = password_hash($password1, PASSWORD_DEFAULT);
-//            $this->password = $hashedPassword;
-//            self::$users[] = $this;
-//            $this->productFavList = new ProductFavList();
-//            $this->cartList = new CartList();
-//            Db::$db->insert("user", ["username" => $username, "password1" => $hashedPassword]);
-//        } else {
-//            return false;
-//        }
-//    }
+
 
     public function setCart()
     {
@@ -165,7 +150,7 @@ class User
     public function getFavouriteList()
     {
         $columns = [
-            'favourites' => ['userid', 'productid'],
+            'favourites' => ['userid', 'id', 'productid'],
             'user' => [],
             'products' => ['brand', 'description' , 'price' , 'imageName']
         ];
@@ -184,8 +169,6 @@ class User
         return $favouriteArray;
     }
 
-
-
     public function getCartList()
     {
         return $this->cartList;
@@ -199,5 +182,15 @@ class User
         return $this->usertype;
     }
 
+//    public function updateUser()
+//    {
+//        $this->username = "Bla";
+//        Db::$db->update("user", ["username" => $this->username], ["id" => $this->id]);
+//    }
+
+    public function deleteFavourite(int $id)
+    {
+       Db::$db->delete("favourites", [ "id" => $id]);
+    }
 }
 

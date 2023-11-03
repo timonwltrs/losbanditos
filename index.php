@@ -1,5 +1,6 @@
 <?php
 
+global $product;
 require_once "vendor/autoload.php";
 require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 
@@ -63,8 +64,8 @@ switch ($action) {
 
     case "register":
         if (!empty($_POST['username']) && !empty($_POST['password1']) && !empty($_POST['password2'])) {
-            $user = new User($_POST['username'], 'user');
-            $user->setUser($_POST['username'], $_POST['password1'], $_POST['password2'], 'user');
+            $user = new User($_POST['username']);
+            $user->setUser($_POST['username'], $_POST['password1'], $_POST['password2']);
         }
         $template->display('template/register.tpl');
         break;
@@ -86,7 +87,7 @@ switch ($action) {
     case "productAdd":
         $template->assign('products', Product::$products);
         if (!empty($_POST['brand'] && !in_array($_POST['brand'], array_column(Product::$products, 'brand')))) {
-            $product = new Product($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
+            $product = new Product($_POST['productid'], $_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
             $product->setProduct($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imagename']);
         }
         header('Location: index.php?action=productIndex');
@@ -108,6 +109,16 @@ switch ($action) {
         $template->display('template/productDetail.tpl');
         break;
 
+    case "changeProductForm":
+        $template->assign('product', Product::productDetail($_GET['name']));
+        $template->display('template/changeProductForm.tpl');
+        break;
+
+    case "changeProduct":
+        $product = Product::getProductById(intval($_POST['id']));
+        $product->changeProduct($_POST['id'], $_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
+        break;
+
     case "home":
         $template->display('template/home.tpl');
         break;
@@ -121,7 +132,6 @@ switch ($action) {
         break;
 
 //        notifications
-
     case "error":
         $template->display('template/noti/error.tpl');
         break;
@@ -176,6 +186,14 @@ switch ($action) {
         header("Location: index.php?action=favourites");
         break;
 
+    case "favouritesDelete":
+
+        if ($_POST['deleteFav']){
+            $user->deleteFavourite(intval($_POST['id']));
+            header('Location: index.php?action=favourites');
+        }
+        break;
+
     case "favourites":
 
         if (isset($_SESSION['user']) && $user->getUsername() !== null) {
@@ -189,9 +207,11 @@ switch ($action) {
         } else {
             header("Location: index.php?action=favouriteMustLogIn");
         }
-        echo "<pre>";
-        var_dump($user->getFavouriteList());
+//        echo "<pre>";
+//        var_dump($user->getFavouriteList());
         break;
+
+
 
     case "cartAdd":
         if (isset($_SESSION['user']) && $user->getUsername() !== null) {
@@ -235,19 +255,12 @@ switch ($action) {
         }
         break;
 
-//    case "testUser":
-//        $user->updateUser();
-//        break;
+
 
     default:
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
 }
-$_SESSION['products'] = Product::$products;
-$_SESSION['fav'] = Product::$productFavList;
-$_SESSION['cart'] = Product::$productCartList;
-$_SESSION['users'] = User::$users;
-
-
-echo "<pre>";
-var_dump($_SESSION);
+////
+//echo "<pre>";
+//var_dump($_SESSION);

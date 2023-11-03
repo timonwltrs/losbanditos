@@ -78,7 +78,7 @@ class Mysql implements Database
             }
 
             $result = self::$db->query($query);
-            var_dump($result);
+//            var_dump($result);
             return $result->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $error) {
@@ -122,18 +122,14 @@ class Mysql implements Database
         foreach ($conditions as $key => $value) {
             $query->bindValue(':' . $key, $value);
         }
-
-
         $query->execute();
-
-
     }
 
     public function delete(string $table, array $conditions)
     {
-        $sql = "DELETE FROM $table WHERE";
+        $sql = "DELETE FROM $table WHERE ";
 
-        $sql .= " WHERE ";
+//        $sql .= " WHERE ";
         $sql .= implode( " AND ", array_map(function ($column){
             return $column . " = :$column";
         }, array_keys($conditions)));
@@ -143,7 +139,7 @@ class Mysql implements Database
             $query->bindValue(':' . $key, $value);
         }
         $query->execute();
-        var_dump($query);
+//        var_dump($query);
 
     }
 
