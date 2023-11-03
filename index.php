@@ -116,7 +116,7 @@ switch ($action) {
 
     case "changeProduct":
         $product = Product::getProductById(intval($_POST['id']));
-        $product->changeProduct($_POST['id'], $_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
+        $product->changeProduct($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
         break;
 
     case "home":

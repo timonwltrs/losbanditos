@@ -30,23 +30,12 @@ class CartList
 
     public function removeItem()
     {
-        $table = [
-            'favourites' => ['userid', 'productid'],
-            'user' => [],
-            'products' => ['brand', 'description' , 'price' , 'imageName']
-            ];
-
-        $conditions = [
-
-            ];
-
-//        $product = Product::productDetail($productName);
-//        $key = array_search($product, $this->cart, true);
-//        if($key !== false)
-//        {
-//            unset($this->cart[$key]);
-//        }
-
+        $product = Product::productDetail($productName);
+        $key = array_search($product, $this->cart, true);
+        if($key !== false)
+        {
+            unset($this->cart[$key]);
+        }
     }
 
     public function removeCart(string $products)

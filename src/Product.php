@@ -113,15 +113,14 @@ class Product
         return $this->price;
     }
 
-    public function changeProduct(int $id, string $brand, string $description, float $price, string $imageName)
+    public function changeProduct(string $brand, string $description, float $price, string $imageName)
     {
-        $this->id = $id;
         $this->brand = $brand;
         $this->description = $description;
         $this->price = $price;
         $this->imageName = $imageName;
-        Db::$db->update("products", ["id" => $this->id, "brand" => $this->brand, "description" => $this->description, "price" => $this->price, "imageName" => $this->imageName],
-            ["products.id" => $this->id]);
+        Db::$db->update("products", ["brand" => $this->brand, "description" => $this->description, "price" => $this->price, "imageName" => $this->imageName],
+            ["id" => $this->id]);
 
     }
 
