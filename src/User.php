@@ -182,6 +182,11 @@ class User
         return $this->usertype;
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    
 //    public function updateUser()
 //    {
 //        $this->username = "Bla";
