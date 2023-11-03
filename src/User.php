@@ -7,16 +7,21 @@ class User
     private int $id;
     private string $username;
     private string $password;
+    private string $usertype;
     private ProductFavList $productFavList;
     private CartList $cartList;
     private bool $loggedIn;
     public static array $users = [];
+    public static array $admin = [];
     private $databse;
 
-    public function __construct(string $username, int $id = 0)
+
+
+    public function __construct(string $username, string $usertype,int $id = 0 )
     {
         $this->id = $id;
         $this->username = $username;
+        $this->usertype = $usertype;
         $_SESSION['user'] = $this;
 
     }
@@ -36,13 +41,13 @@ class User
     }
 
     // nieuwe registratie
-    public function setUser(string $username, string $password1, string $password2)
+    public function setUser(string $username, string $password1, string $password2, string $usertype)
     {
         $this->username = $username;
         if ($password1 == $password2) {
             $password = password_hash($password1, PASSWORD_DEFAULT);
             $this->password = $password1;
-            $userId = Db::$db->insert("user", ["username" => $username, "password1" => $password]);
+            $userId = Db::$db->insert("user", ["username" => $username, "password1" => $password, "usertype" => $usertype]);
             $this->id = $userId;
         }
     }
@@ -52,7 +57,7 @@ class User
     {
         //tabellen en kolom selecteer ik
         $columns = [
-            'user' => ['id', 'username'],
+            'user' => ['id', 'username', 'usertype'],
         ];
 
         $params = [
@@ -63,7 +68,7 @@ class User
         //maak static users leeg
         self::$users = [];
         //maak een object van de opgehaalde user uit de db
-        $userObject = new User($user['username'], $user['id']);
+        $userObject = new User( $user['username'],$user['id'],$user['usertype']);
         return $userObject;
     }
 
@@ -83,7 +88,7 @@ class User
 
         //voor de gehele array maak je een object aan per user
         foreach ($users as $user) {
-            $userObject = new User($user['username'], $user['id']);
+            $userObject = new User($user['username'], $user['id'], $user['usertype']);
         }
         return self::$users;
     }
@@ -94,6 +99,8 @@ class User
     }
 
 
+
+
     //dit is om je wachtwoord the controleren
     public function checkPassword(string $password1, string $password2)
     {
@@ -102,6 +109,8 @@ class User
         }
         return false;
     }
+
+
 
     //voor favoriten
 
@@ -115,7 +124,7 @@ class User
     public static function login(string $username, string $password)
     {
         $columns = [
-            'user' => ['id', 'username', 'password1'],
+            'user' => ['id', 'username', 'password1', 'usertype'],
         ];
 
         $params = [
@@ -123,9 +132,10 @@ class User
         ];
         //haal 1 user uit db
         $user = Db::$db->select($columns, $params);
-
-        if (password_verify($password, $user[0]['password1'])) {
-            $user = new User($user[0]['username'], $user[0]['id']);
+//        var_dump($user);
+        if(password_verify($password, $user[0]['password1']))
+        {
+            $user = new User($user[0]['username'], $user[0]['usertype'], $user[0]['id']);
             return $user;
         } else {
             return false;
@@ -164,12 +174,19 @@ class User
         return $this->cartList;
     }
 
+    /**
+     * @return string
+     */
+    public function getUsertype(): string
+    {
+        return $this->usertype;
+    }
 
     public function getId(): int
     {
         return $this->id;
     }
-
+    
 //    public function updateUser()
 //    {
 //        $this->username = "Bla";

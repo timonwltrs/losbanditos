@@ -110,6 +110,7 @@
                 <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
               </form>
             {/if}
+
           </div>
         </form>
         <div>

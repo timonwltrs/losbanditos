@@ -8,9 +8,9 @@ require_once "include/smarty-4.3.0/libs/Smarty.class.php";
 ini_set('xdebug.var_display_max_depth', -1);
 ini_set('xdebug.var_display_max_children', -1);
 ini_set('xdebug.var_display_max_data', -1);
-ini_set ('display_errors', 1);
-ini_set ('display_startup_errors', 1);
-error_reporting (E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 use Losbanditos\CartList;
 use Losbanditos\Db;
@@ -33,21 +33,21 @@ if (isset($_GET['action'])) {
 }
 $database = new Db();
 
-
-if(isset($_SESSION['user']))
-{
+if (isset($_SESSION['products'])) {
+    Product::$products = $_SESSION['products'];
+}
+if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
     $template->assign('username', $user->getUsername());
     //db versie moet nog gebeuren
     $user->setCart();
 }
 
+
 if (isset($_SESSION['username'])) {
     // zoek user is $users en maak $user aan
-    foreach(User::$users as $checkuser)
-    {
-        if($checkuser->getUsername() == $_SESSION['username'])
-        {
+    foreach (User::$users as $checkuser) {
+        if ($checkuser->getUsername() == $_SESSION['username']) {
             $user = $checkuser;
             //var_dump($user);
             break;
@@ -55,9 +55,10 @@ if (isset($_SESSION['username'])) {
     }
 }
 
+
 switch ($action) {
     case "registerform":
-        // formulier laten zien
+        // formulier laten zienx
         $template->display('template/registratieform.tpl');
         break;
 
@@ -150,7 +151,7 @@ switch ($action) {
     case "login":
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             $user = User::login($_POST['username'], $_POST['password']);
-            if($user === false){
+            if ($user === false) {
                 // geef fout aan
                 echo "fout";
                 $template->display('template/layout.tpl');
@@ -213,7 +214,7 @@ switch ($action) {
 
 
     case "cartAdd":
-        if (isset($_SESSION['user']) && $user->getUsername() !== null){
+        if (isset($_SESSION['user']) && $user->getUsername() !== null) {
             if ($_POST['cart']) {
                 $product = Product::productDetail($_POST['name']);
                 $user->userCart($product);
@@ -225,8 +226,7 @@ switch ($action) {
         break;
 
     case "cartIndex":
-        if (isset($_SESSION['user']) && $user->getUsername() !== null)
-        {
+        if (isset($_SESSION['user']) && $user->getUsername() !== null) {
             $cartList = $user->getCartList();
             if ($cartList === null || empty($cartList->getCart())) {
                 $template->display('template/noti/cartEmpty.tpl');
@@ -243,17 +243,14 @@ switch ($action) {
 
 
     case "cartDelete":
-        if ($user->getCartList()->removeItem($_POST['brand']))
-        {
-            $template->display('template/noti/cartEmptySuccess.tpl');
-        } else {
-            $template->display('template/noti/error.tpl');
+        if ($user->getCartList()->removeItem($_POST['brand'])) {
+
+            header("Location: index.php?action=cartEmptySuccess");
         }
         break;
 
     case "cartCompleteDelete":
-        if (empty($user->getCartList()->removeCart($_POST['brand'])))
-        {
+        if (empty($user->getCartList()->removeCart($_POST['brand']))) {
             header("Location: index.php?action=cartEmptySuccess");
         }
         break;
