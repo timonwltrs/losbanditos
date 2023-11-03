@@ -176,7 +176,7 @@ switch ($action) {
         exit();
 
     case "favouritesAdd":
-        if (isset($_SESSION['user']) && $user->getUsername() !== null) {
+        if (isset($_SESSION['user']) && $user->getUsername() !== null){
             if ($_POST['fav']) {
                 $user->setFavourite(intval($_POST['productid']), $_SESSION['user']->getId());
             } else {
@@ -195,11 +195,11 @@ switch ($action) {
         break;
 
     case "favourites":
-
-        if (isset($_SESSION['user']) && $user->getUsername() !== null) {
-            $favList = $user->getFav();
-            if ($favList === null || empty($favList->getFavourites())) {
-                $template->display('template/noti/cartEmpty.tpl');
+        if (isset($_SESSION['user']) && $user->getUsername() !== null)
+        {
+            $favList = $user->getFavouriteList();
+            if (empty($favList)) {
+                $template->display('template/noti/favouriteEmpty.tpl');
             } else {
                 $template->assign('favourites', $favList);
                 $template->display('template/favourites.tpl');
