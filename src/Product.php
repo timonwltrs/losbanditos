@@ -122,6 +122,7 @@ class Product
         $this->imageName = $imageName;
         Db::$db->update("products", ["id" => $this->id, "brand" => $this->brand, "description" => $this->description, "price" => $this->price, "imageName" => $this->imageName],
             ["products.id" => $this->id]);
+
     }
 
 }

@@ -99,7 +99,7 @@ switch ($action) {
 
     case "productDetail":
         // als POST, dan review opslaan
-        $product = Product::productDetail(($_GET['name']));
+        $product = Product::productDetail($_GET['name']);
         if (!empty($_POST['name']) && !empty($_POST['review'])) {
             $product->addReview($_POST['name'], $_POST['rating'], $_POST['review']);
         }
@@ -114,8 +114,8 @@ switch ($action) {
         break;
 
     case "changeProduct":
-            $product = Product::getProductById(intval($_POST['id']));
-            $product->changeProduct($_POST['id'], $_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
+        $product = Product::getProductById(intval($_POST['id']));
+        $product->changeProduct($_POST['id'], $_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
         break;
 
     case "home":
@@ -206,8 +206,8 @@ switch ($action) {
         } else {
             header("Location: index.php?action=favouriteMustLogIn");
         }
-        echo "<pre>";
-        var_dump($user->getFavouriteList());
+//        echo "<pre>";
+//        var_dump($user->getFavouriteList());
         break;
 
 
@@ -264,6 +264,6 @@ switch ($action) {
         $template->assign('users', User::$users);
         $template->display('template/layout.tpl');
 }
-//
-echo "<pre>";
-var_dump($_SESSION);
+////
+//echo "<pre>";
+//var_dump($_SESSION);
