@@ -10,7 +10,7 @@
                         <div class="col-md-6">
                             <div class="images p-3">
                                 <div class="text-center p-4">
-                                    <img id="main-image" src="./template/img/{$product->imageName}.jpeg" width="250"/>
+                                    <img id="main-image" src="/template/img/{$product->imageName}.jpeg" width="250"/>
                                 </div>
                             </div>
                         </div>
@@ -18,7 +18,7 @@
                             <div class="product p-4">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn d-flex align-items-center"><i class="fa fa-long-arrow-left"></i>
-                                        <span class="ml-1"><a href="./index.php?action=productIndex">Back</a></span>
+                                        <span class="ml-1"><a href="/index.php?action=productIndex">Back</a></span>
                                     </div>
                                     <i class="fa fa-shopping-cart text-muted"></i>
                                 </div>
@@ -31,7 +31,7 @@
                                 <p class="about">{$product->description}</p>
 
                                 <div class="cart mt-4 align-items-center">
-                                    <form action="./index.php?action=cartAdd&name={$product->brand}" method="POST">
+                                    <form action="/index.php?action=cartAdd&name={$product->brand}" method="POST">
                                         <input type="hidden" name="name" value="{$product->brand}">
                                         <input class="btn btn-danger text-uppercase mr-2 px-4" type="submit" name="cart" value="Add to Cart" class="btn btn-dark">
                                     </form>
@@ -50,7 +50,7 @@
     {*    hier komt review page*}
     <div class="container mt-5 mb-5">
         <h2>Place review</h2>
-        <form action="./index.php?action=productDetail&name={$name}" method="POST">
+        <form action="index.php?action=productDetail&name={$name}" method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
