@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
-<head><script src="/template/js/color-modes.js"></script>
+<head><script src="./template/js/color-modes.js"></script>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,15 +9,15 @@
   <meta name="generator" content="Hugo 0.111.3">
   <title>Los Banditos</title>
 
-  <link href="/template/css/bootstrap.min.css" rel="stylesheet" >
-  <link href="/template/css/style.css" rel="stylesheet" >
+  <link href="./template/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="./template/css/style.css" rel="stylesheet" >
   <link rel="icon" type="image/png" href="/template/img/pablohead.png">
   <script src="https://kit.fontawesome.com/9837a2ed34.js" crossorigin="anonymous"></script>
 
   <meta name="theme-color" content="#712cf9">
 
   <!-- Custom styles for this template -->
-  <link href="/template/css/sticky-footer-navbar.css" rel="stylesheet">
+  <link href="./template/css/sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body class="flex flex-column h-100">
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -76,20 +76,20 @@
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/index.php?action=home">Los Banditos</a>
+      <a class="navbar-brand" href="./index.php?action=home">Los Banditos</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/index.php?action=home">Home</a>
+            <a class="nav-link active" aria-current="page" href="./index.php?action=home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/index.php?action=productIndex">Products</a>
+            <a class="nav-link" href="./index.php?action=productIndex">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/index.php?action=favourites">Favourites</a>
+            <a class="nav-link" href="./index.php?action=favourites">Favourites</a>
           </li>
         </ul>
 
@@ -99,22 +99,22 @@
             {if isset($username)}
               <h5 class="card-title">{$username}</h5>
               <form>
-                <button class="btn btn-login"><a href="/index.php?action=logout"">Logout</a></button>
+                <button class="btn btn-login"><a href="./index.php?action=logout"">Logout</a></button>
               </form>
 {*              hier kunnen we later user information neerzetten*}
 
 {*              <i class="fa-regular fa-user fa-lg" style="color: #bfbfbf; margin-top: 25px; margin-left: 10px; margin-right: 10px"></i>*}
             {else}
               <form>
-                <button class="btn btn-login"><a href="/index.php?action=regieForm"">Registreren</a></button>
-                <button class="btn btn-login"><a href="/index.php?action=loginForm"">LogIn</a></button>
+                <button class="btn btn-login"><a href="./index.php?action=regieForm"">Registreren</a></button>
+                <button class="btn btn-login"><a href="./index.php?action=loginForm"">LogIn</a></button>
               </form>
             {/if}
 
           </div>
         </form>
         <div>
-          <a href="/index.php?action=cartIndex">
+          <a href="./index.php?action=cartIndex">
           <i class="fa-solid fa-cart-shopping fa-lg" style="color: #bfbfbf; margin-left: 10px; margin-right: 10px"></i>
           </a>
         </div>
@@ -134,6 +134,6 @@
     {block name="content"}{/block}
   </div>
 </main>
-<script src="/template/js/bootstrap.bundle.min.js"></script>
+<script src="./template/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

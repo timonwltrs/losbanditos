@@ -117,6 +117,8 @@ switch ($action) {
     case "changeProduct":
         $product = Product::getProductById(intval($_POST['id']));
         $product->changeProduct($_POST['brand'], $_POST['description'], $_POST['price'], $_POST['imageName']);
+        header("Location: index.php?action=productIndex");
+
         break;
 
     case "home":

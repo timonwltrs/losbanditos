@@ -3,7 +3,7 @@
 {block name="content"}
     <h1 class="mt-5">Change Product</h1>
 
-        <form action="/index.php?action=changeProduct" method="POST">
+        <form action="./index.php?action=changeProduct" method="POST">
             <div class="row mb-3">
                 <label for="inputBrand" class="col-sm-2 col-form-label">Brand</label>
                 <div class="col-sm-10">

@@ -7,6 +7,6 @@
             <p class="lead">
                 Click here to back to the home page
             </p>
-            <a href="/index.php?action=home" class="btn btn-primary">Go Home</a>
+            <a href="./index.php?action=home" class="btn btn-primary">Go Home</a>
         </div>
 {/block}
